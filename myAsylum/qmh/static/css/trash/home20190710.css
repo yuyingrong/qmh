@@ -1,0 +1,83 @@
+
+/*.middle .bg-img {    background-image: url("../images/FriendsAsylum.jpg");    background-position: center;    background-repeat: no-repeat;    background-attachment: fixed;    background-size: contain;    width: 100%;    height: 50em;}*/
+
+
+.middle .album {
+    position: relative;
+    padding: 0.5em;
+}
+
+.middle .album img {
+    width: 100%;
+    border-style: solid;
+    border-width: 0.5em;
+    border-color: white;
+    box-shadow: 0.5em 0.5em 1em grey;
+}
+.middle .overlay {
+    position: absolute;
+    width: 50%;
+    right: 4em;
+    bottom: 2em;
+    color: white;
+}
+
+.middle .column {
+    float: left;
+}
+
+.middle .column:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.middle .main-text {
+    float: right;
+    width: 79%;
+    background-color: transparent;
+    padding: 0 1em 0 1em;
+}
+
+.middle .data-visualizations {
+    background-color: white;
+}
+
+.middle .thumbnail a {
+    display: inline-block;
+}
+
+.middle .thumbnail img {
+    border: 0.1em solid #ddd;
+    border-radius: 0.25em;
+    padding: 0.4em;
+    width: 4em;
+}
+
+.middle .thumbnail img:hover {
+    box-shadow: 0 0 0.2em 0.1em rgba(0, 140, 186, 0.5);
+}
+
+.middle .side-bar {
+    width: 20%;
+    background-color: transparent;
+    padding: 0 1em 0 1em;
+}
+
+.footer {
+    color: white;
+}
+
+.footer a {
+    color: #deeaff;
+}
+
+.footer .background-color {
+    clear: both;
+    background-color: #444444;
+}
+
+.footer .icons {
+    background-color: #444444;
+}
+

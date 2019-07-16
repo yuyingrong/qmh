@@ -1,0 +1,87 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<title>Mental Health and Quaker Theology | Quakers &amp; Mental Health</title>
+
+
+
+        <!-- MAIN TEXT -->
+
+
+
+<div class="column main-text">
+
+  <h3 class="title"><!-- universal formatting for titles of texts as styled in "base.css" -->Mental Health and Quaker Theology</h3>
+
+  <p class="text"><!-- universal formatting for texts as styled in "base.css" -->
+
+<a class="hover-glossary" title="{{ glossary_dict.quakers }}">Quakers</a> 
+have been associated with mental illness since their beginnings in seventeenth century England. 
+Early Quakers were accused of insanity because of their radical religious ideas and their 
+ecstatic mode of worship. Quaker theology, especially the idea that everyone had access to
+<a class="hover-glossary" title="{{ glossary_dict.that_of_God }}"> that of God </a>within them, 
+and therefore did not need to rely on external authority, was very radical. The Quaker way of 
+worship was also alarming. Early Friends interrupted church services to argue with priests, 
+shook and cried during <a class="hover-glossary" title="{{ glossary_dict.Meeting_for_Worship }}">
+Meeting for Worship</a>, and even wandered naked through the streets decrying sinfulness. 
+Quakers performed these actions because they felt led to do so by that of God within them, and 
+following their <a class="hover-glossary" title="{{ glossary_dict.leadings }}">leadings</a> 
+was more important than maintaining public order. To outsiders, these actions looked like 
+those of mad people.
+
+</p>
+
+
+<h2 title="{{ glossary_dict.convinced_friend }}">Convinced Friend</h2>
+
+<h1 title="{{ glossary_dict }}">Everything in dict</h1>
+{{ glossary_dict }}
+
+
+
+</div><!-- class="column main-text" -->
+
+
+
+
+        <!-- SIDE BAR -->
+
+
+<div class="column side-bar">
+
+  <script src="{% static 'js/collapsible-menu.js' %}"></script>
+
+  <nav>
+  <li>
+    <span class="collapsible">The Asylum</span>
+    <span class="content">
+      <ul>
+        <li>The York Retreat</li>
+        <li>Foundation</li>
+      </ul>
+    </span>
+  </li>
+  <li>
+    <span class="collapsible">Treatment</span>
+    <span class="content">
+      <ul>
+        <li>Causes of Mental Illness</li>
+        <li>Moral Treatment</li>
+      </ul>
+    </span>
+  </li>
+  <li>Patients</li>
+  <li>Religion</li>
+  <li><a title="open glossary page on a new tab" target="_blank" href="{% url 'glossary' %}">Glossary</a></li>
+  <li>Further Readings</li>
+
+  </nav>
+
+</div><!-- class="column side-bar" -->
+
+
+{% endblock %}

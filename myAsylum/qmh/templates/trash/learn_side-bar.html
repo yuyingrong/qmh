@@ -1,0 +1,58 @@
+
+{% load staticfiles %}
+
+        <!-- SIDE BAR -->
+
+
+<div class="column side"><!-- classes "column" and "side" are styled in "base.css" -->
+
+<h3>Navigation</h3>
+<ul>
+  <li>
+    <span class="collapsible">The Asylum</span>
+    <span class="content">
+      <ul>
+        <li><a href="{% url 'learn_theYorkRetreat' %}" title="The York Retreat">The York Retreat</a></li>
+        <li>Foundation</li>
+        <li>Structure &amp; Governance</li>
+        <li>Architecture</li>
+        <li>...</li>
+        <li><a href="{% url 'learn_changesInAdminOverTime' %}" title="Changes in the Administration Over Time">Changes in the Administration</a></li>
+      </ul>
+    </span>
+  </li>
+  <li>
+    <span class="collapsible">Treatment</span>
+    <span class="content">
+      <ul>
+        <li>Causes of Mental Illness</li>
+        <li>Moral Treatment</li>
+      </ul>
+    </span>
+  </li>
+  <li>
+    <span class="collapsible">Patients</span>
+    <span class="content">
+      <ul>
+        <li>Patient Profiles</li>
+      </ul>
+    </span>
+  </li>
+
+  <li>
+    <span class="collapsible">Religion</span>
+    <span class="content">
+      <ul>
+        <li><a href="{% url 'learn_mentalHealthAndQuakerTheology' %}" title="Mental Health and Quaker Theology">Quaker Theology and Mental Health</a></li>
+      </ul>
+    </span>
+  </li>
+  <li><a class="collapsible" title="open glossary page on a new tab" target="_blank" href="{% url 'glossary' %}">Glossary</a></li>
+  <li><a class="collapsible">Further Readings</a></li>
+</ul>
+
+<script src="{% static 'js/collapsible-menu.js' %}"></script>
+<!-- script from: https://www.w3schools.com/howto/howto_js_collapsible.asp -->
+
+</div><!-- class="column side" -->
+

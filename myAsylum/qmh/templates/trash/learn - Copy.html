@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<title>Learn | Quakers &amp; Mental Health</title>
+
+
+        <!-- MAIN TEXT -->
+
+
+
+<div class="column main-text">
+
+  <p>History</p>
+
+
+</div><!-- class="column main-text" -->
+
+
+        <!-- SIDE BAR -->
+
+
+<div class="column side-bar">
+
+  <script src="{% static 'js/collapsible-menu.js' %}"></script>
+  <!-- script from: https://www.w3schools.com/howto/howto_js_collapsible.asp -->
+
+  <nav>
+  <li>
+    <span class="collapsible">The Asylum</span>
+    <span class="content">
+      <ul>
+        <li>The York Retreat</li>
+        <li>Foundation</li>
+      </ul>
+    </span>
+  </li>
+  <li>
+    <span class="collapsible">Treatment</span>
+    <span class="content">
+      <ul>
+        <li>Causes of Mental Illness</li>
+        <li>Moral Treatment</li>
+      </ul>
+    </span>
+  </li>
+  <li>Patients</li>
+  <li>Religion
+      <ul>
+        <li title="Mental Health and Quaker Theology"><a href="{% url 'learn_mentalHealthAndQuakerTheology' %}">Quaker Theology and Mental Health</a></li>
+      </ul>
+  </li>
+  <li><a title="open glossary page on a new tab" target="_blank" href="{% url 'glossary' %}">Glossary</a></li>
+  <li>Further Readings</li>
+
+  </nav>
+
+</div><!-- class="column side-bar" -->
+
+
+
+
+{% endblock %}

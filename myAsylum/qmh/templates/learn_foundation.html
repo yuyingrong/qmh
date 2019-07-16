@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<title>The York Retreat | Quakers &amp; Mental Health</title>
+
+{% include 'learn_side-bar.html' %}
+
+
+        <!-- MAIN SECTION -->
+
+
+<link rel="stylesheet" href="{% static 'css/learn_theYorkRetreat.css' %}">
+
+
+<div class="column main"><!-- classes "column" and "main" are styled in "base.css" -->
+
+  <div class="banner-bgcolor"><!-- styling is in individual CSS files, not in "learn.css" -->
+    <h1><a href="{% url 'home' %}" title="go back to homepage" style="text-decoration: none; color: black;">Quakers &amp; Mental Health Portal</a></h1>
+  </div><!-- class="banner-bgcolor" -->
+
+
+<!-- the above section will be the same for every "learn_xxx.html" file, except for "title" and the individual "stylesheet", if any -->
+
+
+
+
+  <h3>Foundation of Friends Asylum</h3>
+
+  <article>
+
+
+
+  </article>
+
+  <h5 class="prev-next"><span style="float: left;">This is the first article about "The Asylum"</span><span style="float: right;">Next Article: <a href="">Foundation >>></a></span></h5>
+
+
+
+
+
+<!-- the section below will be the same for every "learn_xxx.html" file -->
+
+</div><!-- class="column main" -->
+
+
+{% endblock %}

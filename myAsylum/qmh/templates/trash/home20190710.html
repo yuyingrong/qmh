@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<title>Home | Quakers &amp; Mental Health</title>
+
+<div class="album">
+  <img src="{% static 'images/FriendsAsylum.jpg' %}" alt="drawing of Friends Asylum">
+  <div class="overlay">
+    <p>some text about the image some text about the image some text about the image some text about the image some text about the image some text about the image some text about the image some text about the image</p>
+  </div><!-- class="overlay" -->
+</div><!-- class="album" -->
+
+        <!-- MAIN TEXT -->
+
+<div class="column main-text">
+
+  <h3>About The Project</h3>
+  <p>The Quakers & Mental Health portal launched in the summer of 2015 as an iterative website to hold scholarship about the history of mental health in Philadelphia, in the 19th and 20 centuries, and in particular of Friends Hospital, the first private mental health institution in the United States. This multi-year project combines archival research and writing with digital scholarship to create and support scholarship on the history of mental health, to analyze data and create visualizations from that research.</p>
+
+<div class="data-visualizations">
+<p>
+  <h3>Data Visualizations</h3>
+</p>
+
+<div class="thumbnail">
+
+  <a target="_blank" href="">
+    <img src="{% static 'images/AlluvialCausesTypes.jpg' %}" alt="alluvial chart linking causes of mental illness to types of mental illness">
+  </a>
+
+  <a target="_blank" href="">
+    <img src="{% static 'images/BubbleCausesTypes.png' %}" alt="bubble chart showing causes of mental illness and types of mental illness">
+  </a>
+
+</div><!-- class="thumbnail" -->
+
+<p>
+  <a href="{% url 'visualizations' %}">View Gallery>>></a>
+</p>
+</div><!-- class="data-visualizations" -->
+
+</div><!-- class="column main-text" -->
+
+
+        <!-- SIDE BAR -->
+
+
+<div class="column side-bar">
+
+<h3>News</h3>
+<ul>
+  <li>Our fellowship...</li>
+</ul>
+<h3>Essays</h3>
+<ul>
+  <li>essay 1</li>
+  <li>essay 2</li>
+  <li>essay 3</li>
+</ul>
+<h3>Podcasts</h3>
+To be added...
+
+
+
+</div><!-- class="column side-bar" -->
+
+{% endblock %}

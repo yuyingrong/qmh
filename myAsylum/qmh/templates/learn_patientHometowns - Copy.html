@@ -1,0 +1,67 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<title>Patient Hometowns | Quakers &amp; Mental Health</title>
+
+
+
+<link rel="stylesheet" href="{% static 'css/learn_patientHometowns.css' %}">
+
+  <h2>Patient Hometowns</h2>
+
+  <h3>Where did the patients come from?</h3>
+
+  <p> The Friends Hospital collection's <a href = "#" data-reveal-id = "myNewModal">Minutes and Register of the Committee of Admission, 1817-1856</a> provides valuable information about where the Asylum's earliest patients came from. A majority of the patients lived in the Philadelphia area prior to admittance. However, over time, the Asylum began to treat patients from the reaches of the United States at the time, as well as Canada, France, and Britain. The Friends’ Asylum often treated patients who came from the same place, establishing recognition and reputation throughout certain regions. The interactive map shows the increase in patients over time and some of the "hubs" which sent multiple patients to the Asylum. Drag the slider below to view patients' hometowns in a particular year. The size of each marker represents the number of patients sent from each location, and the color represents the year. </p>
+
+  <!--- Now, for the map:-->     
+  <div id="map-container">
+    <div id='map'></div>
+
+        <div class='map-overlay top'>
+            <div class='map-overlay-inner'>
+                <h2>Patient Hometowns</h2>
+            <!--<label id='year-to-show'></label> -->
+            Select Year: <input id='slider' type='range' min='1817' max='1856' step='1' value='1817' onchange="myFunction()"/>
+                  <script type="text/javascript">
+      //My first intentional accessibility feature! This function lets the arrow keys tab through the slider, rather than dragging!
+      document.getElementById('slider').addEventListener('click', function() {
+        this.focus(); 
+      });
+    </script>
+            <p id = "label"> </p>
+            <!--<button onclick="myFunction()">Update Map</button>--> <!---Button option, but slider slides automatically now :) -->
+
+
+    </div>
+    <div class='map-overlay-inner'>
+        <div id='legend' class='legend'>
+            <div class='bar'></div>
+            <div>Year (Earlier to Later)</div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/mapPatientHometowns.js' %}"></script>
+
+</div> <!--- Ends map div -->
+     <div id = "row6"> <!-- This was a quick steal to ensure font uniformity across all pages. -->
+  <div class ="row full-width" >
+  <p> As you may observe, a lot has changed since the first patients entered the asylum. For example, some patients' hometowns were recorded as places we consider to be neighborhoods of Philadelphia today, such as Germantown and Manayunk, because Philadelphia during the 1800s had not yet grown enough include those areas. Additionally, some entries in the collection's Minutes and Register of the Committee of Admission are ambiguous, listing only a state or region and no city. Additionally, state and national borders were still being drawn during the early days of the Asylum leave us with only a rough idea of where patients came from. With two entries stating only "Western Canada," and several entries specifying regions but not cities, it can be hard to place certain patients.  </p>
+  
+</div>
+</div>
+<div id ="myNewModal" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle"> Minutes and Register of the Committee of Admission, 1817-1856, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania. </p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+
+  <h5 class="prev-next"><span style="float: left;">This is the first article about "The Asylum"</span><span style="float: right;">Next Article: <a href="">Foundation >>></a></span></h5>
+
+
+
+{% endblock %}

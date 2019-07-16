@@ -1,0 +1,78 @@
+
+/*.middle .bg-img {    background-image: url("../images/FriendsAsylum.jpg");    background-position: center;    background-repeat: no-repeat;    background-attachment: fixed;    background-size: contain;    width: 100%;    height: 50em;}*/
+
+#middle .side .collapsible {
+    cursor: pointer;
+    width: 100%;
+    padding: 0.1em;
+    text-align: left;
+    font-size: 1em;
+}
+
+#middle .side .active, .collapsible:hover {
+    background-color: #333;
+}
+
+#middle .side .content {
+    padding: 0 1em;
+    display: none;
+    overflow: hidden;
+}
+
+
+/* the styling for the banner text (".banner-bgcolor a") is the same as in that for .main .overlay in "home.css" */
+#middle .banner-bgcolor a {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+}
+
+#middle .banner-bgcolor a:hover {
+    color: #f2f2f2;
+    text-align: center;
+}
+
+
+#middle  figure {
+    float: left;
+    border-style: solid;
+    border-width: 0.5em;
+    border-color: white;
+    box-shadow: 0.2em 0.2em 1em grey;
+}
+
+#middle article::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+
+
+#middle .album {
+    position: relative;
+    padding: 0.5em;
+}
+
+#middle .album img {
+    width: 100%;
+    border-style: solid;
+    border-width: 0.5em;
+    border-color: white;
+    box-shadow: 0.5em 0.5em 1em grey;
+}
+
+#middle .album .overlay {
+    position: absolute;
+    width: 50%;
+    right: 4em;
+    bottom: 2em;
+    color: white;
+}
+
+
+
+
+
+

@@ -1,0 +1,137 @@
+﻿
+<link rel="stylesheet" href="{% static 'css/organization.css' %}">
+
+<h4>1817-1850: First Decades</h4>
+
+<p>After opening in 1817, Friends Asylum needed staff to fill all the roles required to care for and treat its patients. The governing body also needed reorganization to ensure that they could attend to running all the tasks and requirements for an asylum smoothly. Many of the methods used were based on practices from the earlier York Retreat, and moral treatment was usually viewed as the way to cure patients of their mental illness, with medical care only being used as thought necessary.</p>
+
+
+<div class="tree">
+
+  <ul>
+    <li>
+      <a title="The treasurer was a member of the Board of Managers who was also responsible for taking up yearly donations from the Contributors and managing the asylum’s finances.">Treasurer</a>
+    </li>
+    <li>
+      <a title="Made up of representatives from meetings and individual Quakers who gave a significant amount of money to support Friends Asylum. The Contributors met once a year to make large decisions about the business and welfare of Friends Asylum.">Contributors</a>
+      <ul>
+        <li>
+          <a title="The twenty members of Board of Managers were chosen from the Contributors to the Asylum at the yearly meeting of the Contributors. The Board of Managers approved the admission of new patients, and set the weekly admission rate, and supervised the staff and financial spending of Friends Asylum. The Board of Managers also rotated as Visiting Managers, who visited and inspected the asylum once a week, as well as inspecting the superintendent’s account books every month.">Board of Managers</a>
+          <ul>
+            <li>
+              <a title="The superintendent lived at the asylum and was responsible for the day-to-day welfare and treatment of the patients, as well as running the farm and the household. He also oversaw the attendants in their work of caring for the patients.">Superintendent</a>
+              <ul>
+                <li>
+                  <a title ="Outside of those who worked with the patients, Friends Asylum also hired staff to cook and clean, to maintain the building and grounds, and as needed for specialized roles like coach driving or engineering the heating systems.">Other Staff</a>
+                </li>
+                <li>
+                  <a title="In the beginning the matron was the superintendent’s wife, though by the end of the 19th century the matron was often appointed. The matron also worked with the superintendent to run the asylum and its farm, and directly oversaw the attendants along with the other staff.">Matron</a>
+                  <ul>
+                    <li>
+                      <a title="The attendants, also called keepers or caretakers, worked with the patients directly to care for them, supervise them, entertain them, and clean them. Attendants were responsible for the wellbeing of patients, and so Friends Asylum was often concerned with finding trustworthy workers who would approach their duties responsibly and conscientiously.">Attendants</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a title="Sometimes called the physician-in-chief, the attending physician worked with the resident physician to oversee the diet and medical care of the patients, as the superintendent before 1850 did not have medical expertise.">Attending Physicians</a>
+              <ul>
+                <li>
+                  <a title="Assistant physicians were doctors who worked at the asylum to help care for patients, though they had less authority. In the early years, there were only a small number of assistants, their numbers increased as the number of patients and the needs of the asylum increased.">Assistant Physicians</a>
+                </li>
+                <li>
+                  <a title="The resident physician, along with the attending physician, also oversaw all the medical aspects of patient treatment. The resident physician lived at the asylum in order to always be on hand in casef one of the patients might need medical assistance.">Resident Physician</a>
+                  <ul>
+                    <li>
+                      <a title="The consulting physicians did not regularly work at the asylum or care for its patients. They were doctors in the Philadelphia area with their own practices, who were retained by the asylum to be called on if specialist expertise was needed for a particular case.">Consulting Physicians</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+</div><!-- class="tree" -->
+
+
+
+
+<style>
+
+* {margin: 0; padding: 0;}
+
+.tree ul {
+  position: relative;
+  padding-top: 1.5em; 
+}
+
+.tree li {
+  position: relative;
+  padding: 1.5em 0.25em 0 0.25em; 
+  float: left; 
+  text-align: center;
+  list-style-type: none; 
+}
+
+.tree li::before, .tree li::after{
+  content: '';
+  position: absolute; 
+  top: 0; 
+  right: 50%;
+  width: 50%; 
+  height: 1.5em;
+  border-top: 0.1em solid #ccc;
+}
+
+.tree li::after{
+  left: 50%;
+  right: auto; 
+  border-left: 0.1em solid #ccc;
+}
+
+.tree li:only-child::after, .tree li:only-child::before {
+  content: '';
+  display: none;
+}
+
+.tree li:only-child{ padding-top: 0;}
+
+.tree li:first-child::before, .tree li:last-child::after{
+  border: 0 none;
+}
+
+.tree li:last-child::before{
+  border-right: 0.1em solid #ccc;
+  border-radius: 0 0.25em 0 0;
+}
+
+.tree li:first-child::after{
+    border-radius: 0.25em 0 0 0;
+}
+
+.tree ul ul::before{
+  content: '';
+  position: absolute; top: 0; left: 50%;
+  border-left: 0.1em solid #ccc;
+  width: 0; 
+  height: 1.5em;
+}
+
+.tree li a{
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  
+  border-radius: 0.5em;
+  border: 0.1em solid #ccc;
+  
+  text-decoration: none;
+  color: black;
+  font-size: 1em;
+}
+
+</style>

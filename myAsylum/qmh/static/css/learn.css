@@ -1,0 +1,38 @@
+
+/*.middle .bg-img {    background-image: url("../images/FriendsAsylum.jpg");    background-position: center;    background-repeat: no-repeat;    background-attachment: fixed;    background-size: contain;    width: 100%;    height: 50em;}*/
+
+/* #block figure and img, .header and .in-text, are styled in "base.css" */
+
+/* all #block article::after sections are clearfixed in "base.css" */
+
+#block blockquote {
+    padding: 0.5em;
+    margin: 1em;
+    border-left: 0.5em solid #ccc;
+    font-family: serif;
+}
+
+#block cite {
+    font-family: serif;
+    float: right;
+}
+
+
+
+
+#footer a {
+    color: blue;
+}
+
+#footer .footer-bgcolor {
+    clear: both;
+    background-color: #dddddd;
+}
+
+#footer .icons {
+    background-color: #dddddd;
+}
+
+
+
+

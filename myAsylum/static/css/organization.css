@@ -1,0 +1,72 @@
+/* adapted from https://codepen.io/joellesenne/full/KGJkz */
+
+* {margin: 0; padding: 0;}
+
+.tree ul {
+  position: relative;
+  padding-top: 1.5em; 
+}
+
+.tree li {
+  position: relative;
+  padding: 1.5em 0.25em 0 0.25em; 
+  float: left; 
+  text-align: center;
+  list-style-type: none; 
+}
+
+.tree li::before, .tree li::after{
+  content: '';
+  position: absolute; 
+  top: 0; 
+  right: 50%;
+  width: 50%; 
+  height: 1.5em;
+  border-top: 0.1em solid #ccc;
+}
+
+.tree li::after{
+  left: 50%;
+  right: auto; 
+  border-left: 0.1em solid #ccc;
+}
+
+.tree li:only-child::after, .tree li:only-child::before {
+  content: '';
+  display: none;
+}
+
+.tree li:only-child{ padding-top: 0;}
+
+.tree li:first-child::before, .tree li:last-child::after{
+  border: 0 none;
+}
+
+.tree li:last-child::before{
+  border-right: 0.1em solid #ccc;
+  border-radius: 0 0.25em 0 0;
+}
+
+.tree li:first-child::after{
+    border-radius: 0.25em 0 0 0;
+}
+
+.tree ul ul::before{
+  content: '';
+  position: absolute; top: 0; left: 50%;
+  border-left: 0.1em solid #ccc;
+  width: 0; 
+  height: 1.5em;
+}
+
+.tree li a{
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  
+  border-radius: 0.5em;
+  border: 0.1em solid #ccc;
+  
+  text-decoration: none;
+  color: black;
+  font-size: 1em;
+}

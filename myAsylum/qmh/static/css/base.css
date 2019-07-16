@@ -1,0 +1,246 @@
+
+* {
+    box-sizing: border-box;
+    font-family: Sans-Serif;
+}
+
+h1 {font-size: 3em;}
+h2 {font-size: 2em;}
+h3 {font-size: 1.5em;}
+h4 {font-size: 1.25em;}
+h5 {font-size: 1.1em;}
+h6 {font-size: 1em;}
+p, li, nav {font-size: 1em;}
+
+#topnav {
+    width: 100%;
+    position: fixed;
+    z-index: 3;/* See: https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-different-height-and-width-the-same-via-css; and see: https://www.w3schools.com/cssref/pr_pos_z-index.asp */
+    top: 0;
+    left: 0;
+    background-color: #333;
+    height: 2em;/* this serves positioning #main and #side, both having "top: 2em;" */
+    padding: 0.5em 1em;
+}
+
+#topnav nav {
+    color: #f2f2f2;
+}
+
+#topnav nav a {
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+#topnav nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+/* ---------------------- */
+
+
+#main {
+    float: left;
+    width: 80.99%;
+    background-color: white;
+    padding: 0;
+    margin: 2em 0 0 0;
+}
+
+#side {
+    z-index: 2;
+    float: right;
+    width: 19%;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    background-color: #888;
+    padding: 0 2em 0 2em;
+    top: 2em;
+}
+
+side:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    #side {
+        width: 0;/* due to padding, the sidebar will still be visible for hovering */
+    }
+    #side:hover {
+        width: 40%;
+    }
+}
+
+#side img {
+    width: 50%;
+    height: auto;
+    margin: 1em auto;
+    display: block;
+}
+
+#side .collapsible {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    text-align: left;
+    font-size: 1em;
+    text-decoration: none;
+    color: black;
+}
+
+#side .active, #side .collapsible:hover {
+    background-color: #333;
+    color: white;
+}
+
+/* this JS might help having menu tab stay open after opening a new page: https://www.sitepoint.com/community/t/how-to-keep-accordion-drop-down-menu-open-when-opening-a-new-page/9033/12 */
+
+#side .content {
+    display: none;
+    overflow: hidden;
+}
+
+#side ul {padding-left: 1em;}
+
+#side ul {list-style-type: none;}
+
+#side .content li {
+    font-size: 0.9em;
+    text-align: left;
+    padding: 0.2em;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#side .content li:hover {
+    background-color: #f2f2f2;
+}
+
+
+#banner a {
+    background-color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+#banner h1:hover {
+    text-shadow: 0 0 0.5em #333;
+}
+
+
+#block {
+    padding: 0 2em;
+}
+
+#block figure {
+    border-style: solid;
+    border-width: 0.5em;
+    border-color: white;
+    box-shadow: 0.2em 0.2em 0.5em grey;
+}
+
+#block figure.header {
+    width: 100%;
+    margin: 0;
+}
+
+#block figure.header img {
+    width: 100%;
+}
+
+#block figure.in-text {
+    float: left;
+    width: 40%;
+}
+
+#block figure.in-text img {
+    width: 100%;
+}
+
+
+#block article::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#block h5.prev-next {
+    padding: 2em 0;
+    font-weight: normal;
+    font-style: oblique;
+}
+
+#block::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+
+
+/* ---------------------- */
+
+
+#footer {
+    bottom: 0;
+}
+
+/* footer color is styled on stylesheets of individual pages */
+
+#footer .row {
+    clear: both;
+    padding: 2em 0 0 0;
+    text-align: center;
+}
+
+#footer .column {
+    width: 33%;
+    display: inline-block;
+}
+
+@media (max-width: 800px) {
+    #footer .column {
+        width: 100%;
+    }
+}
+
+#footer .row:after {
+    clear: both;
+    display: table;
+    content: "";
+}
+
+#footer .row ul {
+    text-align: center;
+    list-style-type: none;
+    font-size: 1em;
+    padding: 0;
+}
+
+#footer .icons {
+    text-align: center;
+}
+
+#footer .icons a {
+    display: inline-block;
+}
+
+#footer .icons img {
+    height: 1.5em;
+    background-color: transparent;
+}
+
+#footer #copyright {
+    clear: left;
+    text-align: center;
+    padding: 1em 0 2em 0;
+    text-font: 0.8em;
+}

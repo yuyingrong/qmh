@@ -1,0 +1,73 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/visualizations.css' %}">
+
+<title>Data Visualizations | Quakers &amp; Mental Health</title>
+
+
+
+
+
+
+
+
+<div class="gallery">
+
+  <div class="responsive">
+    <div class="album">
+      <a target="_blank" href="{% url 'visual_heatmapPatientMonthlyAdmissionFrequency' %}"><img src="{% static 'images/HeatmapPatientMonthlyAdmissionFrequency.jpg' %}" alt="map of squares whose coloration is based on frequency of monthly patient admission" title="view visualization in context"></a>
+      <div class="overlay">
+        <p>Patient Monthly Admission (1817 -- 1888)</p>
+      </div><!-- class="overlay" -->
+    </div><!-- class="album" -->
+  </div><!-- class="responsive" -->
+
+  <div class="responsive">
+    <div class="album">
+      <a target="_blank" href="" alt="a figure" title="view visualization in context"><img src="{% static 'images/AlluvialCausesTypes.jpg' %}" alt="etching of York Retreat"></a>
+      <div class="overlay">
+        <p>some text about the image</p>
+      </div><!-- class="overlay" -->
+    </div><!-- class="album" -->
+  </div><!-- class="responsive" -->
+
+  <div class="responsive">
+    <div class="album">
+      <a title="view visualization in context" alt="a figure" href=""><img src="{% static 'images/BubbleCausesTypes.jpg' %}" alt="etching of York Retreat"></a>
+      <div class="overlay">
+        <p>some text about the image</p>
+      </div><!-- class="overlay" -->
+    </div><!-- class="album" -->
+  </div><!-- class="responsive" -->
+
+  <div class="responsive">
+    <div class="album">
+      <a href="{% url 'visual_sankeyPhilanthropistsOrganizationsAssociation' %}"><img src="{% static 'images/SankeyPhilanthropistsOrganizationsAssociation.jpg' %}" alt="chart of lines connecting Quaker philanthropist donors to their recipient organizations" title="view visualization in context"></a>
+      <div class="overlay">
+        <p>some text about the image</p>
+      </div><!-- class="overlay" -->
+    </div><!-- class="album" -->
+  </div><!-- class="responsive" -->
+
+  <div class="responsive">
+    <div class="album">
+      <a title="view visualization in context" alt="a figure" href=""><img src="{% static 'images/YorkRetreat1.jpg' %}" alt="etching of York Retreat"></a>
+      <div class="overlay">
+        <p>some text about the image</p>
+      </div><!-- class="overlay" -->
+    </div><!-- class="album" -->
+  </div><!-- class="responsive" -->
+
+</div><!-- class="gallery" -->
+
+
+  <span style="text-align: center;"><h5 class="prev-next"><a href="{% url 'home' %}">Back to Homepage</a></h5></span>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,61 @@
+
+#block .gallery::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#block .responsive {
+    padding: 0;
+    float: left;
+    width: 24%;
+    height: auto;
+    margin: 0 0.4%;
+}
+
+@media (max-width: 800px) {
+    #block .responsive {
+        width: 48.5%;
+        margin: 0.5em 0.5%;
+    }
+}
+
+@media (max-width: 500px) {
+    #block .responsive {
+        width: 100%;
+    }
+}
+
+#block .album {
+    position: relative;
+}
+
+#block .album img {
+    width: 100%;
+    object-fit: cover;
+    border-style: solid;
+    border-width: 0.5em;
+    border-color: white;
+    box-shadow: 0.5em 0.5em 1em grey;
+
+}
+
+#block .album img:hover {
+    border-width: 0.3em;
+}
+
+#block .album .overlay {
+    position: absolute;
+    width: 50%;
+    right: 1em;
+    bottom: 1em;
+    background-color: black;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier; see: https://www.w3schools.com/css/tryit.asp?filename=trycss_transparency */
+}
+
+#block .album .overlay p {
+    color: white;
+    margin: 0.5em;
+}
+

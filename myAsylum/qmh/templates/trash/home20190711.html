@@ -1,0 +1,87 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<title>Home | Quakers &amp; Mental Health Portal</title>
+
+
+        <!-- SIDE BAR -->
+
+
+<div class="column side"><!-- classes "column" and "side" are styled in "base.css" -->
+
+  <!-- img src="{% static 'images/HaverfordCollege.jpg' %}" alt="logo of Haverford College; silhouette of Founders Hall" -->
+  <h3>Call for Fellows</h3>
+  <p>Something about the fellowship about the fellowship about the fellowship about the fellowship about the fellowship about the fellowship about the fellowship about the fellowship about the fellowship.</p>
+  <br>
+  <h3><a target="_blank" href="#" title="to be added">Make a Donation<a></h3>
+  <p style="color: grey;">&copy; Haverford College | 2019</p>
+
+</div><!-- class="column side" -->
+
+
+        <!-- MAIN SECTION -->
+
+
+<div class="column main"><!-- classes "column" and "main" are styled in "base.css" -->
+
+  <div class="banner">
+
+    <div class="overlay">
+
+      <h1>Quakers &amp; Mental Health Portal</h1>
+
+      <h2 style="font-weight: normal;">
+        <nav id="secnav">
+          <a target="_blank" href="{% url 'learn' %}">The Asylum</a> | 
+          <a target="_blank" href="#">Medical Treatment</a> | 
+          <a target="_blank" href="#">Patients</a> | 
+          <a target="_blank" href="#">Religion</a>
+        </nav>
+      </h2>
+
+    </div><!-- class="overlay" -->
+
+    <img src="{% static 'images/FriendsAsylum.jpg' %}" alt="drawing of Friends Asylum">
+
+  </div><!-- class="banner" -->
+
+  <div class="main-text">
+
+    <h3>About The Project</h3>
+    <p>The Quakers & Mental Health portal launched in the summer of 2015 as an iterative website to hold scholarship about the history of mental health in Philadelphia, in the 19th and 20 centuries, and in particular of Friends Hospital, the first private mental health institution in the United States. This multi-year project combines archival research and writing with digital scholarship to create and support scholarship on the history of mental health, to analyze data and create visualizations from that research.</p>
+
+    <h3>Our Research</h3>
+      <ul class="essays">
+        <li><a>Transitions</a> - Colin '20<li>
+        <li><a>The Principle of Family: Race, Religion, and Gender Inside the Friends' Asylum in the Nineteenth Century</a> - Claire Michel '18</li>
+        <li><a>Universalism & Particularism in Quaker Philanthropy: 1770-1830</a> - Ben Kaplow '18</li>
+        <li><a>A Mild and Appropriate System of Treatment: Moral Treatment and the Curability of Mental Illness at Friends Asylum</a> - Abby Corcoran '17</li>
+      </ul>
+
+    <h3>Data Visualizations</h3>
+
+    <div class="thumbnail">
+
+      <a target="_blank" href="">
+        <img src="{% static 'images/AlluvialCausesTypes.jpg' %}" alt="alluvial chart linking causes of mental illness to types of mental illness">
+      </a>
+
+      <a target="_blank" href="">
+        <img src="{% static 'images/BubbleCausesTypes.png' %}" alt="bubble chart showing causes of mental illness and types of mental illness">
+      </a>
+
+    </div><!-- class="thumbnail" -->
+
+    <p><a href="{% url 'visualizations' %}">View Gallery>>></a></p>
+
+  </div><!-- class="main-text" -->
+
+</div><!-- class="column main" -->
+
+
+{% endblock %}

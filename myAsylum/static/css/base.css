@@ -1,0 +1,107 @@
+
+* {
+    box-sizing: border-box;
+    font-family: Sans-Serif;
+}
+
+h1 {font-size: 3em;}
+h2 {font-size: 2em;}
+h3 {font-size: 1.5em;}
+h4 {font-size: 1.25em;}
+h5 {font-size: 1.13em;}
+h6 {font-size: 1em;}
+p, li, nav {font-size: 1.1em;}
+
+
+#topnav nav {
+    padding: 0.2em 0.5em;
+    color: #f2f2f2;
+    background-color: black;
+}
+
+#topnav nav a {
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+#topnav nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+#middle .column {
+    float: left;
+}
+
+#middle .column:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+#middle .side {
+    float: right;
+    width: 25%;
+    height: 50%;
+    position: fixed;
+    right: 0;
+    top: 2.3em;
+    background-color: transparent;
+    padding: 0 1em 0 1em;
+}
+
+#middle .main {
+    float: left;
+    width: 75%;
+    background-color: transparent;
+    padding: 0 1em 0 0;
+}
+
+
+
+#footer .row {
+    clear: both;
+    padding: 2em 0 0 0;
+    text-align: center;
+}
+
+#footer .column {
+    width: 33%;
+    display: inline-block;
+}
+
+#footer .row:after {
+    clear: both;
+    display: table;
+    content: "";
+}
+
+#footer .row ul {
+    text-align: center;
+    list-style-type: none;
+    font-size: 1em;
+    padding: 0;
+}
+
+#footer .icons {
+    text-align: center;
+}
+
+#footer .icons a {
+    display: inline-block;
+}
+
+#footer .icons img {
+    height: 1.5em;
+    background-color: transparent;
+}
+
+#footer #copyright {
+    clear: left;
+    text-align: center;
+    padding: 1em 0 2em 0;
+    text-font: 0.8em;
+}

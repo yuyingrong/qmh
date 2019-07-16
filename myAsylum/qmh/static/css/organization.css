@@ -1,0 +1,100 @@
+
+#block article {
+    margin: 5em 0;
+}
+
+#block .tree * {
+    margin: 0;
+    padding: 0;
+}
+
+#block .tree::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#block .tree {
+    width: 99%;
+    min-height: auto;
+    margin: 1em auto;
+}
+
+/* below: adapted from https://codepen.io/joellesenne/full/KGJkz */
+
+#block .tree ul {
+  position: relative;
+  padding-top: 1.5em;
+}
+
+#block .tree li {
+  position: relative;
+  padding: 1.5em 0.25em 0 0.25em; 
+  float: left;/* causes the div to behave strangely and I couldn't not solve it */
+  text-align: center;
+  list-style-type: none; 
+}
+
+#block .tree li::before, .tree li::after{
+  content: '';
+  position: absolute; 
+  top: 0; 
+  right: 50%;
+  width: 50%; 
+  height: 1.5em;
+  border-top: 0.1em solid #ccc;
+}
+
+#block .tree li::after{
+  left: 50%;
+  right: auto; 
+  border-left: 0.1em solid #ccc;
+}
+
+#block .tree li:only-child::after, .tree li:only-child::before {
+  content: '';
+  display: none;
+}
+
+#block .tree li:only-child{
+    padding-top: 0;
+}
+
+#block .tree li:first-child::before, .tree li:last-child::after{
+  border: 0 none;
+}
+
+#block .tree li:last-child::before{
+  border-right: 0.1em solid #ccc;
+  border-radius: 0 0.25em 0 0;
+}
+
+#block .tree li:first-child::after{
+    border-radius: 0.25em 0 0 0;
+}
+
+#block .tree ul ul::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 0.1em solid #ccc;
+  width: 0; 
+  height: 1.5em;
+}
+
+#block .tree li a {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  font-size: 1em;
+  border-radius: 0.5em;
+  border: 0.1em solid #ccc;
+  text-decoration: none;
+  color: black;
+}
+
+#block .tree li a:hover {
+    background-color: #333;
+    color: white;
+    cursor: progress;
+}

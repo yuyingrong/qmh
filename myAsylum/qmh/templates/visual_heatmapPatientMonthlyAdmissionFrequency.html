@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<title>Data Visualizations | Quakers &amp; Mental Health</title>
+
+<h3>Monthly Patient Admission Frequency Heatmap</h3>
+<p style="color:grey;">Graph will not resize once loaded</p>
+
+    <div id="heatmap_monthly_admission"></div>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{% static 'js/heatmapPatientMonthlyAdmissionFrequency.js' %}"></script>
+
+<h5 class="prev-next"><span style="float: left;"><a href="{% url 'visualizations' %}">Back to Gallery</a></span><span style="float: right;"><a href="{% url 'home' %}">Back to Homepage</a></span></h5>
+
+
+{% endblock %}

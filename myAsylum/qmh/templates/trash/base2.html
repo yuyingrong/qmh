@@ -1,0 +1,143 @@
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+
+<body>
+
+<header>
+
+        <!-- PRIMARY NAV BAR -->
+
+  <nav id="primary-nav-bar">
+    <a>Search</a> | 
+    <a href="{% url 'about' %}">About</a> | 
+    <a>Data</a> | 
+    <a>Contact</a>
+  </nav><!-- id="primary-nav-bar" -->
+
+
+        <!-- SECONDARY NAV BAR -->
+
+  <a href="{% url 'home' %}" title="go back to homepage">
+  <div class="header-img" alt="drawing of Friends Asylum">
+  <!-- the background image is set in the corresponding CSS for each page, not in "base.css" -->
+
+
+    <div class="bar-overlay">
+
+      <span id="title">Quakers &amp; Mental Health Portal</span>
+      <br>
+      <div id="secondary-nav-bar">
+        <a title="...on a new tab" target="_blank" href="{% url 'learn' %}">The Asylum</a> | 
+        <a>Medical Treatment</a> | 
+        <a>Patients</a> | 
+        <a>Religion</a>
+      </div><!-- id="secondary-nav-bar" -->
+
+    </div><!-- class="bar-overlay" -->
+
+<img src="{% static 'images/FriendsAsylum.jpg' %}">
+
+  </a><!-- "go back to homepage" -->
+
+
+  </div><!-- class="header-img" -->
+
+</header>
+
+
+
+<middle>
+{% block content %}{% endblock %}
+</middle>
+
+
+
+
+<footer>
+
+<div class="background-color">
+<!-- the background color for footer is set in the corresponding CSS for each page, not in "base.css" -->
+
+        <!-- FOOTER ADDRESSES -->
+
+  <div class="row">
+    <div class="column">
+      <ul>
+        <li><a href="http://library.haverford.edu/places/special-collections">Quaker &amp; Special Collections</a></li>
+        <li><a href="library.haverford.edu">Haverford College Libaries</a></li>
+        <li>370 Lancaster Avenue</li>
+        <li>Haverford, PA 19041</li>
+      </ul>
+    </div>
+    <div class="column">
+      <ul>
+        <li><a href="http://library.haverford.edu/services/digital-scholarship/">Digital Scholarship</a></li>
+        <li><a href="library.haverford.edu">Haverford College Libaries</a></li>
+        <li>370 Lancaster Avenue</li>
+        <li>Haverford, PA 19041</li>
+      </ul>
+    </div>
+    <div class="column">
+      <ul>
+        <li><a href="http://www.scattergoodfoundation.org/">The Thomas Scattergood<br>Behavioral Health Foundation</a></li>
+        <li>1501 Cherry Street</li>
+        <li>Philadelphia, PA 19102 </li>
+      </ul>
+    </div>
+  </div><!-- class="row" -->
+
+
+
+        <!-- FOOTER SOCIAL LINKS -->
+
+
+  <div class="icons">
+
+            <a href ="https://www.facebook.com/hclibraries"><img src="{% static 'icons/facebook.png' %}" alt="facebook icon" title="go to QMH Facebook page"></img></a>
+            <a href ="https://twitter.com/HCLibraries"><img src="{% static 'icons/twitter.png' %}" alt="twitter icon" title="go to QMH Twitter page"></img></a>
+            <a href ="https://instagram.com/HCLibraries/"><img src="{% static 'icons/insta.png' %}" alt="instagram icon" title="go to QMH Instagram page"></img></a>
+            <a href ="https://vimeo.com/hclibraries"><img src="{% static 'icons/vimeo.png' %}" alt="vimeo icon" title="go to QMH Vimeo page"></img></a>
+            <a href ="mailto:library@haverford.edu"><img src="{% static 'icons/email.png' %}" alt="emailbox icon" title="mailto: library@haverford.edu"></img></a>
+
+
+  </div><!-- class="icons" -->
+
+
+
+        <!-- FOOTER COPYRIGHT -->
+
+  <div id="copyright">
+
+  <p>
+    Quakers and Mental Health by <a xmlns:cc="http://creativecommons.org/ns#" href="http://library.haverford.edu" property="cc:attributionName" rel="cc:attributionURL">Haverford College Libraries</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+  </p>
+
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+    <img alt="Creative Commons License" style="border-width:0; display: inline-block;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png">
+  </a>
+
+  </div><!-- id="copyright" -->
+
+
+
+</div><!-- class="background-color" -->
+
+
+
+
+</footer>
+</body>
+
+</html>

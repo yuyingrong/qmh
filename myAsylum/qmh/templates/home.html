@@ -1,0 +1,63 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<title>Home | Quakers &amp; Mental Health</title>
+
+
+<figure class="header">
+    <img src="{% static 'images/FriendsAsylum.jpg' %}" alt="drawing of Friends Asylum" title="J. Sartain, Friends’ Asylum for the Insane, near Frankford. N.d., Print. Collection 850, Quaker and Special Collections, Haverford College, Haverford, PA.">
+    <figcaption>"Friends Asylum for the Insane" - J. Sartain, PA.</figcaption>
+</figure><!-- class="header" -->
+
+
+    <h3>About The Project</h3>
+    <p>The Quakers & Mental Health portal launched in the summer of 2015 as an iterative website to hold scholarship about the history of mental health in Philadelphia, in the 19th and 20 centuries, and in particular of Friends Hospital, the first private mental health institution in the United States. This multi-year project combines archival research and writing with digital scholarship to create and support scholarship on the history of mental health, to analyze data and create visualizations from that research.</p>
+    <p>More blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb</p>
+
+
+    <h3>Our Research</h3>
+      <ul class="essays">
+        <li><a href="">Transitions</a> - Colin Battis '20<li>
+        <li><a href="">The Principle of Family: Race, Religion, and Gender Inside the Friends' Asylum in the Nineteenth Century</a> - Claire Michel '18</li>
+        <li><a href="">Universalism & Particularism in Quaker Philanthropy: 1770-1830</a> - Ben Kaplow '18</li>
+        <li><a href="">A Mild and Appropriate System of Treatment: Moral Treatment and the Curability of Mental Illness at Friends Asylum</a> - Abby Corcoran '17</li>
+      </ul>
+
+
+    <h3>Data Visualizations</h3>
+
+    <div class="thumbnail">
+
+      <a target="_blank" href="{% url 'visual_sankeyPhilanthropistsOrganizationsAssociation' %}">
+        <img src="{% static 'images/SankeyPhilanthropistsOrganizationsAssociation.jpg' %}" alt="chart of lines connecting Quaker philanthropist donors to their recipient organizations" title="view visualization in context">
+      </a>
+
+      <a target="_blank" href="{% url 'visual_heatmapPatientMonthlyAdmissionFrequency' %}">
+        <img src="{% static 'images/HeatmapPatientMonthlyAdmissionFrequency.jpg' %}" alt="map of squares whose coloration is based on frequency of monthly patient admission" title="view visualization in context">
+      </a>
+
+      <a target="_blank" href="">
+        <img src="{% static 'images/AlluvialCausesTypes.jpg' %}" alt="alluvial chart linking causes of mental illness to types of mental illness">
+      </a>
+
+      <a target="_blank" href="">
+        <img src="{% static 'images/BubbleCausesTypes.jpg' %}" alt="bubble chart showing causes of mental illness and types of mental illness">
+      </a>
+
+    </div><!-- class="thumbnail" -->
+
+    <p><a href="{% url 'visualizations' %}">Data Visualization Gallery>>></a></p>
+
+
+    <h3>Call for Fellows</h3>
+    <p>Another blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb</p>
+
+    <h5 class="prev-next"></h5>
+
+
+{% endblock %}

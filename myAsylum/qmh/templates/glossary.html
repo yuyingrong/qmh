@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+
+  <tr>
+    <th>Term</th>
+    <th>Meaning</th>
+  </tr>
+  
+  {% if glossary_list %}
+    {% for glossary in glossary_list %}
+      <tr>
+        <td>{{ glossary.0 }}</td>
+        <td>{{ glossary.1 }}</td>
+      </tr>
+    {% endfor %}
+  {% endif %}  
+
+</table>
+
+{% endblock %}
+
