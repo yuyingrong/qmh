@@ -8,14 +8,14 @@ h1 {font-size: 3em;}
 h2 {font-size: 2em;}
 h3 {font-size: 1.5em;}
 h4 {font-size: 1.25em;}
-h5 {font-size: 1.1em;}
+h5 {font-size: 1.12em;}
 h6 {font-size: 1em;}
 p, li, nav {font-size: 1em;}
 
 #topnav {
     width: 100%;
     position: fixed;
-    z-index: 3;/* See: https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-different-height-and-width-the-same-via-css; and see: https://www.w3schools.com/cssref/pr_pos_z-index.asp */
+    z-index: 3;/* about "z-index": see: https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-different-height-and-width-the-same-via-css; and see: https://www.w3schools.com/cssref/pr_pos_z-index.asp */
     top: 0;
     left: 0;
     background-color: #333;
@@ -63,19 +63,16 @@ p, li, nav {font-size: 1em;}
     top: 2em;
 }
 
-side:hover {
-    cursor: pointer;
-}
-
 @media (max-width: 800px) {
     #side {
-        width: 0;/* due to padding, the sidebar will still be visible for hovering */
+        width: 0;/* due to padding, even with width=0 the sidebar will still be visible for hovering action */
     }
     #side:hover {
         width: 40%;
     }
 }
 
+/* there's no img in sidebar right now */
 #side img {
     width: 50%;
     height: auto;
@@ -99,7 +96,7 @@ side:hover {
     color: white;
 }
 
-/* this JS might help having menu tab stay open after opening a new page: https://www.sitepoint.com/community/t/how-to-keep-accordion-drop-down-menu-open-when-opening-a-new-page/9033/12 */
+/* Currently, the collapsible sidebar menu re-collapses once a new page is open, and there is no indication from which menu tab the new page is opened from. This JS might enable a menu tab to stay open after opening a new page: https://www.sitepoint.com/community/t/how-to-keep-accordion-drop-down-menu-open-when-opening-a-new-page/9033/12 */
 
 #side .content {
     display: none;
@@ -132,7 +129,7 @@ side:hover {
 }
 
 #banner h1:hover {
-    text-shadow: 0 0 0.5em #333;
+    text-shadow: 0 0 0.1em grey;
 }
 
 
@@ -140,30 +137,6 @@ side:hover {
     padding: 0 2em;
 }
 
-#block figure {
-    border-style: solid;
-    border-width: 0.5em;
-    border-color: white;
-    box-shadow: 0.2em 0.2em 0.5em grey;
-}
-
-#block figure.header {
-    width: 100%;
-    margin: 0;
-}
-
-#block figure.header img {
-    width: 100%;
-}
-
-#block figure.in-text {
-    float: left;
-    width: 40%;
-}
-
-#block figure.in-text img {
-    width: 100%;
-}
 
 
 #block article::after {
@@ -183,8 +156,6 @@ side:hover {
     content: "";
     display: table;
 }
-
-
 
 /* ---------------------- */
 
@@ -243,4 +214,26 @@ side:hover {
     text-align: center;
     padding: 1em 0 2em 0;
     text-font: 0.8em;
+}
+
+/* the default footer */
+#footer {
+    color: white;
+}
+
+#footer a {
+    color: #deeaff;
+}
+
+#footer a:hover {
+    color: pink;
+}
+
+#footer .footer-bgcolor {
+    clear: both;
+    background-color: #444444;
+}
+
+#footer .icons {
+    background-color: #444444;
 }

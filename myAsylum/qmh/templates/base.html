@@ -2,13 +2,11 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 
 
@@ -23,7 +21,7 @@
     <a>Search</a> | 
     <a href="{% url 'about' %}">About</a> | 
     <a>Data</a> | 
-    <a>Contact</a>
+    <a href="mailto:library@haverford.edu">Contact</a>
   </nav>
 
 </div><!-- id="topnav" -->
@@ -45,7 +43,7 @@
     <span class="content">
       <ul>
         <li><a href="{% url 'learn_theYorkRetreat' %}" title="The York Retreat">The York Retreat</a></li>
-        <li>Foundation</li>
+        <li><a href="{% url 'learn_foundation' %}" title="Foundation">Foundation</a></li>
         <li>Structure &amp; Governance</li>
         <li>Architecture</li>
         <li>...</li>

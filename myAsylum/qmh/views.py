@@ -42,6 +42,9 @@ def learn(request):
 def learn_theYorkRetreat(request):
     return render(request, 'learn_theYorkRetreat.html')
 
+def learn_foundation(request):
+    return render(request, 'learn_foundation.html')
+
 def learn_changesInAdminOverTime(request):
     return render(request, 'learn_changesInAdminOverTime.html')
 

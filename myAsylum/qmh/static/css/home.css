@@ -6,41 +6,6 @@
     padding-left: 0;
 }
 
-#block .thumbnail {
-    overflow: hidden;
-}
-
-#block .thumbnail a {
-    display: inline-block;
-}
-
-#block .thumbnail img {
-    border: 0.1em solid #ddd;
-    border-radius: 0.25em;
-    padding: 0.4em;
-    width: 8em;
-}
-
-#block .thumbnail img:hover {
-    box-shadow: 0 0 0.2em 0.1em #008cba;
-}
-
-
-/* footer bgcolor and textcolor are set individually for each page according to its palette */
-#footer {
-    color: white;
-}
-
-#footer a {
-    color: #deeaff;
-}
-
-#footer .footer-bgcolor {
-    clear: both;
-    background-color: #444444;
-}
-
-#footer .icons {
-    background-color: #444444;
-}
+/* footer bgcolor and textcolor are sometimes set individually for each page according to its overall palette */
+/* here, the footer is the default, set in "base.css" */
 

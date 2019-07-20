@@ -4,11 +4,30 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/learn.css' %}">
-<title>Patient Hometowns | Quakers &amp; Mental Health</title>
+<!doctype html>
+<html>
+
+    <head>
+        
+        <meta charset='utf-8' />
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <Title> Patient Hometowns</Title>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
+        
+        <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />
+            <style> body{ margin:0; padding:0; }
+                    body { margin:0; padding:0;}
+       #map { position:absolute; left:10%; right:10%; top:4%; bottom:0; width:75%; max-height: 750px }
+        </style>
+    </head>
+ 
+            
+<!--- Now that scripts are included, we have to access mapbox from my (Alison's) public token... after the nav-bar break!-->  
+    
+    <body>
 
 
-          <style>
+           <style>
             /* Styles the map + legends + zoom bar... still tryna get the map box to have borders */ 
                 .map-overlay {
                     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -289,6 +308,7 @@ i        <br>
 <a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
 </div>
 
-
+</body>
+</html>
 
 {% endblock %}

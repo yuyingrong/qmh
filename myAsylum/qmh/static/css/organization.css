@@ -96,5 +96,5 @@
 #block .tree li a:hover {
     background-color: #333;
     color: white;
-    cursor: progress;
+    cursor: help;
 }

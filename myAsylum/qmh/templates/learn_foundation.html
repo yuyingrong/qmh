@@ -5,46 +5,42 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/learn.css' %}">
-<title>The York Retreat | Quakers &amp; Mental Health</title>
-
-{% include 'learn_side-bar.html' %}
-
-
-        <!-- MAIN SECTION -->
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Foundation | Quakers &amp; Mental Health</title>
 
 
-<link rel="stylesheet" href="{% static 'css/learn_theYorkRetreat.css' %}">
+  <h2>Foundation of Friends Asylum</h2>
 
 
-<div class="column main"><!-- classes "column" and "main" are styled in "base.css" -->
+<figure class="header">
+  <img src="{% static 'images/carousel1.jpg' %}" alt="etching of York Retreat" title="The York Retreat - author unclear">
+  <figcaption>"The York Retreat" - author unclear</figcaption>
+</figure><!-- class="header" -->
 
-  <div class="banner-bgcolor"><!-- styling is in individual CSS files, not in "learn.css" -->
-    <h1><a href="{% url 'home' %}" title="go back to homepage" style="text-decoration: none; color: black;">Quakers &amp; Mental Health Portal</a></h1>
-  </div><!-- class="banner-bgcolor" -->
-
-
-<!-- the above section will be the same for every "learn_xxx.html" file, except for "title" and the individual "stylesheet", if any -->
-
-
-
-
-  <h3>Foundation of Friends Asylum</h3>
-
-  <article>
+<article>
+  <h3>The Beginning of Friends' Asylum</h3>
+  <p>The York Retreat became the inspiration for the Friends' Asylum when American Friend Thomas Scattergood visited it during a trip to England. Thomas Scattergood was a <a class="glossary" title="Traveling Minister: A minister who feels called, with the support of his or her Meeting, to travel to Quaker Meetings in other places and minister to them; traveling ministers often traveled in pairs, and could be away on trips for years.">traveling minister</a> who spent six years (1794-1800) visiting Quakers in England as a part of his ministry. He suffered from depression and was impressed by the Retreat’s humane treatment of the mentally-ill. When he returned to the United States, he argued that American Quakers should start an institution similar to the York Retreat. It took some time for momentum to build around the project, but in 1812, <a class="glossary" title="Philadelphia Yearly Meeting (PYM): The biggest Yearly Meeting in the United States in the nineteenth century, and the heart of American Quakerism; the Asylum was founded for the use of Quakers associated with PYM.">Philadelphia Yearly Meeting (PYM)</a> started a committee charged with founding the asylum. The committee was not directly affiliated with PYM; instead, individuals and Meetings in the Yearly Meeting donated to the concern itself. This committee soon split off into a Managers’ Committee and a Building Committee, which each had numerous subcommittees. The Quakers involved in these committees worked to develop a constitution for the Asylum and determine the parameters of its mission over the next four years.</p>
+  <p style="text-align:center;"><span class="button"><a href="https://ds-omeka.haverford.edu/scattergoodjournals/" target="_blank">The Scattergood Journals Online Exhibit</a></span></p>
+  <p style="color:grey; text-align:center;">Learn more about Thomas Scattergood's life and work</p>
+</article>
+  
 
 
-
-  </article>
-
-  <h5 class="prev-next"><span style="float: left;">This is the first article about "The Asylum"</span><span style="float: right;">Next Article: <a href="">Foundation >>></a></span></h5>
-
-
-
+<article>
+  <h3>Curable Patients</h3>
+  <blockquote>"[E]xcept a few cases… the present family of boarders are the most uninteresting we have had for a long time, nearly all of them considered incureables [sic.]… [U]nless new objects should be introduced there will be but little to encourage either the Managers or us in the prosecution of the <a class="glossary" title="Concern: A divinely inspired interest in some issue; an individual or a group of Quakers might feel led to work on a concern; for example, Bonsall describes the Asylum as a concern.">concern</a>."<cite>- Isaac Bonsall, Twelfth Month, 16, 1821</cite></blockquote>
+   <p>The Asylum managers had very specific ideas about what type of patients they wanted the Asylum to serve when it opened. They were not interested in being a holding facility for people with no hope of recovery. They wanted the Asylum to be a place that cured people and sent them back out into the world. Nevertheless, the Asylum was unable to avoid chronic patients. As long as at least some of the patients were curable, the founders thought the Asylum was worthwhile. However, without a hope of curing any of the patients, the Asylum did not seem like a useful place to its founders. In this vein, they looked to accept patients with a better chance of recovery, which, to them, meant patients who had only recently gone insane.</p>
+</article>
 
 
-<!-- the section below will be the same for every "learn_xxx.html" file -->
+<article>
+  <h3>Spurzheim and Insanity</h3>
+  <p>The Asylum’s preference for recent, curable patients fit into contemporary medical theories about types of insanity. Johann Spurzheim, a leading expert on insanity whose works were available to the managers of the Asylum, wrote that insanity was, “the incapacity of distinguishing the diseased functions of the mind, and the irresistibility of our actions”<a href = "#" data-reveal-id = "mModal"> (53)</a>. Within that definition, Spurzheim argued that the traditional medical distinctions between mania and melancholy as types of insanity were false. He divided insanity into other categories, such as <a class="glossary" title="Idiot: In nineteenth century medical parlance, the term idiot referred to someone who had displayed "lack of reason" since birth; idiots fell outside of the Asylum's concern.">idiotism</a> and <a class="glossary" title="Fatuity: Someone is in a "state of fatuity" when they lose the use of their reason later in life; it is assumed that people do not recover from a state of fatuity; the Asylum does care for these people, despite its preference for patients who can recover.">fatuity</a>. Spurzheim defined idiotism as “the diseased inactivity of any faculty of the mind since birth,” and fatuity as the type of insanity that occurred when patients lost their minds later in life<a href="#" data-reveal-id= "mModal"> (72)</a>. Bonsall used the terms similarly at the Asylum. People who suffered from idiotism were thought to be very unlikely to recover, and Bonsall employed the word “fatuity” to refer to the state of patients who were not expected to recover. He also distinguished “idiots” as outside of the scope of the Asylum.</p>
+  <p>The managers of the Asylum had a copy of Spurzheim's book on insanity, which was sent to them by George Jepson, the superintendent of the York Retreat. Jepson had a correspondance with one of the Asylum's Managers, Caleb Cresson, about how to run an Asylum.</p>
+</article>
 
-</div><!-- class="column main" -->
+
+  <h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_theYorkRetreat' %}">The York Retreat</a></span><span style="float: right;">Next Article: <a href="">Structure &amp; Governance >>></a></span></h5>
 
 
 {% endblock %}
