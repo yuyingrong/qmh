@@ -1,7 +1,17 @@
 
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/glossary.css' %}">
+<title>Glossary | Quakers &amp; Mental Health</title>
+
+
+<h2>Glossary</h2>
+
+<div id="glossary">
 
 <table>
 
@@ -20,6 +30,12 @@
   {% endif %}  
 
 </table>
+
+</div><!-- id="glossary" -->
+
+
+<h5 class="prev-next" style="text-align:center;"><a href="{% url 'home' %}">Back to Homepage</a></h5>
+
 
 {% endblock %}
 

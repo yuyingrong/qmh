@@ -6,7 +6,7 @@
 
 
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
-  <link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
 <title>Home | Quakers &amp; Mental Health</title>
 
 
@@ -39,12 +39,16 @@
 
     <div class="thumbnail">
 
+      <a target="_blank" href="{% url 'visual_scatterplotPatientAdmitAgeVsAdmitYear' %}">
+        <img src="{% static 'images/ScatterplotAdmitAgeYear.jpg' %}" alt="dotplot showing relation between the age at which a patient was admitted to Friends Asylum and the year admitted" title="view visualization enlarged">
+      </a>
+
       <a target="_blank" href="{% url 'visual_sankeyPhilanthropistsOrganizationsAssociation' %}">
-        <img src="{% static 'images/SankeyPhilanthropistsOrganizationsAssociation.jpg' %}" alt="chart of lines connecting Quaker philanthropist donors to their recipient organizations" title="view visualization in context">
+        <img src="{% static 'images/SankeyPhilanthropistsOrganizationsAssociation.jpg' %}" alt="chart of lines connecting Quaker philanthropist donors to their recipient organizations" title="view visualization enlarged">
       </a>
 
       <a target="_blank" href="{% url 'visual_heatmapPatientMonthlyAdmissionFrequency' %}">
-        <img src="{% static 'images/HeatmapPatientMonthlyAdmissionFrequency.jpg' %}" alt="map of squares whose coloration is based on frequency of monthly patient admission" title="view visualization in context">
+        <img src="{% static 'images/HeatmapPatientMonthlyAdmissionFrequency.jpg' %}" alt="map of squares whose coloration is based on frequency of monthly patient admission" title="view visualization enlarged">
       </a>
 
       <a target="_blank" href="">
@@ -63,7 +67,9 @@
 
 <article>
     <h3>Call for Fellows</h3>
-    <p>Another blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb blurb</p>
+    <p>With support from the Thomas Scattergood Behavior Health Foundation, Haverford College Quaker & Special Collections will offer a $5,000 fellowship for researchers to use our materials related to mental health and the history of mental health care. For 2019, we will offer two fellowships.</p>
+    <p>Projects engaging with the history of mental health, mental health care reform, and the role of Quakerism in mental health care will be considered. We hope that materials created through these fellowships advance scholarship and engage with our collections in unique and creative ways. Fellowships are open to scholars at any stage in their careers.</p>
+    <p style="text-align:center;"><span class="button"><a href="https://www.haverford.edu/library/quaker-special-collections/fellowships#scattergood" target="_blank">Read More &amp; Apply</a></span><br>(Application cycle: October 1, 2019 to June 30, 2020)</p>
 </article>
 
 

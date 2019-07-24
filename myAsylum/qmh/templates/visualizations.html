@@ -19,7 +19,25 @@
 
   <div class="responsive">
     <div class="album">
-      <a target="_blank" href="{% url 'visual_heatmapPatientMonthlyAdmissionFrequency' %}"><img src="{% static 'images/HeatmapPatientMonthlyAdmissionFrequency.jpg' %}" alt="map of squares whose coloration is based on frequency of monthly patient admission" title="view visualization in context"></a>
+      <a target="_blank" href="{% url 'visual_scatterplotPatientAdmitAgeVsAdmitYear' %}"><img src="{% static 'images/ScatterplotAdmitAgeYear.jpg' %}" alt="dotplot showing relation between the age at which a patient was admitted to Friends Asylum and the year admitted" title="view visualization enlarged"></a>
+      <div class="overlay">
+        <p>Age of Patient at the Year of Admission</p>
+      </div><!-- class="overlay" -->
+    </div><!-- class="album" -->
+  </div><!-- class="responsive" -->
+
+  <div class="responsive">
+    <div class="album">
+      <a href="{% url 'visual_sankeyPhilanthropistsOrganizationsAssociation' %}"><img src="{% static 'images/SankeyPhilanthropistsOrganizationsAssociation.jpg' %}" alt="chart of lines connecting Quaker philanthropist donors to their recipient organizations" title="view visualization enlarged"></a>
+      <div class="overlay">
+        <p>some text about the image</p>
+      </div><!-- class="overlay" -->
+    </div><!-- class="album" -->
+  </div><!-- class="responsive" -->
+
+  <div class="responsive">
+    <div class="album">
+      <a target="_blank" href="{% url 'visual_heatmapPatientMonthlyAdmissionFrequency' %}"><img src="{% static 'images/HeatmapPatientMonthlyAdmissionFrequency.jpg' %}" alt="map of squares whose coloration is based on frequency of monthly patient admission" title="view visualization enlarged"></a>
       <div class="overlay">
         <p>Patient Monthly Admission (1817 -- 1888)</p>
       </div><!-- class="overlay" -->
@@ -38,15 +56,6 @@
   <div class="responsive">
     <div class="album">
       <a title="view visualization in context" alt="a figure" href=""><img src="{% static 'images/BubbleCausesTypes.jpg' %}" alt="etching of York Retreat"></a>
-      <div class="overlay">
-        <p>some text about the image</p>
-      </div><!-- class="overlay" -->
-    </div><!-- class="album" -->
-  </div><!-- class="responsive" -->
-
-  <div class="responsive">
-    <div class="album">
-      <a href="{% url 'visual_sankeyPhilanthropistsOrganizationsAssociation' %}"><img src="{% static 'images/SankeyPhilanthropistsOrganizationsAssociation.jpg' %}" alt="chart of lines connecting Quaker philanthropist donors to their recipient organizations" title="view visualization in context"></a>
       <div class="overlay">
         <p>some text about the image</p>
       </div><!-- class="overlay" -->

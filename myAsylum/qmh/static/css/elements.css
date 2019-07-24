@@ -3,7 +3,7 @@
 /* most classes are in alphabetical order */
 
 a.glossary {
-    color: #ccc;
+    color: #008cba;
     font-weight: bold;
 }
 
@@ -25,6 +25,12 @@ a.glossary:hover {
     font-style: oblique;
     font-family: serif;
     float: right;
+}
+
+#block .indexbox {
+    border-style: dotted;
+    padding: 0.5em;
+    border-width: 0.25em;
 }
 
 /* button styles anchored text */

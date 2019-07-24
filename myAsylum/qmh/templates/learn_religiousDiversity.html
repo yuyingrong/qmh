@@ -1,0 +1,178 @@
+﻿{% load staticfiles %}
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <!-- commented out from old script: include 'top-links.html' -->
+    <!-- below is what is in "top-links.html", "foundation-icons" files are not linked here -->
+    <link rel="stylesheet" href="{% static 'old/foundation.css' %}">
+    <link rel = "stylesheet" href = "{% static "old/rel.css" %}">
+    <script src= "{% static 'old/modernizr.js' %}"></script>
+
+
+    <title> Religious Diversity</title>
+     <style>
+      .axis text {
+        font: 10px sans-serif;
+      }
+
+      .axis line,
+      .axis path {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+      .axis--x path {
+        display: none;
+      }
+      .path-line { 
+        fill: none;
+        stroke: yellow;
+        stroke-width: 1.5px;
+      }
+      svg {
+      /*  background: #f0f0f0;*/
+      }
+        .legend {                                                   
+        font-size: 12px; 
+        margin-top: 100px; 
+        font-family: Amiri;
+                                           
+      }                                                           
+      rect {                                                      
+        stroke-width: 2;                                          
+      }
+      div.tooltip {   
+        position: absolute;           
+        text-align: center;           
+        width: 60px;                  
+        height: 28px;                 
+        padding: 2px;             
+        font: 12px sans-serif;        
+        background: lightsteelblue;   
+        border: 0px;      
+        border-radius: 8px;           
+        pointer-events: none;         
+      }
+
+    </style>
+
+   </head> <!-- you always need all these links-->
+   <body>
+
+   <!-- commented out from old script: include 'nav-bar.html' -->
+
+    <header>
+      <div class = "banner">
+        <div class = "overlay-container">
+        <img src="{% static "images/header_religious_diversity.jpg" %}" alt="Page from the admissions book of the Friends' Asylum.">
+        <div class = "overlay1 show-for-large-up">
+          <strong></strong>
+        </div>
+<div class = "overlay2 show-for-medium-up"<p style="color:black;"><em>Admission Records, 1817-1885</em>. Friends Hospital records.</p> </div>
+      </div>
+      </div>
+    </header>    
+    
+<!-- main title header -->
+    <div id = "rowheader">
+      <h1> <strong>Religious Diversity</strong> </h1>
+    </div>
+
+ <!--this is a place you can put quotes if you'd really like them to stand out-->
+
+    <div id = "row1">
+        <div class = "row">
+        <h1>“The indiscriminate mix, which must occur in large public establishments, of persons of opposite religious sentiments and practices … [is] calculated to fix, still deeper, the melancholy and misanthropic train of ideas.”
+<p></p>
+<p>    <cite><a href = "#" data-reveal-id = "aModal">~Asylum for the Relief of Persons Deprived of the Use of Their Reason, 26</a> </cite></p>
+<div id = "aModal" class = "reveal-modal small" data-reveal aria-labelledby = "aTitle" aria-hidden = "true" role= "dialog"><p id = "aTitle"><em>An account of the rise and progress of the asylum proposed to be established near Philadelphia for the relief of persons deprived of the use of their reasons</em> (Philadelphia, Kimber and Conrad, 1814)
+</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>  
+</div>     
+ </h1>
+    </div>
+</div>
+
+ <div id="row8">
+        <div class ="row full-width">
+        <br>
+        <br>
+        <br>
+          <p>The mental health of Quaker patients was thought to have been negatively affected by this mixing of different religions in public mental health institutions. Thus, the founders of Friends’ Asylum wanted a place “with the necessary medical assistance, and wholly under the care and notice of Friends, for the relief and accommodation of persons thus afflicted; including members and professors with us, of every description” (<a href="#" data-reveal-id ="aModal">4</a>). The original purpose of Friends’ Asylum was to treat only Quakers and this foundational goal remained though the early 19th century, despite the many non-Quakers being treated there.</p>
+
+          <p>However, beginning in 1834, the Asylum <a href=/admission_nonquakers> made the decision</a> to begin admitting patients who did not practice Quakerism. The graph below allows you to explore each year's non-Quaker admissions. This information comes from the Friends' Asylum collection's <a href = "#" data-reveal-id = "myNewModal">Casebooks, 1835-1894</a> records.</p> 
+
+          <p>The similarities between some of the religions' names written in these casebooks reveal that the recordkeepers at the Asylum were not concerned with precision in regards to the non-Quaker religions. For example, some records note the admittance of Dunker patients and others state the admittance of German Baptist patients, though these two terms refer to the same religion. Additionally, some patients were recorded as Roman Catholics, while other patients were only recorded as Catholics. For both of these cases, the data has been combined under the German Baptist and broader Catholic term, respectively. However, in other instances, similar terms might appear in the same year. One example of this is the year 1848, in which both "German Lutheran" and "Lutheran" appear. For cases like these, each religion's data have been left separate to preserve the original text of the Casebooks. </p>
+</div></div>
+
+<div id="middleofpage"></div>
+<br>
+<div> <ul class = "button-group round text-center show-for-medium-up">
+        <li><a id="changer" class="button secondary"><div id="change">See total yearly admissions</div></a></li></ul>
+  <div id='stacked-bar' class = "text-center"></div>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script>
+
+{% include 'learn_religiousDiversityBarJS.html' %}
+
+</script>
+<div id ="myNewModal" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle"> Casebooks, 1835-1894, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania. </p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+ <!-- AC Can the words "electrical therapy" be a link to the section on electrical therapy?--> 
+
+  <div id = "row8">
+        <div class = "row full-width">
+
+        <div class = "large-12 medium-12 small-12 columns">
+        <h2>Jews at the Asylum</h2>
+
+<p>It is particularly interesting that Jews were admitted into the Asylum, as all other patients were Christians of some variety. In both 1897 and 1898 there were four Jews who were patients at the Asylum. In addition, many of the Jews migrated from Russia or Germany (<a href = "#" data-reveal-id = "bModal">Box 9 and 10</a>). Philadelphia “became home by 1905 to 100,000 Jews, two-thirds of them from Russia,” which could, in part, explain the increase of European Jews in the Asylum in the late 1800s (<a href = "#" data-reveal-id = "cModal">283</a>). Unfortunately we do not know much about what their experiences were like because the Superintendent stopped keeping detailed records in 1894. Instead, the Daily Records used symbols to keep track of the patient’s activities and mental state. Based on the symbols, we do know that the Jews in the Asylum did not participate in religious activities within the asylum(<a href = "#" data-reveal-id = "dModal">1907-1909</a>). This could mean that they primarily practiced religion privately or they simply were not able to observe any religion other than Quakerism in the Asylum.</p>
+<div id = "bModal" class = "reveal-modal small" data-reveal aria-labelledby = "bTitle" aria-hidden = "true" role= "dialog"><p id = "bTitle">Case Histories, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+</div>
+<div id = "cModal" class = "reveal-modal small" data-reveal aria-labelledby = "cTitle" aria-hidden = "true" role= "dialog"><p id = "cTitle">Gary B. Nash, <em>First City: Philadelphia and the Forging of Historical Memory</em> (Philadelphia, PA: University of Pennsylvania Press, 2001).</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+</div>
+<div id = "dModal" class = "reveal-modal small" data-reveal aria-labelledby = "dTitle" aria-hidden = "true" role= "dialog"><p id = "dTitle">Daily Record Books, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.
+</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+</div>
+
+ </div>
+</div>
+
+      <!-- commented out from old script: include 'footer-simple.html' -->
+
+      </div>
+    </footer>
+            </div><!-- end inner wrap of menu/navigation bar, must go after ALL content -->
+     </div><!-- end offcanvas -->
+
+    
+    <!-- commented out from old script: include 'bottom-links.html' -->
+    <!-- below is what is in "bottom-links.html" -->
+
+    <!--  foundation/jquery files -->
+
+    <script src="{% static 'old/jquery.js' %}"></script>
+    <script src="{% static 'old/foundation.min.js' %}"></script>
+    
+    <!-- Google analytics script below -->
+
+    <script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ ga('create', 'UA-45185227-11', 'auto');
+ ga('send', 'pageview');
+    </script>
+    <script>
+      $(document).foundation();
+    </script>
+
+  </body>
+</html>

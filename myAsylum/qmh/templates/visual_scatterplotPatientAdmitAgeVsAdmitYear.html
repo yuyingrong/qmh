@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<title>Data Visualizations | Quakers &amp; Mental Health</title>
+
+<h2>Patient Age at Admission vs. Year of Admission Scatterplot</h2>
+<ul style="color:grey;">
+  <li>Zoom in on the graph by dragging a rectangle over your interested area</li>
+  <li>Graph may take a while to load</li>
+  <li>Graph displays best on large desktop screens</li>
+  <li>Graph will not resize once loaded</li>
+</ul>
+
+<div id="scatterplot-patient-age-year"></div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script><!-- the script has to be in the template to import the objects
+
+var data = [
+{% if scatterplot %}
+  {% for combo in scatterplot %}
+{
+
+  name: '{{ combo.2|safe }}',
+  x: [{{ combo.0 }}],
+  y: [{{ combo.1 }}],
+  mode: 'markers',
+  marker: {
+    color: 'rgb(17, 157, 255)',
+    opacity: 0.5,
+    size: 8
+  },
+  type: 'scatter',
+  text: 'in {{ combo.0|safe }}'
+
+
+},
+
+  {% endfor %}
+{% endif %}
+];
+
+console.log(data)
+
+var layout = {
+  xaxis: {
+    title: {text: 'Year of Admission'},
+    range: {{ yearRange }}
+  },
+  yaxis: {
+    title: {text: 'Age at Admission'},
+    range: {{ ageRange }}
+  },
+  title:'Patient Age at Admission vs. Year of Admission Scatterplot'
+};
+
+Plotly.newPlot('scatterplot-patient-age-year', data, layout);
+
+</script>
+
+<!-- references: -->
+<!-- plotly scatterplot library and tutorials: https://plot.ly/javascript/line-and-scatter/ -->
+<!-- change scatterplot color and transparency: https://plot.ly/javascript/marker-style/ -->
+
+<h5 class="prev-next"><span style="float: left;"><a href="{% url 'visualizations' %}">Back to Gallery</a></span><span style="float: right;"><a href="{% url 'home' %}">Back to Homepage</a></span></h5>
+
+
+{% endblock %}
+

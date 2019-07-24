@@ -1,0 +1,542 @@
+﻿{% load staticfiles %}
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <!-- commented out from old script: include 'top-links.html' -->
+    <!-- below is what is in "top-links.html", "foundation-icons" files are not linked here -->
+    <link rel="stylesheet" href="{% static 'old/foundation.css' %}">
+    <link rel = "stylesheet" href = "{% static "old/rel.css" %}">
+    <script src= "{% static 'old/modernizr.js' %}"></script>
+
+
+    <title> Religious Diversity</title>
+     <style>
+      .axis text {
+        font: 10px sans-serif;
+      }
+
+      .axis line,
+      .axis path {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+      .axis--x path {
+        display: none;
+      }
+      .path-line { 
+        fill: none;
+        stroke: yellow;
+        stroke-width: 1.5px;
+      }
+      svg {
+      /*  background: #f0f0f0;*/
+      }
+        .legend {                                                   
+        font-size: 12px; 
+        margin-top: 100px; 
+        font-family: Amiri;
+                                           
+      }                                                           
+      rect {                                                      
+        stroke-width: 2;                                          
+      }
+      div.tooltip {   
+        position: absolute;           
+        text-align: center;           
+        width: 60px;                  
+        height: 28px;                 
+        padding: 2px;             
+        font: 12px sans-serif;        
+        background: lightsteelblue;   
+        border: 0px;      
+        border-radius: 8px;           
+        pointer-events: none;         
+      }
+
+    </style>
+
+   </head> <!-- you always need all these links-->
+   <body>
+
+   <!-- commented out from old script: include 'nav-bar.html' -->
+
+    <header>
+      <div class = "banner">
+        <div class = "overlay-container">
+        <img src="{% static "images/header_religious_diversity.jpg" %}" alt="Page from the admissions book of the Friends' Asylum.">
+        <div class = "overlay1 show-for-large-up">
+          <strong></strong>
+        </div>
+<div class = "overlay2 show-for-medium-up"<p style="color:black;"><em>Admission Records, 1817-1885</em>. Friends Hospital records.</p> </div>
+      </div>
+      </div>
+    </header>    
+    
+<!-- main title header -->
+    <div id = "rowheader">
+      <h1> <strong>Religious Diversity</strong> </h1>
+    </div>
+
+ <!--this is a place you can put quotes if you'd really like them to stand out-->
+
+    <div id = "row1">
+        <div class = "row">
+        <h1>“The indiscriminate mix, which must occur in large public establishments, of persons of opposite religious sentiments and practices … [is] calculated to fix, still deeper, the melancholy and misanthropic train of ideas.”
+<p></p>
+<p>    <cite><a href = "#" data-reveal-id = "aModal">~Asylum for the Relief of Persons Deprived of the Use of Their Reason, 26</a> </cite></p>
+<div id = "aModal" class = "reveal-modal small" data-reveal aria-labelledby = "aTitle" aria-hidden = "true" role= "dialog"><p id = "aTitle"><em>An account of the rise and progress of the asylum proposed to be established near Philadelphia for the relief of persons deprived of the use of their reasons</em> (Philadelphia, Kimber and Conrad, 1814)
+</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>  
+</div>     
+ </h1>
+    </div>
+</div>
+
+ <div id="row8">
+        <div class ="row full-width">
+        <br>
+        <br>
+        <br>
+          <p>The mental health of Quaker patients was thought to have been negatively affected by this mixing of different religions in public mental health institutions. Thus, the founders of Friends’ Asylum wanted a place “with the necessary medical assistance, and wholly under the care and notice of Friends, for the relief and accommodation of persons thus afflicted; including members and professors with us, of every description” (<a href="#" data-reveal-id ="aModal">4</a>). The original purpose of Friends’ Asylum was to treat only Quakers and this foundational goal remained though the early 19th century, despite the many non-Quakers being treated there.</p>
+
+          <p>However, beginning in 1834, the Asylum <a href=/admission_nonquakers> made the decision</a> to begin admitting patients who did not practice Quakerism. The graph below allows you to explore each year's non-Quaker admissions. This information comes from the Friends' Asylum collection's <a href = "#" data-reveal-id = "myNewModal">Casebooks, 1835-1894</a> records.</p> 
+
+          <p>The similarities between some of the religions' names written in these casebooks reveal that the recordkeepers at the Asylum were not concerned with precision in regards to the non-Quaker religions. For example, some records note the admittance of Dunker patients and others state the admittance of German Baptist patients, though these two terms refer to the same religion. Additionally, some patients were recorded as Roman Catholics, while other patients were only recorded as Catholics. For both of these cases, the data has been combined under the German Baptist and broader Catholic term, respectively. However, in other instances, similar terms might appear in the same year. One example of this is the year 1848, in which both "German Lutheran" and "Lutheran" appear. For cases like these, each religion's data have been left separate to preserve the original text of the Casebooks. </p>
+</div></div>
+
+<div id="middleofpage"></div>
+<br>
+<div> <ul class = "button-group round text-center show-for-medium-up">
+        <li><a id="changer" class="button secondary"><div id="change">See total yearly admissions</div></a></li></ul>
+  <div id='stacked-bar' class = "text-center"></div>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script>
+
+//Initializes the stacked bar. Things like overall width/height are here/
+var initStackedBarChart = {
+  draw: function(config) {
+    me = this,
+    domEle = config.element,
+    stackKey = config.key,
+    data = config.data,
+    margin = {top: 20, right: 20, bottom: 30, left: 50},
+    parseDate = d3.timeParse("%Y"),
+    width = 960 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom,
+    xScale = d3.scaleBand().range([0, width]).padding(0.1),
+    yScale = d3.scaleLinear().range([height, 0]), 
+    color = d3.scaleOrdinal(d3.schemeCategory20),
+    xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y")), //this %Y shows the full year number, use %y if you want it to be abbreviated
+    yAxis =  d3.axisLeft(yScale),
+    yscaler = number
+  
+    svg = d3.select("#"+domEle).append("svg")
+        .attr("width", width + margin.left + margin.right+200)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    //Sizes the legend that we make later.
+    var legendRectSize = 18;
+    var legendSpacing = 5;    
+    var stack = d3.stack()
+      .keys(stackKey)
+      .order(d3.stackOrderNone)
+      .offset(d3.stackOffsetNone);
+  
+    var layers= stack(data);
+      data.sort(function(a, b) { return b.total - a.total; });
+      xScale.domain(data.map(function(d) { return parseDate(d.date); }));
+      yScale.domain([0, yscaler*d3.max(layers[layers.length - 1], function(d) { return d[0]; }) ]).nice();
+      //yScale.domain([0, d3.max(layers[layers.length - 1], function(d) { return d[0] + d[1]; }) ]).nice();
+
+//If you come across a new religion, please add it here (in alphabitcal order)
+var key = ["Baptist", "Catholic", "Dutch Reformer", "Episcopalian", "German Baptist", "German Lutheran", "German Reformed", "Jewish", "Lutheran", "Menonist", "Methodist", "Presbyterian", "Protestant", "Swedenborgian", "Unconnected", "Quaker Admissions"];
+var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("a simple tooltip")
+    .style("font-family", "Amiri")
+    .style("font-size", "16px")
+
+    var layer = svg.selectAll(".layer")
+      .data(layers)
+      .enter().append("g")
+      .attr("class", "layer")
+      .style("fill", function(d, i) { return color(i); })
+      .attr("id", function(d, i) { return color(i); })
+      //.attr('id', '#ff9896')
+      .text(function(d){return key[d]})
+     // .on("mouseover", (function(d) { console.log(d.data.date)}));
+
+     //This operates the tooltips, making sure to write 'patient' not 'patients' if there is only one :)
+      layer.selectAll("rect")
+      
+        .data(function(d) { return d; })
+      .enter().append("rect")
+        .attr("x", function(d) { return xScale(parseDate(d.data.date)); })
+        .attr('id', '#ff9896')
+       //.on("mouseover", function(d) { console.log((d[1]-d[0]))})
+         .on("mouseover", function(d, i){
+          if( d[1]-d[0] == 1){
+            return tooltip.text(d[1]-d[0]+" patient").style("visibility", "visible")
+          }
+          else {
+            return tooltip.text(d[1]-d[0]+ " patients ").style("visibility", "visible")     
+           // return tooltip.text(color(i)).style("visibility", "visible")
+          }})
+.on("mousemove", function(){return tooltip.style("top",
+   (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+//.on("mousemove", function(d, i){return tooltip.text(color(i)).style("visibility", "visible").style("top", (d3.event.pageY-10)+"px").style("left", (d3.event.pageX+10)+"px")})
+.on("mouseout", function(){
+    //d3.select(this).attr("stroke","color").attr("stroke-width", 0.05);
+    d3.selectAll("rect").attr("stroke", "color").attr("stroke-width", 0.05)
+  return tooltip.style("visibility", "hidden");})
+
+        //.attr("y", function(d) { console.log(yScale(d[1])); })
+        //.attr("height", function(d) { console.log(yScale(d[0]) - yScale(d[1])); })
+        .attr("y", function(d) { return yScale(d[1]); })
+        .attr("height", function(d) { return yScale(d[0])- yScale(d[1]); })
+        .attr("width", xScale.bandwidth());
+      svg.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + (height+5) + ")")
+      .call(xAxis);
+
+      svg.append("g")
+      .attr("class", "axis axis--y")
+      .attr("transform", "translate(0,0)")
+      .call(yAxis); 
+
+
+
+       //This creates the legend
+      // colors = ['#2877BS', '#AEC7E8', '#EE7D33', '#F6BA76', '#52A02D', '#98DF8A', '#D739SE', '#F09695', '#9467BD', '#C5B0DF', '#8C564B', '#C49C94', 'E577C2', 'F2B6D2', '7F7F7F', 'C7C7C7', '#RCBD29']
+       var legend = svg.selectAll('.legend')                     
+          .data(color.domain())                                   
+          .enter()                                                
+          .append('g')                                            
+          .attr('class', 'legend')
+                             
+          .attr('transform', function(d, i) {                     
+            var height = legendRectSize + legendSpacing;          
+            var offset =  height * color.domain().length / 2;     
+            var horz = -2 * legendRectSize;                       
+            var vert = i * height - offset; 
+
+            return 'translate(' + horz + ',' + vert + ')';        
+          });  
+
+          //This creates the vars
+        legend.append('rect')                                     
+          .attr('width', legendRectSize)                          
+          .attr('height', legendRectSize) 
+          .attr('x', 950)
+          .attr('y', 200)                      
+          .style('fill', color)
+          .style('stroke', color)
+          .on("mouseenter", function(d) {
+                svg.selectAll("#ff9896")
+                   .style("stroke", "red");
+             })
+
+ 
+        //This puts the labels on the legend
+        legend.append('text')                                     
+         .attr('x', 970)
+          .attr('y', 213) 
+          .style("font-family", "Amiri")
+          .text(function(d) { return key[d]}) 
+        
+        svg.append("text") //puts the label on the y-axis.
+              .attr("class", "y axis")
+              .attr("text-anchor", "end")
+              .attr("y", -40)
+              .attr('transform', 'translate(0,225)rotate(-90)')
+              .text("Number of Patients")
+              .attr("text-anchor", "end")
+              .style("font-family", "Amiri")
+              .style("font-size", "16px");
+ 
+        svg.append("text") //puts a title on the graph
+          .attr("x", (width / 2)+75)             
+          .attr("y", 0 - (margin.top / 2)+10)
+          .attr("text-anchor", "middle")  
+          .style("font-size", "20px") 
+          .style("font-family", "Amiri")
+          .style("text-decoration", "underline")  
+          .style("font-weight", "bold")
+          .text(function(d){ if (change%2==0){ return "Yearly Admissions of Non-Quakers by Religion"} else{return 'Yearly Admissions of All Patients by Religion'}})
+        
+  }}
+
+var data = [                  {"date": 1839, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1839, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 2, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 2, "Menonist": 1, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 2, "Menonist": 1, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 2, "Menonist": 1, "Methodist": 1, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 2, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 2, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 2, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 4, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 2, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 4, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1842, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1842, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1842, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1843, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1843, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1843, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1843, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 1, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1845, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1845, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1845, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 1, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 2, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 2, "Methodist": 2, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 2, "Methodist": 2, "Presbyterian": 4, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1847, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1847, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1847, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1847, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 1, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1848, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1848, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1848, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 1, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1848, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 1, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 2, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 2, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 2, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 2, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1850, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1850, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1850, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1851, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1851, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1851, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 3, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1852, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 1, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 1, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 1, "Lutheran": 1, "Menonist": 0, "Methodist": 3, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 2, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 2, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 2, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 1, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1855, "Baptist": 0, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1856, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1856, "Baptist": 1, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1856, "Baptist": 1, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 1, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	]
+var change=0
+var number = 1
+d3.select("#changer").on("click", function Clicker() {
+d3.select("#change") //Selects the button HTML element!
+//This function makes the toggle between datasets work.
+.text(function(d){ if (change%2==0){ return "See total yearly admissions"} else{return 'See only non-Quaker admissions'}})
+                .on("click", function Click() {
+
+                    change+=1
+                    number +=4
+                    if(change%2 == 1){
+                      $("svg").remove()
+                      
+                      initStackedBarChart.draw({data: [                        {"date": 1839, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 52},
+                    {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 2, "Menonist": 1, "Methodist": 1, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 46},
+                    {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 2, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 4, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 29},
+                    {"date": 1842, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 22},
+                    {"date": 1843, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 35},
+                    {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 1, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 11},
+                    {"date": 1845, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 1, "Quaker Admissions": 29},
+                    {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 2, "Methodist": 2, "Presbyterian": 4, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 26},
+                    {"date": 1847, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 1, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 31},
+                    {"date": 1848, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 1, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 36},
+                    {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 2, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 25},
+                    {"date": 1850, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 17},
+                    {"date": 1851, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 3, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 72},
+                    {"date": 1852, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 62},
+                    {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 1, "Lutheran": 1, "Menonist": 0, "Methodist": 3, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 29},
+                    {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 2, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 1, "Unconnected": 0, "Quaker Admissions": 65},
+                    {"date": 1855, "Baptist": 0, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 30},
+                    {"date": 1856, "Baptist": 1, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 1, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 36},
+         ], key: key, yscaler: 1, element: 'stacked-bar'})
+                     
+                    }
+                    else{
+                      number=1
+                      $("svg").remove()
+                      initStackedBarChart.draw({data: [                  {"date": 1839, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1839, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 2, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 2, "Menonist": 1, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 2, "Menonist": 1, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1840, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 2, "Menonist": 1, "Methodist": 1, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 2, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 2, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 2, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 4, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1841, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 2, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 4, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1842, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1842, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1842, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1843, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1843, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1843, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1843, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1844, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 1, "Episcopalian": 2, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 1, "Methodist": 1, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1845, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1845, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1845, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 1, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 2, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 2, "Methodist": 2, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1846, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 3, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 2, "Methodist": 2, "Presbyterian": 4, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1847, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1847, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1847, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1847, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 2, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 1, "Presbyterian": 1, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1848, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1848, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1848, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 1, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1848, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 1, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 1, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 2, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 2, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 2, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1849, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 2, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1850, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1850, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1850, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 1, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1851, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1851, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1851, "Baptist": 0, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 3, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1852, "Baptist": 0, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 1, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 1, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1853, "Baptist": 2, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 1, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 1, "Lutheran": 1, "Menonist": 0, "Methodist": 3, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 2, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 2, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1854, "Baptist": 2, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 5, "German Baptist": 1, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 1, "Menonist": 0, "Methodist": 2, "Presbyterian": 2, "Protestant": 0, "Swedenborgian": 1, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1855, "Baptist": 0, "Catholic": 2, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1856, "Baptist": 1, "Catholic": 0, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1856, "Baptist": 1, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 0, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	          {"date": 1856, "Baptist": 1, "Catholic": 1, "Dutch Reformer": 0, "Episcopalian": 0, "German Baptist": 0, "German Lutheran": 0, "German Reformed": 1, "Jewish": 0, "Lutheran": 0, "Menonist": 0, "Methodist": 0, "Presbyterian": 0, "Protestant": 0, "Swedenborgian": 0, "Unconnected": 0, "Quaker Admissions": 0},
+	], key: key, yscaler: 1, element: 'stacked-bar'})
+                      
+                    }
+                    return change
+                    
+                  })
+})
+
+console.log(data)
+
+//If you have a new religion, add it here:
+var key = ["Baptist", "Catholic", "Dutch Reformer", "Episcopalian", "German Baptist", "German Lutheran", "German Reformed", "Jewish", "Lutheran", "Menonist", "Methodist", "Presbyterian", "Protestant", "Swedenborgian", "Unconnected", "Quaker Admissions"]; 
+initStackedBarChart.draw({
+  data: data,
+  yscaler: 4,
+  key: key,
+  element: 'stacked-bar'
+});
+
+
+</script>
+<div id ="myNewModal" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle"> Casebooks, 1835-1894, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania. </p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+ <!-- AC Can the words "electrical therapy" be a link to the section on electrical therapy?--> 
+
+  <div id = "row8">
+        <div class = "row full-width">
+
+        <div class = "large-12 medium-12 small-12 columns">
+        <h2>Jews at the Asylum</h2>
+
+<p>It is particularly interesting that Jews were admitted into the Asylum, as all other patients were Christians of some variety. In both 1897 and 1898 there were four Jews who were patients at the Asylum. In addition, many of the Jews migrated from Russia or Germany (<a href = "#" data-reveal-id = "bModal">Box 9 and 10</a>). Philadelphia “became home by 1905 to 100,000 Jews, two-thirds of them from Russia,” which could, in part, explain the increase of European Jews in the Asylum in the late 1800s (<a href = "#" data-reveal-id = "cModal">283</a>). Unfortunately we do not know much about what their experiences were like because the Superintendent stopped keeping detailed records in 1894. Instead, the Daily Records used symbols to keep track of the patient’s activities and mental state. Based on the symbols, we do know that the Jews in the Asylum did not participate in religious activities within the asylum(<a href = "#" data-reveal-id = "dModal">1907-1909</a>). This could mean that they primarily practiced religion privately or they simply were not able to observe any religion other than Quakerism in the Asylum.</p>
+<div id = "bModal" class = "reveal-modal small" data-reveal aria-labelledby = "bTitle" aria-hidden = "true" role= "dialog"><p id = "bTitle">Case Histories, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+</div>
+<div id = "cModal" class = "reveal-modal small" data-reveal aria-labelledby = "cTitle" aria-hidden = "true" role= "dialog"><p id = "cTitle">Gary B. Nash, <em>First City: Philadelphia and the Forging of Historical Memory</em> (Philadelphia, PA: University of Pennsylvania Press, 2001).</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+</div>
+<div id = "dModal" class = "reveal-modal small" data-reveal aria-labelledby = "dTitle" aria-hidden = "true" role= "dialog"><p id = "dTitle">Daily Record Books, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.
+</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+</div>
+
+ </div>
+</div>
+
+      <!-- commented out from old script: include 'footer-simple.html' -->
+
+      </div>
+    </footer>
+            </div><!-- end inner wrap of menu/navigation bar, must go after ALL content -->
+     </div><!-- end offcanvas -->
+
+    
+    <!-- commented out from old script: include 'bottom-links.html' -->
+    <!-- below is what is in "bottom-links.html" -->
+
+    <!--  foundation/jquery files -->
+
+    <script src="{% static 'old/jquery.js' %}"></script>
+    <script src="{% static 'old/foundation.min.js' %}"></script>
+    
+    <!-- Google analytics script below -->
+
+    <script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ ga('create', 'UA-45185227-11', 'auto');
+ ga('send', 'pageview');
+    </script>
+    <script>
+      $(document).foundation();
+    </script>
+
+  </body>
+</html>

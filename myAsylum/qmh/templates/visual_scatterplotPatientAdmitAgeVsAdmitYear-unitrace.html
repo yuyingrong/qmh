@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<title>Data Visualizations | Quakers &amp; Mental Health</title>
+
+<h2>Patient Age at Admission vs. Year of Admission Scatterplot</h2>
+<p style="color:grey;">Graph will not resize once loaded</p>
+
+    <div id="scatterplot-patient-age-year"></div>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script><!-- the script has to be in the template to import the objects
+
+var trace = {
+  name: {{ nameList|safe }},
+  x: {{ admitYear|safe }},
+  y: {{ admitAge }},
+  mode: 'markers',
+  marker: {
+    opacity: 0.5,
+    size: 8
+  },
+  type: 'scatter',
+  text: {{ admitYear }}
+};
+
+var data = [ trace ];
+
+var layout = {
+  xaxis: {
+    range: {{ yearRange|safe }}
+  },
+  yaxis: {
+    range: {{ ageRange|safe }}
+  },
+  title:'Patient Age at Admission vs. Year of Admission Scatterplot'
+};
+
+Plotly.newPlot('scatterplot-patient-age-year', data, layout);
+
+    </script>
+
+<h5 class="prev-next"><span style="float: left;"><a href="{% url 'visualizations' %}">Back to Gallery</a></span><span style="float: right;"><a href="{% url 'home' %}">Back to Homepage</a></span></h5>
+
+
+{% endblock %}
+

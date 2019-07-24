@@ -18,7 +18,8 @@
 <div id="topnav">
 
   <nav>
-    <a>Search</a> | 
+    <!-- used to be "Search", but search function is not written yet -->
+    <a href="{% url 'home' %}">Home</a> | 
     <a href="{% url 'about' %}">About</a> | 
     <a>Data</a> | 
     <a href="mailto:library@haverford.edu">Contact</a>
@@ -75,11 +76,12 @@
     <span class="content">
       <ul>
         <li><a href="{% url 'learn_mentalHealthAndQuakerTheology' %}" title="Mental Health and Quaker Theology">Quaker Theology and Mental Health</a></li>
+        <li><a href="{% url 'learn_religiousDiversity' %}" title="Mental Health and Quaker Theology">Religious Diversity</a></li>
       </ul>
     </span>
   </li>
   <li><a class="collapsible" title="open glossary page on a new tab" target="_blank" href="{% url 'glossary' %}">Glossary</a></li>
-  <li><a class="collapsible" href="{% url 'bibliography' %}#bibliography" title="Bibliography">Bibliography</a></li>
+  <li><a class="collapsible" href="{% url 'bibliography' %}" title="Bibliography">Bibliography</a></li>
 </ul>
 
 <script src="{% static 'js/collapsible-menu.js' %}"></script>

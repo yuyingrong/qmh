@@ -29,7 +29,7 @@ def visual_scatterplotPatientAdmitAgeVsAdmitYear(request):
     rawFirstName = [str(p.firstName) for p in Patient.objects.all()]
     rawLastName = [str(p.lastName) for p in Patient.objects.all()]
     for (y, a, f, l) in zip(rawAdmitYear, rawAdmitAge, rawFirstName, rawLastName):
-        if not y == '' and not a == '0':
+        if not y == '' and not a == 0:
             admitYear.append(int(y))# module_object has to pass thru str() before passing thru int(), or django will raise error
             admitAge.append(int(a))
             firstName.append(f)
@@ -40,14 +40,9 @@ def visual_scatterplotPatientAdmitAgeVsAdmitYear(request):
     nameList = []
     for (f, l) in zip(firstName, lastName):
         nameList.append(f+' '+l)
-    yearRange = str([min(admitYear)-5, max(admitYear)+5])
-    ageRange = str([min(admitAge)-5, max(admitAge)+5])
-    #traceName = [('p%d' % (x)) for x in list(range(1,len(nameList)+1))]
-    if len(admitYear)==len(admitAge)==len(nameList):# removed len(traceName)
-        scatterplot = zip(admitYear, admitAge, nameList)# removed traceName
-    else:
-        scatterplot = [('error',) * 4]
-    return render(request, 'visual_scatterplotPatientAdmitAgeVsAdmitYear.html', {'scatterplot': scatterplot, 'yearRange': yearRange, 'ageRange': ageRange})
+    yearRange = [min(admitYear)-5, max(admitYear)+5]
+    ageRange = [min(admitAge)-5, max(admitAge)+5]
+    return render(request, 'visual_scatterplotPatientAdmitAgeVsAdmitYear.html', {'admitYear': admitYear, 'admitAge': admitAge, 'nameList': nameList, 'yearRange': yearRange, 'ageRange': ageRange})
 
 def visual_heatmapPatientMonthlyAdmissionFrequency(request):
     return render(request, 'visual_heatmapPatientMonthlyAdmissionFrequency.html')
