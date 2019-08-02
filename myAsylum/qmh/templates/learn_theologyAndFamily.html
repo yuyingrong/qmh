@@ -1,0 +1,43 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Theology &amp; Family | Quakers &amp; Mental Health</title>
+
+
+<h2>Quaker Theology and Familial Socialization</h2>
+
+
+<article>
+  <p>In Quaker ideology of the early 19th century, the child, quite sensibly, was thought to learn through her parents' teaching, and the education that she receives [1]. The family was seen to function, and does indeed function, as the primary mechanism for the transmission of religious beliefs and religious/cultural identity that would facilitate the continuation of religious values, habits, and identity from generation to generation.</p>
+  <p>Quaker were a minority religious group that had historically been ridiculed and attacked by the broader community, both in the United Kingdom and the United States, and as such, the survival and continuation of their unique religious identity was seen as of the utmost importance [2]. Quakers, like many protestant groups, saw their community as a church of "saints" who believe in the proper faith, practice it correctly, and act morally in light of God's will [3]. Likewise, although Quakers do not accept a notion of original sin, they held analogous beliefs: children were not born with sin, but with a tendency towards it: "Infants (like idiots etc.) were under a physical disability of learning about or knowing the law. Until a person could distinguish right from wrong, his acts were not classified as sin" [4]. Thus, when a child reaches a certain age&mdash;variously defined between five and twelve [5]&mdash;she is liable for her actions. The Quaker religious concern about survival generated a high value on socialization and education of children. It is not nature which guarantees the child's salvation and proper religious life, but the way that the child decides to act. Only a proper education could save the child.</p>
+  <p>From an early age Quaker children were immersed in Quakerism. Parents were expected to raise their children in a sheltered manner best suited to keeping them within the Society. In 1799, Philadelphia Quarterly Meeting reminded parents of their solemn responsibility. Mothers being earnestly recommended to Educate their children as becomes our religious professions, endeavoring early to instill into their minds the principles we hold, and carefully avoid adorning their young charges in a manner inconsistent therewith [6].</p>
+  <p>To ensure the child's survival, as well as religious survival as a whole, Quakers necessarily place importance on the way that the child will learn to make decisions, her religious knowledge, and the extant and manner in which she heeds the <a class="glossary">Inner Light</a>. Every individual has the capacity for revelation and to properly follow the will of God, but that is no guarantee that they will actually do so. The child must be taught to listen to the Light, and must be compelled to understand the importance of doing so.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_decisionToAdmitNonQuakers' %}">Decision To Admit Non-Quakers</a></span><span style="float: right;"><a href="{% url 'home' %}">Back to Homepage</a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+[1] Jerry W. Frost, “As the Twig Is Bent: Quaker Ideas of Childhood,” Quaker History 60, no. 2 (1971): 78–81.
+<br>
+[2] William C. Kashatus III, “The Inner Light and Popular Enlightenment: Philadelphia Quakers and Charity Schooling” (Dissertation in Education, University of Pennsylvania, 1993).
+<br>
+[3] Frost, “As the Twig Is Bent: Quaker Ideas of Childhood,” 71.
+<br>
+[4] Frost, 69.
+<br>
+[5] Frost, 71.
+<br>
+[6] Margaret Morris Haviland, “In the World, but Not of the World: The Humanitarian Activities of Philadelphia Quakers, 1790-1820” (Dissertation in History, University of Pennsylvania, 1992), 44–45; Philadelphia Monthly Meeting, Women’s Minutes, 1790-1820 (Philadelphia: Friends Historical Library, Swarthmore College, 1820).
+<br>
+
+{% endblock %}

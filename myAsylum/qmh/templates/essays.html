@@ -1,0 +1,24 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+
+<title>Essays | Quakers &amp; Mental Health</title>
+
+<h2>Essays</h2>
+
+<article>
+    <ul class="essays">
+      <li><a href="{% url 'essay_20cbattis' %}">The Probable Good: Changes in Mental Health Care at Friends Asylum, 1870-1900</a> - Colin Battis '20</li>
+      <li><a href="{% url 'essay_18cmichel' %}">The Principle of Family: Race, Religion, and Gender Inside the Friends' Asylum in the Nineteenth Century</a> - Claire Michel '18</li>
+      <li><a href="{% url 'essay_18bkaplow' %}">Universalism & Particularism in Quaker Philanthropy: 1770-1830</a> - Ben Kaplow '18</li>
+      <li><a href="{% url 'essay_17acorcoran' %}">A Mild and Appropriate System of Treatment: Moral Treatment and the Curability of Mental Illness at Friends Asylum</a> - Abby Corcoran '17</li>
+    </ul>
+</article>
+
+<h5 class="prev-next" style="text-align:center;"><a href="{% url 'home' %}">Back to Homepage</a></h5>
+
+{% endblock %}

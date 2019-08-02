@@ -1,0 +1,57 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Philanthropic Networks | Quakers &amp; Mental Health</title>
+
+
+<h2>Quaker Philanthropic Networks in Early 19th Century</h2>
+
+
+<article>
+  <p>In the early 19<sup>th</sup> century, Quaker philanthropy in the Philadelphia area was born out a dense network of individuals, composed of about 100 philanthropists (<a data-reveal-id="mModal" href="#">1</a>). Quakers were a powerful group during this time and the founders of a variety of organizations aimed at the betterment of their sect and city, yet the number of individuals who had both the combination of drive and resources to engage in philanthropic work was relatively small. Indeed, it was often the same individuals who engaged in the varied projects of education, health, and penal reform, the main pillars of Quaker philanthropic work.</p>
+
+  <p>Many of those involved in the Friends Asylum, either the Contributors involved in financial decisions or the Board of Managers that managed operations, held distinguished roles in the broader Philadelphia Quaker community, and often engaged in other philanthropic work. The Friends&rsquo; Asylum was not an isolated institution, but part of the lager philanthropic project, and was well-enmeshed in other groups, most prominently the Adelphi School. The Adelphi School, founded by the Philadelphia Association of Friends for the Instruction of Poor Children in 1808 was intended to provide education to the disadvantaged of Philadelphia, primarily those outside the Society of Friends. This institution shared a remarkable number of board members with the Friends&rsquo; Asylum; eight of the nineteen founding members of the board of the FA, John Cook, Joseph M. Paul, Joseph Parrish, Roberts Vaux, Soloman Conrad, William Penrose, Joseph Scattergood, and John Paul, were also members of the Philadelphia Association of Friends for the Instruction of Poor Children (<a data-reveal-id="cModal" href="#">2</a>).</p>
+</article>
+
+<a id="sankeyPhilanthropistsOrganizationsAssociation"></a>
+
+<figure class="header">
+  <div id="sankey_philanthropists_organizations_association"></div>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="{% static 'js/sankeyPhilanthropistsOrganizationsAssociation.js' %}"></script>
+  <figcaption style="color:grey; padding-left=2em;">
+    <ul>
+      <li>Hover mouse over the graph for more details</li>
+      <li>Refresh the page to resize the graph</li>
+    <ul>
+  </figcaption>
+</figure><!-- class="header" -->
+
+<article>
+  <p>This amount of overlap was not uncommon in the Quaker Philanthropic Network, and in many ways, it is sensible to consider different organizations as subsidiary projects of a single larger philanthropic efforts. Different organizations aimed to accomplish different tasks, but operated out of a relatively homogeneous group of individuals. The same group of individuals would work together to accomplish a variety of tasks, utilizing already extant social networks and organizational resources.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_raceAndStaff' %}">Race and Staff</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_typesOfMentalIllness' %}">Types of Mental Illness >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+<div aria-hidden="true" aria-labelledby="mTitle" class="reveal-modal small" data-reveal="" id="mModal" role="dialog">
+<p id="mTitle">William C. Kashatus III, &ldquo;The Inner Light and Popular Enlightenment: Philadelphia Quakers and Charity Schooling&rdquo; (Dissertation in Education, University of Pennsylvania, 1993).</p>
+</div>
+
+<div aria-hidden="true" aria-labelledby="cTitle" class="reveal-modal small" data-reveal="" id="cModal" role="dialog">
+<p id="cTitle">Kashatus III.</p>
+</div>
+
+
+
+{% endblock %}

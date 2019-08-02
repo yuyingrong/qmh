@@ -10,7 +10,7 @@ h3 {font-size: 1.5em;}
 h4 {font-size: 1.25em;}
 h5 {font-size: 1.12em;}
 h6 {font-size: 1em;}
-p, li, nav {font-size: 1em; line-height: 1.6em;}
+p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 
 #topnav {
     width: 100%;
@@ -61,6 +61,7 @@ p, li, nav {font-size: 1em; line-height: 1.6em;}
     background-color: #888;
     padding: 0 2em 0 2em;
     top: 2em;
+    overflow: scroll;
 }
 
 @media (max-width: 800px) {
@@ -137,7 +138,11 @@ p, li, nav {font-size: 1em; line-height: 1.6em;}
     padding: 0 2em;
 }
 
-
+#block article {
+    content: "";
+    clear: both;
+    display: table;
+}
 
 #block article::after {
     content: "";
@@ -170,6 +175,7 @@ p, li, nav {font-size: 1em; line-height: 1.6em;}
     clear: both;
     padding: 2em 0 0 0;
     text-align: center;
+    margin-top: 2em;
 }
 
 #footer .column {

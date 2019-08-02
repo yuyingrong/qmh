@@ -1,0 +1,69 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Gender &amp; Treatment | Quakers &amp; Mental Health</title>
+
+
+<h2>Gender and Treatment</h2>
+
+
+<figure class="header">
+  <img src="{% static 'images/header_gender_treatment.jpg' %}" alt="Photograph of the asylum's gymnasium" title="Photograph of the Asylum's Gymnasium">
+  <figcaption><em>Friends’ Asylum for the Insane: Reports of the Board of Managers</em>…. Philadelphia: George H. Buchanan and Company, 1894.</figcaption>
+</figure><!-- class="header" -->
+
+<article>
+  <h3>Medical Treatment and Diagnosis</h3>
+  <p>For the most part it appears that male and female patients were admitted at similar rates, diagnosed with the same mental illnesses, and thought to be equally susceptible to insanity (<a href = "#" data-reveal-id = "aModal">Appendix B</a>). However, there are some differences in what was listed as men’s and women’s causes of insanity. Women were much more likely to be admitted due to insanity caused by gynecological issues while men were more likely to be admitted due to insanity caused by intemperance or a lack of restraint, often caused by alcohol. Obviously, men were not diagnosed with insanity due to gynecological issues but it is rare for women to be admitted due to intemperance.</p>
+
+</article>
+
+<article>
+  <h3>Moral Treatment</h3>
+  <p>Moral treatment at Friends’ Asylum shows more differences based on gender. In 1835 the Managers wrote to other asylums seeking out advice on other forms of moral treatment (<a href = "#" data-reveal-id = "bModal">Seventh Month, 1835</a>). One result of this correspondence was the establishment of classes for patients at Friends’ Asylum. Originally, the classes were started because the Managers felt that they would help the Asylum be more successful in treating mentally ill patients (<a href = "#" data-reveal-id = "bModal">Third Month, 1833</a>). Often women were the first to be able to participate in these classes that Friends’ Asylum offered. See the <a href=/occu>occupational therapy</a> page for more information on activities and how these factored into moral treatment.</p>
+
+</article>
+
+<article>
+  <h3>Classes</h3>
+  <p>In 1890 Carolyn Ladd Hall, a female doctor and Bryn Mawr College graduate, was hired to be the director of the Asylum’s gymnasium. She was responsible for teaching a class for the female patients and female attendants; it was not until a few months later that a similar class was created for the male patients (<a href = "#" data-reveal-id = "cModal">Third Month, 10th, 1890</a>). It was typical for asylums to have “lectures or other entertainments in … gymnasium halls” (<a href = "#" data-reveal-id = "dModal">246</a>). It is unclear what exercises were taught and if it was usual for classes for women to be established first. It was also common to hold academic lessons in asylums for both male and female patients. Amariah Brigham, the superintendent of the New York State Asylum, thought “schools should be established in every institution where patients could learn reading, writing, drawing, music, arithmetic, geography, history, philosophy, and the natural sciences” (<a href = "#" data-reveal-id = "eModal">236</a>). In 1844 Friends’ Asylum followed suit and opened a school; however, the school was just for female patients. It was not until 1847 that the school began to include male patients once it was observed that it was a “decided advantage to a class of patients for whom it is always difficult to provide sufficient employment or amusement” (<a href = "#" data-reveal-id = "bModal">Third Month, 8th, 1847</a>).</p>
+</article>
+
+<article>
+  <h3>Activities</h3>
+  <p>Male and female patients in the Asylum participated in different activities outside of classes. The men in the asylum did “light work in gardening, gathering fruits, and carpentering…  -- and for the women, -- the usual sewing, knitting and similar housework” (<a href = "#" data-reveal-id = "bModal">Third Month, 9th, 1885</a>). Women and men’s roles and activities in the Asylum are typical of the division of roles at other asylums at the time (<a href = "#" data-reveal-id = "fModal">Tuke</a>), as well as in 19th century society more broadly. It is interesting that Friends’ Asylum followed other asylums in separating out activities that were appropriate for men and women while formally educating women first.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_genderAndLengthOfStay' %}">Gender and Length of Stay</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_moralTreatmentAndFamily' %}">Moral Treatment and Family >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+       <div id = "aModal" class = "reveal-modal small" data-reveal aria-labelledby = "aTitle" aria-hidden = "true" role= "dialog"><p id = "aTitle">Patricia D’Antonio, <em>Founding Friends: Families, Staff, and Patients at the Friends’ Asylum in Early Nineteenth-Century Philadelphia</em> (Bethlehem, PA: Lehigh University Press, 2006).</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "bModal" class = "reveal-modal small" data-reveal aria-labelledby = "bTitle" aria-hidden = "true" role= "dialog"><p id = "bTitle">Minutes of the Managers, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "cModal" class = "reveal-modal small" data-reveal aria-labelledby = "cTitle" aria-hidden = "true" role= "dialog"><p id = "cTitle"> Minutes of the Corporation, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "dModal" class = "reveal-modal small" data-reveal aria-labelledby = "dTitle" aria-hidden = "true" role= "dialog"><p id = "dTitle">Mary de Young, <em>Encyclopedia of Asylum Theraputics, 1750-1950s</em> (Jefferson, NC: McFarland & Company, Inc., Publishers, 2015).</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "eModal" class = "reveal-modal small" data-reveal aria-labelledby = "eTitle" aria-hidden = "true" role= "dialog"><p id = "eTitle">Henry M. Hurd, William F. Drewry, Richard Dewey, Charles W. Pilgrim, G. Alder Blumer, and T. J. W. Burgess, <em>The Institutional Care of the Insane in the United States and Canada</em> (Baltimore, MD: The Johns Hopkins Press, 1916).</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "fModal" class = "reveal-modal small" data-reveal aria-labelledby = "fTitle" aria-hidden = "true" role= "dialog"><p id = "fTitle">Samuel Tuke, <em>Description of the Retreat, an Institution near York, for Insane Persons of the Society of Friends: Containing an Account of its Origin and Progress, the Modes of Treatment, and a Statement of Cases</em> (York: 1813)</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+
+{% endblock %}

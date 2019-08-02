@@ -1,0 +1,3176 @@
+﻿
+<script src="https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js"></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet'>
+
+<style>
+
+#map {
+  z-index: 0;
+  position: relative;
+  min-height: 50em;
+  width:100%;
+}
+
+.map-overlay {
+    z-index: 1;
+    position: absolute;
+    padding: 1em;
+    top: 1em;
+    left: 1em;
+    background-color: #fff;
+}
+
+.map-overlay h2 {
+    line-height: 1.5em;
+    display: block;
+    margin: 0 0 10px;
+}
+
+.mapboxgl-popup {
+    max-width: 25em;
+    font: 1em/1.5em sans-serif;
+}
+
+.map-overlay input {
+    background-color: transparent;
+    display: inline-block;
+    width: 100%;
+    cursor: ew-resize;
+}
+
+.map-overlay .legend .bar {
+    height: 0.8em;
+    width: 100%;
+    background: linear-gradient(to right, #f5cc8f, #7F3121);/* alison: change the color bar here!!!!*/
+}
+
+</style>
+
+<div id='map'>
+
+  <div class='map-overlay'>
+    <h2>Patient Hometowns</h2>
+    Select Year: <input id='slider' type='range' min='1817' max='1856' step='1' value='1817' onchange="myFunction()"/>
+    <script type="text/javascript">
+
+	      document.getElementById('slider').addEventListener('click', function() {
+		this.focus(); 
+	      });
+    </script>
+
+    <p id = "label"> </p>
+    <!--<button onclick="myFunction()">Update Map</button>--> <!---Button option, but slider slides automatically now :) -->
+
+    <div id='legend' class='legend'>
+      <div class='bar'></div>
+      <div>Year (Earlier to Later)</div>
+    </div><!-- id='legend' class='legend' -->
+  </div><!-- class='map-overlay' -->
+
+  <script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoiYWxpc29ucjIiLCJhIjoiY2ozMGc2cmJzMDAxMTJ3bjNtbGR5eGpnMyJ9.UvriR_RhUCjK72YOqAghUw';
+		//Creates map. This is the only place where we pull from Mapbox——to get the style! You can use the generic mapbox styles (light and outdoors commented out below, but my custom map is just the outdoors one minus some of the place name layers to declutter)
+		var map = new mapboxgl.Map({
+		    container: 'map',
+		    style: 'mapbox://styles/alisonr2/cj31orqf5000a2sqoehbxrfpe', //'mapbox://styles/mapbox/outdoors-v9',//mapbox://styles/mapbox/light-v9',
+		    center: [-75.1043514, 40.0264575, ], // starting position, the friends asylum!
+		    zoom: 5, // starting zoom
+		   
+		});
+	  
+	       
+		map.on('load', function(){ 
+	 
+		 //Adds the righthand zoom box:
+		map.addControl(new mapboxgl.NavigationControl());
+		//Makes a source called django-data which uses Django data in the GeoJSON Format. Be careful——any change of a comma, bracket, brace, or parentheses will screw up the GeoJSON format. 
+		map.addSource("django-data", {
+		    "type": "geojson",
+		    "data": { "type" : "FeatureCollection",
+		    "features" : [ 	
+	                  {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1498819,40.1097387]},
+              "properties" : { "Name" : "Abington, PA", "Year" : "1854", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.3530928,39.8947946]},
+              "properties" : { "Name" : "Adams Co., PA", "Year" : "1820", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.3530928,39.8947946]},
+              "properties" : { "Name" : "Adams Co., PA", "Year" : "1851", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.3530928,39.8947946]},
+              "properties" : { "Name" : "Adams Co., PA", "Year" : "1825", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3893385,39.5616328]},
+              "properties" : { "Name" : "Alloway, NJ", "Year" : "1854", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.433805,40.5104142]},
+              "properties" : { "Name" : "Altoona, PA", "Year" : "1851", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-82.2310027,33.3859619]},
+              "properties" : { "Name" : "Augusta, GA", "Year" : "1839", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.7171491,42.7515051]},
+              "properties" : { "Name" : "Aurora, NY", "Year" : "1830", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1833", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1835", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1838", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1839", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1843", "Count": "8"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1847", "Count": "9"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1848", "Count": "10"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1851", "Count": "12"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1854", "Count": "15"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1856", "Count": "17"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1826", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.690526,39.2846854]},
+              "properties" : { "Name" : "Baltimore, MD", "Year" : "1822", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.7518325,40.0244115]},
+              "properties" : { "Name" : "Bedford Co., PA", "Year" : "1849", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.785363,40.9134241]},
+              "properties" : { "Name" : "Bellefonte, PA", "Year" : "1848", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.785363,40.9134241]},
+              "properties" : { "Name" : "Bellefonte, PA", "Year" : "1845", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-81.0461253,40.0282119]},
+              "properties" : { "Name" : "Belmont Co., OH", "Year" : "1852", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.9079051,40.2818232]},
+              "properties" : { "Name" : "Belmont Co., PA", "Year" : "1853", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.2650877,40.4069848]},
+              "properties" : { "Name" : "Berks Co., PA", "Year" : "1826", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.2650877,40.4069848]},
+              "properties" : { "Name" : "Berks Co., PA", "Year" : "1827", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.2650877,40.4069848]},
+              "properties" : { "Name" : "Berks Co., PA", "Year" : "1839", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.2650877,40.4069848]},
+              "properties" : { "Name" : "Berks Co., PA", "Year" : "1842", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.2650877,40.4069848]},
+              "properties" : { "Name" : "Berks Co., PA", "Year" : "1847", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.9545455,39.792591]},
+              "properties" : { "Name" : "Berlin, NJ", "Year" : "1847", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.613191,41.4868782]},
+              "properties" : { "Name" : "Blakely, PA", "Year" : "1845", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.487718,41.0008751]},
+              "properties" : { "Name" : "Bloomsburg, PA", "Year" : "1852", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.7186602,40.1491792]},
+              "properties" : { "Name" : "Bordentown, NJ", "Year" : "1841", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.7186602,40.1491792]},
+              "properties" : { "Name" : "Bridgeton, NJ", "Year" : "1844", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.7186602,40.1491792]},
+              "properties" : { "Name" : "Bridgetown, NJ", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-71.0467875,41.9700792]},
+              "properties" : { "Name" : "Bridgewater, MA", "Year" : "1833", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8719461,40.1040058]},
+              "properties" : { "Name" : "Bristol, PA", "Year" : "1849", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-79.9016038,40.0187776]},
+              "properties" : { "Name" : "Brownsville, PA", "Year" : "1849", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1821", "Count": "8"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1818", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1819", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1820", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1823", "Count": "11"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1824", "Count": "12"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1827", "Count": "13"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1828", "Count": "14"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1829", "Count": "16"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1831", "Count": "19"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1832", "Count": "20"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1834", "Count": "21"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1835", "Count": "23"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1839", "Count": "24"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1841", "Count": "25"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1843", "Count": "26"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1844", "Count": "29"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1846", "Count": "30"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1847", "Count": "33"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1849", "Count": "34"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1851", "Count": "38"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3829736,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1852", "Count": "29"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.382973,40.3282495]},
+              "properties" : { "Name" : "Bucks Co., PA", "Year" : "1853", "Count": "40"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0050375,39.862199]},
+              "properties" : { "Name" : "Burlington Co., NJ", "Year" : "1855", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0050375,39.862199]},
+              "properties" : { "Name" : "Burlington Co., NJ", "Year" : "1824", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0050375,39.862199]},
+              "properties" : { "Name" : "Burlington Co., NJ", "Year" : "1822", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0050375,39.862199]},
+              "properties" : { "Name" : "Burlington Co., NJ", "Year" : "1826", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0050375,39.862199]},
+              "properties" : { "Name" : "Burlington Co., NJ", "Year" : "1817", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.6140737,41.7812027]},
+              "properties" : { "Name" : "Burlington Co., PA", "Year" : "1841", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1824", "Count": "16"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1828", "Count": "18"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1829", "Count": "19"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1831", "Count": "20"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1832", "Count": "21"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1833", "Count": "22"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1834", "Count": "23"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1835", "Count": "24"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1839", "Count": "26"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1840", "Count": "27"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1841", "Count": "29"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1844", "Count": "30"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1845", "Count": "31"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1847", "Count": "33"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1848", "Count": "34"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1853", "Count": "35"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1823", "Count": "15"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1817", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1819", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1820", "Count": "8"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1821", "Count": "9"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8721432,40.0818511]},
+              "properties" : { "Name" : "Burlington, NJ", "Year" : "1822", "Count": "13"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0775845,40.0941507]},
+              "properties" : { "Name" : "Bustleton, PA", "Year" : "1846", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-87.103568,32.3168056]},
+              "properties" : { "Name" : "Cahaba, AL", "Year" : "1845", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.110364,38.5487518]},
+              "properties" : { "Name" : "Cambridge, MD", "Year" : "1852", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1364265,39.9340656]},
+              "properties" : { "Name" : "Camden, NJ", "Year" : "1846", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1364265,39.9340656]},
+              "properties" : { "Name" : "Camden, NJ", "Year" : "1854", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1364265,39.9340656]},
+              "properties" : { "Name" : "Camden, NJ", "Year" : "1855", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1364265,39.9340656]},
+              "properties" : { "Name" : "Camden, NJ", "Year" : "1839", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-93.3161135,29.8127398]},
+              "properties" : { "Name" : "Cameron, LA", "Year" : "1844", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.2264099,40.2000436]},
+              "properties" : { "Name" : "Carlisle, PA", "Year" : "1832", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.2264099,40.2000436]},
+              "properties" : { "Name" : "Carlisle, PA", "Year" : "1838", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1893419,39.5346199]},
+              "properties" : { "Name" : "Carroll Co., MD", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4738282,40.6524332]},
+              "properties" : { "Name" : "Catasaugua, PA", "Year" : "1855", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.1399444,39.5414194]},
+              "properties" : { "Name" : "Cecil Co., MD", "Year" : "1825", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.1399444,39.5414194]},
+              "properties" : { "Name" : "Cecil Co., MD", "Year" : "1828", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.1399444,39.5414194]},
+              "properties" : { "Name" : "Cecil Co., MD", "Year" : "1833", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.1399444,39.5414194]},
+              "properties" : { "Name" : "Cecil Co., MD", "Year" : "1841", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.1399444,39.5414194]},
+              "properties" : { "Name" : "Cecil Co., MD", "Year" : "1847", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0775095,39.0428977]},
+              "properties" : { "Name" : "Centerville, MD", "Year" : "1847", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.5199934,38.0400823]},
+              "properties" : { "Name" : "Charlottesville, VA", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1841", "Count": "47"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1817", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1818", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1820", "Count": "8"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1822", "Count": "11"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1823", "Count": "14"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1825", "Count": "15"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1826", "Count": "17"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1827", "Count": "19"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1828", "Count": "21"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1829", "Count": "23"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1830", "Count": "26"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1832", "Count": "27"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1834", "Count": "29"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1835", "Count": "33"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1836", "Count": "35"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1838", "Count": "41"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1839", "Count": "42"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1840", "Count": "44"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1848", "Count": "49"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1849", "Count": "50"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1851", "Count": "51"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1852", "Count": "52"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.0290284,39.9827986]},
+              "properties" : { "Name" : "Chester Co., PA", "Year" : "1855", "Count": "53"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-84.6804859,39.1362562]},
+              "properties" : { "Name" : "Cincinnati, OH", "Year" : "1854", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-84.6804859,39.1362562]},
+              "properties" : { "Name" : "Cincinnatti, OH", "Year" : "1851", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-83.9230298,39.9043406]},
+              "properties" : { "Name" : "Clarke Co., OH", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1003934,40.9256644]},
+              "properties" : { "Name" : "Columbia Co., NJ", "Year" : "1835", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.7044823,41.0417672]},
+              "properties" : { "Name" : "Columbia Co., PA", "Year" : "1821", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.7044823,41.0417672]},
+              "properties" : { "Name" : "Columbia Co., PA", "Year" : "1854", "Count": "8"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.7044823,41.0417672]},
+              "properties" : { "Name" : "Columbia Co., PA", "Year" : "1851", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.7044823,41.0417672]},
+              "properties" : { "Name" : "Columbia Co., PA", "Year" : "1846", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.7044823,41.0417672]},
+              "properties" : { "Name" : "Columbia Co., PA", "Year" : "1839", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.5126111,40.0343131]},
+              "properties" : { "Name" : "Columbia, PA", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-83.1309134,39.9828671]},
+              "properties" : { "Name" : "Columbus, OH", "Year" : "1834", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.6529229,40.148619]},
+              "properties" : { "Name" : "Crosswicks, NJ", "Year" : "1830", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.6529229,40.148619]},
+              "properties" : { "Name" : "Crosswicks, NJ", "Year" : "1850", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4284894,39.3120752]},
+              "properties" : { "Name" : "Cumberland Co., NJ", "Year" : "1848", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.5233953,40.1359428]},
+              "properties" : { "Name" : "Cumberland Co., PA", "Year" : "1849", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4284894,39.3120752]},
+              "properties" : { "Name" : "Cumberland, NJ", "Year" : "1834", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4284894,39.3120752]},
+              "properties" : { "Name" : "Cumberland, NJ", "Year" : "1838", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4284894,39.3120752]},
+              "properties" : { "Name" : "Cumberland, NJ", "Year" : "1842", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.5233953,40.1359428]},
+              "properties" : { "Name" : "Cumberland, PA", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-71.1104346,41.593935]},
+              "properties" : { "Name" : "Dartmouth, MA", "Year" : "1841", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.0625632,40.3894943]},
+              "properties" : { "Name" : "Dauphin Co., PA", "Year" : "1840", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5834601,39.1565281]},
+              "properties" : { "Name" : "Delaware", "Year" : "1821", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5834601,39.1565281]},
+              "properties" : { "Name" : "Delaware", "Year" : "1853", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5834601,39.1565281]},
+              "properties" : { "Name" : "Delaware", "Year" : "1851", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5834601,39.1565281]},
+              "properties" : { "Name" : "Delaware", "Year" : "1850", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5834601,39.1565281]},
+              "properties" : { "Name" : "Delaware", "Year" : "1846", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5834601,39.1565281]},
+              "properties" : { "Name" : "Delaware", "Year" : "1844", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5834601,39.1565281]},
+              "properties" : { "Name" : "Delaware", "Year" : "1830", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1831", "Count": "13"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1833", "Count": "15"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1834", "Count": "18"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1835", "Count": "20"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1840", "Count": "21"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1841", "Count": "22"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1842", "Count": "33"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1843", "Count": "24"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1844", "Count": "25"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1845", "Count": "27"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1846", "Count": "28"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1848", "Count": "29"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1851", "Count": "30"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1940", "Count": "31"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1818", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1820", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1822", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1824", "Count": "9"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1826", "Count": "10"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1829", "Count": "11"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5465859,39.9339737]},
+              "properties" : { "Name" : "Delaware Co., PA", "Year" : "1830", "Count": "12"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.7189615,40.0083711]},
+              "properties" : { "Name" : "Downingtown, PA", "Year" : "1849", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.7189615,40.0083711]},
+              "properties" : { "Name" : "Downingtown, PA", "Year" : "1832", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.107147,38.7756788]},
+              "properties" : { "Name" : "Easton, MD", "Year" : "1841", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2716354,40.6788652]},
+              "properties" : { "Name" : "Easton, PA", "Year" : "1847", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.6527814,36.0507539]},
+              "properties" : { "Name" : "Edenton, NC", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.6303195,39.5593332]},
+              "properties" : { "Name" : "Egg Harbor City, NJ", "Year" : "1826", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-0.2416813,51.5285582]},
+              "properties" : { "Name" : "England", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.1958149,40.1816806]},
+              "properties" : { "Name" : "Ephrata, PA", "Year" : "1846", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.9797905,39.8507084]},
+              "properties" : { "Name" : "Evesham, NJ", "Year" : "1846", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.9797905,39.8507084]},
+              "properties" : { "Name" : "Evesham, NJ", "Year" : "1817", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-81.9889234,29.8097095]},
+              "properties" : { "Name" : "Florida", "Year" : "1855", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [2.2770202,48.8588377]},
+              "properties" : { "Name" : "France", "Year" : "1842", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0964771,40.0149132]},
+              "properties" : { "Name" : "Frankford, PA", "Year" : "1852", "Count": "12"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0964771,40.0149132]},
+              "properties" : { "Name" : "Frankford, PA", "Year" : "1831", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0964771,40.0149132]},
+              "properties" : { "Name" : "Frankford, PA", "Year" : "1839", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0964771,40.0149132]},
+              "properties" : { "Name" : "Frankford, PA", "Year" : "1845", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0964771,40.0149132]},
+              "properties" : { "Name" : "Frankford, PA", "Year" : "1847", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0964771,40.0149132]},
+              "properties" : { "Name" : "Frankford, PA", "Year" : "1848", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0964771,40.0149132]},
+              "properties" : { "Name" : "Frankford, PA", "Year" : "1849", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0964771,40.0149132]},
+              "properties" : { "Name" : "Frankford, PA", "Year" : "1851", "Count": "11"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0964771,40.0149132]},
+              "properties" : { "Name" : "Frankford, PA", "Year" : "1853", "Count": "13"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-84.4789785,33.7663495]},
+              "properties" : { "Name" : "Georgia", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1935811,40.0316601]},
+              "properties" : { "Name" : "Germantown, PA", "Year" : "1846", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1935811,40.0316601]},
+              "properties" : { "Name" : "Germantown, PA", "Year" : "1847", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1935811,40.0316601]},
+              "properties" : { "Name" : "Germantown, PA", "Year" : "1853", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1935811,40.0316601]},
+              "properties" : { "Name" : "Germantown, PA", "Year" : "1854", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1935811,40.0316601]},
+              "properties" : { "Name" : "Germantown, PA", "Year" : "1855", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1856", "Count": "14"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1824", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1832", "Count": "8"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1833", "Count": "10"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1841", "Count": "11"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1846", "Count": "12"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1848", "Count": "13"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1820", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1819", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.098567,39.7895009]},
+              "properties" : { "Name" : "Gloucester, NJ", "Year" : "1818", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.326404,39.8223067]},
+              "properties" : { "Name" : "Greenwhich, NJ", "Year" : "1839", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.4411404,42.8635245]},
+              "properties" : { "Name" : "Grimble, NY", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0514071,39.8942151]},
+              "properties" : { "Name" : "Haddonfield, NJ", "Year" : "1846", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.0514071,39.8942151]},
+              "properties" : { "Name" : "Haddonfield, NJ", "Year" : "1848", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-86.1923838,40.0724115]},
+              "properties" : { "Name" : "Hamilton Co., IN", "Year" : "1846", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.5827637,39.4874677]},
+              "properties" : { "Name" : "Harford Co., MD", "Year" : "1853", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.5827637,39.4874677]},
+              "properties" : { "Name" : "Harford Co., MD", "Year" : "1855", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.915445,40.2821392]},
+              "properties" : { "Name" : "Harrisburg, PA", "Year" : "1839", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.006166,40.9513031]},
+              "properties" : { "Name" : "Hazelton, PA", "Year" : "1847", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.7731653,40.3889896]},
+              "properties" : { "Name" : "Hopewell, NJ", "Year" : "1842", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.2707153,40.1344403]},
+              "properties" : { "Name" : "Hopewell, PA", "Year" : "1817", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.2707153,40.1344403]},
+              "properties" : { "Name" : "Hopewell, PA", "Year" : "1818", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2290491,40.5632911]},
+              "properties" : { "Name" : "Hunterdon Co., NJ", "Year" : "1822", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.2471631,40.4022118]},
+              "properties" : { "Name" : "Huntingdon Co., PA", "Year" : "1839", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-88.6846833,39.7488487]},
+              "properties" : { "Name" : "Indiana", "Year" : "1834", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.4284028,36.3900981]},
+              "properties" : { "Name" : "Jackson, NC", "Year" : "1854", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.7282139,39.1071596]},
+              "properties" : { "Name" : "Kent Co., DE", "Year" : "1852", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.7282139,39.1071596]},
+              "properties" : { "Name" : "Kent Co., DE", "Year" : "1824", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1852", "Count": "18"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1855", "Count": "19"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1832", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1821", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1837", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1838", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1839", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1840", "Count": "8"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1841", "Count": "12"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1843", "Count": "15"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1846", "Count": "16"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.218086,40.027084]},
+              "properties" : { "Name" : "Lancaster Co., PA", "Year" : "1849", "Count": "17"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-71.9786463,42.2369712]},
+              "properties" : { "Name" : "Leicester, MA", "Year" : "1826", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.595495,40.5986081]},
+              "properties" : { "Name" : "Lewistown, PA", "Year" : "1849", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-73.5095132,40.8507533]},
+              "properties" : { "Name" : "Long Island, NY", "Year" : "1851", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.5205894,41.1632577]},
+              "properties" : { "Name" : "Luzerne Co., PA", "Year" : "1839", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.5205894,41.1632577]},
+              "properties" : { "Name" : "Luzerne Co., PA", "Year" : "1834", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-70.9915004,42.4753347]},
+              "properties" : { "Name" : "Lynn, MA", "Year" : "1848", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-68.8591152,44.8297697]},
+              "properties" : { "Name" : "Maine", "Year" : "1836", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-73.767556,40.9292061]},
+              "properties" : { "Name" : "Mamoroneck, NY", "Year" : "1819", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2296034,40.0244588]},
+              "properties" : { "Name" : "Manayunk, PA", "Year" : "1840", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2296034,40.0244588]},
+              "properties" : { "Name" : "Manayunk, PA", "Year" : "1855", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2296034,40.0244588]},
+              "properties" : { "Name" : "Manayunk, PA", "Year" : "1847", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2296034,40.0244588]},
+              "properties" : { "Name" : "Manayunk, PA", "Year" : "1852", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.816414,40.0722394]},
+              "properties" : { "Name" : "Mansfield, NJ", "Year" : "1846", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.816414,40.0722394]},
+              "properties" : { "Name" : "Mansfield, NJ", "Year" : "1835", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6892508,39.9497592]},
+              "properties" : { "Name" : "Marshalton, PA", "Year" : "1847", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.3894943,38.8034371]},
+              "properties" : { "Name" : "Maryland", "Year" : "1843", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.3894943,38.8034371]},
+              "properties" : { "Name" : "Maryland", "Year" : "1940", "Count": "9"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.3894943,38.8034371]},
+              "properties" : { "Name" : "Maryland", "Year" : "1839", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.3894943,38.8034371]},
+              "properties" : { "Name" : "Maryland", "Year" : "1840", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.3894943,38.8034371]},
+              "properties" : { "Name" : "Maryland", "Year" : "1844", "Count": "8"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.3894943,38.8034371]},
+              "properties" : { "Name" : "Maryland", "Year" : "1834", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.3894943,38.8034371]},
+              "properties" : { "Name" : "Maryland", "Year" : "1835", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.3894943,38.8034371]},
+              "properties" : { "Name" : "Maryland", "Year" : "1836", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.3894943,38.8034371]},
+              "properties" : { "Name" : "Maryland", "Year" : "1837", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-72.8395864,42.0594665]},
+              "properties" : { "Name" : "Massachusetts", "Year" : "1837", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.878807,39.8605829]},
+              "properties" : { "Name" : "Medford, NJ", "Year" : "1846", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.878807,39.8605829]},
+              "properties" : { "Name" : "Medford, NJ", "Year" : "1853", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8521399,40.280415]},
+              "properties" : { "Name" : "Mercer Co., NJ", "Year" : "1845", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8521399,40.280415]},
+              "properties" : { "Name" : "Mercer Co., NJ", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8521399,40.280415]},
+              "properties" : { "Name" : "Mercer Co., NJ", "Year" : "1840", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.5397457,41.2807303]},
+              "properties" : { "Name" : "Mercer Co., PA", "Year" : "1839", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.2448958,41.2252556]},
+              "properties" : { "Name" : "Mercer, PA", "Year" : "1853", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.7468506,40.2023881]},
+              "properties" : { "Name" : "Middletown, PA", "Year" : "1846", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.463325,38.9092917]},
+              "properties" : { "Name" : "Milford, DE", "Year" : "1840", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3311016,38.7754607]},
+              "properties" : { "Name" : "Milton, DE", "Year" : "1843", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1199565,39.3896781]},
+              "properties" : { "Name" : "Milville, NJ", "Year" : "1846", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-88.2290199,30.7018408]},
+              "properties" : { "Name" : "Mobile, AL", "Year" : "1839", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.5294803,40.3019971]},
+              "properties" : { "Name" : "Monmouth Co., NJ", "Year" : "1841", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.5294803,40.3019971]},
+              "properties" : { "Name" : "Monmouth Co., NJ", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.5294803,40.3019971]},
+              "properties" : { "Name" : "Monmouth Co., NJ", "Year" : "1827", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.5294803,40.3019971]},
+              "properties" : { "Name" : "Monmouth Co., NJ", "Year" : "1842", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., MO", "Year" : "1819", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1852", "Count": "38"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1817", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1818", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1819", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1821", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1822", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1823", "Count": "10"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1825", "Count": "13"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1826", "Count": "14"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1827", "Count": "16"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1828", "Count": "17"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1829", "Count": "18"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1830", "Count": "19"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1832", "Count": "20"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1833", "Count": "21"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1834", "Count": "23"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1836", "Count": "24"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1838", "Count": "26"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1839", "Count": "29"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1841", "Count": "30"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1844", "Count": "33"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1845", "Count": "34"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1846", "Count": "35"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1849", "Count": "37"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6361097,40.2116807]},
+              "properties" : { "Name" : "Montgomery Co., PA", "Year" : "1854", "Count": "39"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.9788834,39.9757177]},
+              "properties" : { "Name" : "Moorstown, NJ", "Year" : "1845", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-81.9732623,39.6099818]},
+              "properties" : { "Name" : "Morgan Co., OH", "Year" : "1854", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8044825,39.9952321]},
+              "properties" : { "Name" : "Mount Holly, NJ", "Year" : "1849", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8044825,39.9952321]},
+              "properties" : { "Name" : "Mount Holly, NJ", "Year" : "1847", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8044825,39.9952321]},
+              "properties" : { "Name" : "Mount Holly, NJ", "Year" : "1848", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8044825,39.9952321]},
+              "properties" : { "Name" : "Mount Holly, NJ", "Year" : "1832", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8044825,39.9952321]},
+              "properties" : { "Name" : "Mount Holly, NJ", "Year" : "1845", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -76.9454391,36.745789]},
+              "properties" : { "Name" : "Nansemond Co. (Present-day Suffolk), VA", "Year" : "1852", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-70.9979559,41.6637722]},
+              "properties" : { "Name" : "New Bedford, MA", "Year" : "1835", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.4759873,40.4883717]},
+              "properties" : { "Name" : "New Brunswick, NJ", "Year" : "1839", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.877467,39.5644516]},
+              "properties" : { "Name" : "New Castle Co., DE", "Year" : "1855", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5873305,39.6716247]},
+              "properties" : { "Name" : "Newcastle, DE", "Year" : "1849", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5873305,39.6716247]},
+              "properties" : { "Name" : "Newcastle, DE", "Year" : "1846", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5873305,39.6716247,]},
+              "properties" : { "Name" : "Newcastle, DE", "Year" : "1847", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5873305,39.6716247]},
+              "properties" : { "Name" : "Newcastle, DE", "Year" : "1848", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5873305,39.6716247]},
+              "properties" : { "Name" : "Newcastle, DE", "Year" : "1851", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.9745721,40.3616932]},
+              "properties" : { "Name" : "New Hope, PA", "Year" : "1844", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1856", "Count": "16"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1844", "Count": "15"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1843", "Count": "14"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1842", "Count": "13"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1840", "Count": "12"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1839", "Count": "10"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1838", "Count": "9"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1837", "Count": "8"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1836", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.8523087,40.1393319]},
+              "properties" : { "Name" : "New Jersey", "Year" : "1835", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.0523272,42.7364925]},
+              "properties" : { "Name" : "New York", "Year" : "1839", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.0523272,42.7364925]},
+              "properties" : { "Name" : "New York", "Year" : "1841", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.0523272,42.7364925]},
+              "properties" : { "Name" : "New York", "Year" : "1836", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.2598665,40.6971494]},
+              "properties" : { "Name" : "New York, NY", "Year" : "1843", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.2598665,40.6971494]},
+              "properties" : { "Name" : "New York, NY", "Year" : "1837", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.2598665,40.6971494]},
+              "properties" : { "Name" : "New York, NY", "Year" : "1835", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.2598665,40.6971494]},
+              "properties" : { "Name" : "New York, NY", "Year" : "1833", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.2598665,40.6971494]},
+              "properties" : { "Name" : "New York, NY", "Year" : "1831", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.2598665,40.6971494]},
+              "properties" : { "Name" : "New York, NY", "Year" : "1855", "Count": "11"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6100974,40.7522123]},
+              "properties" : { "Name" : "Northampton Co., PA", "Year" : "1844", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6100974,40.7522123]},
+              "properties" : { "Name" : "Northampton Co., PA", "Year" : "1854", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6100974,40.7522123]},
+              "properties" : { "Name" : "Northampton Co., PA", "Year" : "1853", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.0063025,35.5279811]},
+              "properties" : { "Name" : "North Carolina", "Year" : "1834", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.0063025,35.5279811]},
+              "properties" : { "Name" : "North Carolina", "Year" : "1835", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.0063025,35.5279811]},
+              "properties" : { "Name" : "North Carolina", "Year" : "1839", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.0063025,35.5279811]},
+              "properties" : { "Name" : "North Carolina", "Year" : "1840", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.8109351,40.8955276]},
+              "properties" : { "Name" : "Northumberland Co., PA", "Year" : "1849", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.8109351,40.8955276]},
+              "properties" : { "Name" : "Northumberland, PA", "Year" : "1829", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.5394456,39.8234395]},
+              "properties" : { "Name" : "Ocean Co., NJ", "Year" : "1855", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-83.528349,40.3772205]},
+              "properties" : { "Name" : "Ohio", "Year" : "1836", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.6351436,41.3874706]},
+              "properties" : { "Name" : "Orange Co., NY", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.5735511,40.4067569]},
+              "properties" : { "Name" : "Perry Co., PA", "Year" : "1837", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1856", "Count": "362"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1817", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1818", "Count": "12"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1819", "Count": "16"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1820", "Count": "18"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1821", "Count": "24"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1822", "Count": "32"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1823", "Count": "35"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1824", "Count": "42"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1825", "Count": "51"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1826", "Count": "59"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1827", "Count": "64"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1828", "Count": "68"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1829", "Count": "73"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1830", "Count": "77"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1831", "Count": "89"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1832", "Count": "94"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1833", "Count": "98"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1834", "Count": "107"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1835", "Count": "122"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1836", "Count": "139"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1837", "Count": "145"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1838", "Count": "154"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1839", "Count": "170"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1840", "Count": "193"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1841", "Count": "201"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1842", "Count": "212"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1843", "Count": "226"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1844", "Count": "236"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1845", "Count": "240"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1846", "Count": "248"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1847", "Count": "255"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1848", "Count": "267"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1849", "Count": "272"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1850", "Count": "283"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1851", "Count": "298"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1852", "Count": "203"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1853", "Count": "319"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1854", "Count": "341"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1855", "Count": "353"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2581173,40.0024137]},
+              "properties" : { "Name" : "Philadelphia, PA", "Year" : "1837", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.0505405,40.4313473]},
+              "properties" : { "Name" : "Pittsburgh, PA", "Year" : "1847", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.0505405,40.4313473]},
+              "properties" : { "Name" : "Pittsburgh, PA", "Year" : "1840", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.0505405,40.4313473]},
+              "properties" : { "Name" : "Pittsburgh, PA", "Year" : "1834", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.0505405,40.4313473]},
+              "properties" : { "Name" : "Pittsburgh, PA", "Year" : "1835", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.1746893,40.6961442]},
+              "properties" : { "Name" : "Port Carbon, PA", "Year" : "1852", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.124595,39.6081327]},
+              "properties" : { "Name" : "Port Deposit, MD", "Year" : "1838", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5853473,39.516778]},
+              "properties" : { "Name" : "Port Penn, DE", "Year" : "1854", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1956688,38.1695388]},
+              "properties" : { "Name" : "Port Royal, VA", "Year" : "1839", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-71.4561999,41.8169872]},
+              "properties" : { "Name" : "Providence, RI", "Year" : "1839", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-71.4561999,41.8169872]},
+              "properties" : { "Name" : "Providence, RI", "Year" : "1826", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-71.4561999,41.8169872]},
+              "properties" : { "Name" : "Providence, RI", "Year" : "1821", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-71.4561999,41.8169872]},
+              "properties" : { "Name" : "Providence, RI", "Year" : "1832", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.3723344,39.0343784]},
+              "properties" : { "Name" : "Queen Anne's Co., MD", "Year" : "1844", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8699453,40.0106458]},
+              "properties" : { "Name" : "Rancocas, NJ", "Year" : "1851", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-72.0668924,41.5824154]},
+              "properties" : { "Name" : "Rhode Island", "Year" : "1842", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.5633015,37.5246403]},
+              "properties" : { "Name" : "Richmond, VA", "Year" : "1833", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.5633015,37.5246403]},
+              "properties" : { "Name" : "Richmond, VA", "Year" : "1834", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.6864389,43.1861601]},
+              "properties" : { "Name" : "Rochester, NY", "Year" : "1841", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.6864389,43.1861601]},
+              "properties" : { "Name" : "Rochester, NY", "Year" : "1831", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.266603,40.0466911]},
+              "properties" : { "Name" : "Roxborough, PA", "Year" : "1847", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.9431135,39.9814292]},
+              "properties" : { "Name" : "Sadsbury, PA", "Year" : "1854", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-70.9172734,42.5155741]},
+              "properties" : { "Name" : "Salem, MA", "Year" : "1821", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1842", "Count": "14"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1817", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1818", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1819", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1820", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1825", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1827", "Count": "9"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1831", "Count": "10"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1834", "Count": "11"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1836", "Count": "12"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1838", "Count": "13"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4911876,39.5694467]},
+              "properties" : { "Name" : "Salem, NJ", "Year" : "1845", "Count": "15"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.8860604,40.9023042]},
+              "properties" : { "Name" : "Salem, OH", "Year" : "1842", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.8860604,40.9023042]},
+              "properties" : { "Name" : "Salem, OH", "Year" : "1854", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.620196,42.7969811]},
+              "properties" : { "Name" : "Scipio, NY", "Year" : "1843", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.8800255,40.5658625]},
+              "properties" : { "Name" : "Somerset Co., NJ", "Year" : "1844", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.347278,40.6988031]},
+              "properties" : { "Name" : "Springfield, NJ", "Year" : "1843", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3722775,39.9208061]},
+              "properties" : { "Name" : "Springfield, PA", "Year" : "1853", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-90.3835465,38.6530169]},
+              "properties" : { "Name" : "St. Louis, MO", "Year" : "1848", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-90.3835465,38.6530169]},
+              "properties" : { "Name" : "St. Louis, MO", "Year" : "1846", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-90.3835465,38.6530169]},
+              "properties" : { "Name" : "St. Louis, MO", "Year" : "1845", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-90.3835465,38.6530169]},
+              "properties" : { "Name" : "St. Louis, MO", "Year" : "1835", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6336466,38.7252306]},
+              "properties" : { "Name" : "Sussex Co., DE", "Year" : "1840", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.3201735,38.7583279]},
+              "properties" : { "Name" : "Talbot Co., MD", "Year" : "1844", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1514896,41.9064112]},
+              "properties" : { "Name" : "Tioga Co., PA", "Year" : "1843", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1514896,41.9064112]},
+              "properties" : { "Name" : "Tioga Co., PA", "Year" : "1854", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.809225,40.2160482]},
+              "properties" : { "Name" : "Trenton, NJ", "Year" : "1835", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.809225,40.2160482]},
+              "properties" : { "Name" : "Trenton, NJ", "Year" : "1847", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.809225,40.2160482]},
+              "properties" : { "Name" : "Trenton, NJ", "Year" : "1853", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.3479855,39.5961111]},
+              "properties" : { "Name" : "Tuckerton, NJ", "Year" : "1843", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.2222952,40.9779827]},
+              "properties" : { "Name" : "Union Co., PA", "Year" : "1848", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.3247041,39.9430163]},
+              "properties" : { "Name" : "Upper Darby, PA", "Year" : "1851", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.4336314,39.9320052]},
+              "properties" : { "Name" : "Upper Providence, PA", "Year" : "1846", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-71.7138359,42.0627226]},
+              "properties" : { "Name" : "Uxbridge, MA", "Year" : "1831", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-81.702389,37.9865034]},
+              "properties" : { "Name" : "Virginia", "Year" : "1836", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.2660828,40.842809]},
+              "properties" : { "Name" : "Warren Co., NJ", "Year" : "1842", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-78.1962891,39.5202932]},
+              "properties" : { "Name" : "Washington Co., MD", "Year" : "1853", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-80.4593253,40.2145967]},
+              "properties" : { "Name" : "Washington Co., PA", "Year" : "1852", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1546511,38.899265]},
+              "properties" : { "Name" : "Washington, D.C.", "Year" : "1841", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1546511,38.899265]},
+              "properties" : { "Name" : "Washington, D.C.", "Year" : "1852", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1546511,38.899265]},
+              "properties" : { "Name" : "Washington, D.C.", "Year" : "1835", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1546511,38.899265]},
+              "properties" : { "Name" : "Washington, D.C.", "Year" : "1853", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1546511,38.899265]},
+              "properties" : { "Name" : "Washington, D.C.", "Year" : "1841", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1546511,38.899265]},
+              "properties" : { "Name" : "Washington, D.C.", "Year" : "1838", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-77.1546511,38.899265]},
+              "properties" : { "Name" : "Washington, D.C.", "Year" : "1837", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.6231406,39.9601837]},
+              "properties" : { "Name" : "West Chester, PA", "Year" : "1845", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-105.193943,50.257714]},
+              "properties" : { "Name" : "Western Canada", "Year" : "1848", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-105.193943,50.257714]},
+              "properties" : { "Name" : "Western Canada", "Year" : "1856", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-74.3812949,40.6532908]},
+              "properties" : { "Name" : "Westfield, NJ", "Year" : "1851", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.6033401,38.849903]},
+              "properties" : { "Name" : "West River, MD", "Year" : "1853", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5645039,39.7298967]},
+              "properties" : { "Name" : "Wilmington, DE", "Year" : "1846", "Count": "7"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5645039,39.7298967]},
+              "properties" : { "Name" : "Wilmington, DE", "Year" : "1817", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5645039,39.7298967]},
+              "properties" : { "Name" : "Wilmington, DE", "Year" : "1844", "Count": "6"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5645039,39.7298967]},
+              "properties" : { "Name" : "Wilmington, DE", "Year" : "1819", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5645039,39.7298967]},
+              "properties" : { "Name" : "Wilmington, DE", "Year" : "1832", "Count": "3"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5645039,39.7298967]},
+              "properties" : { "Name" : "Wilmington, DE", "Year" : "1835", "Count": "4"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.5645039,39.7298967]},
+              "properties" : { "Name" : "Wilmington, DE", "Year" : "1838", "Count": "5"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1704685,39.8395301]},
+              "properties" : { "Name" : "Woodbury, NJ", "Year" : "1851", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1704685,39.8395301]},
+              "properties" : { "Name" : "Woodbury, NJ", "Year" : "1851", "Count": "2"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-75.1704685,39.8395301]},
+              "properties" : { "Name" : "Woodbury, NJ", "Year" : "1833", "Count": "1"}
+             },
+	              {"type" : "Feature",
+                "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-76.9682433,39.9726842]},
+              "properties" : { "Name" : "York Co., PA", "Year" : "1838", "Count": "2"}
+             },
+	             ]
+        }
+           , 
+		}) //If this extra parenthese goes away, the whole map breaks. It looks like it's extra, but it closes the GeoJSON format. 
+		
+		//Creates a layer called QMH_Hometowns, populated by circles, whose source is the django-data from above and who is styled as specified below:
+		map.addLayer({
+		'id': 'QMH_Hometowns',
+		'type': 'circle',
+		"source": "django-data",
+		//'source-layer': 'QMH_Hometowns',
+		 'paint': {
+		      'circle-opacity': 0.6,
+		    // Makes size proportional to # of people
+		    'circle-radius': {
+			property:"Count",
+			type:'categorical',
+			stops:[
+			    ['0', 0], ['1',8], ['2',9], ['3',10], ['4',11], ['5',12],['6',13], ['7',13], ['8',13], ['9', 14], ['10',14],
+			    ['11',14], ['12',15], ['13',16], ['14', 17], ['15',18], ['16',19], ['17',20], ['18',21], ['19',22], ['20',23],
+			    ['21',24], ['22',25],['23',26],['24',27],['25',28],['26',29],['27',30],['28',31],['29',32],['30',33],
+			    ['31',34],['32',35],['33',36],['34',37],['35', 38],['36',39],['37',40],['38',41],['39',42], ['40', 43],
+			    ['41', 44],
+			    ['42', 45],
+			    ['43', 45],
+			    ['44', 45],
+			    ['45', 45],
+			    ['46', 45],
+			    ['47', 45],
+			    ['48', 45],
+			    ['49', 45],
+			    ['50', 45],
+			    ['51', 45],
+			    ['52', 45],
+			    ['53', 45],
+			    ['54', 45],
+			    ['55', 45],
+			    ['56', 45],
+			    ['57', 45],
+			    ['58', 45],
+			    ['59', 45],
+			    ['60', 45],
+			    ['61', 45],
+			    ['62', 45],
+			    ['63', 45],
+			    ['64', 45],
+			    ['65', 45],
+			    ['66', 45],
+			    ['67', 45],
+			    ['68', 45],
+			    ['69', 45],
+			    ['70', 45]
+				]   
+		    },
+		    // Makes color correspond to # of people—darker orange/red = more (=bigger, from above)
+		     'circle-color':{
+			 property:"Year",
+			 type:'categorical',
+			 stops: [
+			    
+			    ['1817', '#f7d5a1'],
+			    ['1818', '#f7d5a1'],
+			    ['1819', '#f5cc8e'],
+			    ['1820', '#f5cc8e'],
+			    ['1821', '#f4c47c'],
+			    ['1822', '#f4c47c'],
+			    ['1823', '#f2bb69'],
+			    ['1824', '#f2bb69'],
+			    ['1825', '#f0b356'],
+			    ['1826', '#f0b356'],
+			    ['1827', '#efaa43'],
+			    ['1828', '#efaa43'],
+			    ['1829', '#eda231'],
+			    ['1830', '#eda231'],
+			    ['1831', '#eb991e'],
+			    ['1832', '#eb991e'],
+			    ['1833', '#e18f14'],
+			    ['1834', '#e18f14'],
+			    ['1835', '#ce8312'],
+			    ['1836', '#ce8312'],
+			    ['1837', '#bc7710'],
+			    ['1838', '#bc7710'],
+			    ['1839', '#a96b0f'],
+			    ['1840', '#a96b0f'],
+			    ['1841', '#965f0d'],
+			    ['1842', '#965f0d'],
+			    ['1843', '#83530b'],
+			    ['1844', '#83530b'],
+			    ['1845', '#71470a'],
+			    ['1846', '#71470a'],
+			    ['1847', '#5e3c08'],
+			    ['1848', '#5e3c08'],
+			    ['1849', '#5e3c08'],
+			    ['1850', '#4b3007'],
+			    ['1851', '#4b3007'],
+			    ['1852', '#4b3007'],
+			    ['1853', '#382405'],
+			    ['1854', '#382405'],
+			    ['1855', '#382405'],
+			    ['1856', '#261803']]
+		     },
+		    
+		    },
+		}); //end of addLayer
+	      
+		//Intializes map: start set at 1817, the early end of our slider/data.
+		filterBy('1817')
+		document.getElementById('slider').addEventListener('input', myFunction()); //Helps initialize
+
+		}); //End of onLoad
+		
+		//Filters by the property Year; shows all points whose Year property is <= to the Year2 Parameter (taken from slider)
+		function filterBy (Year2){
+		var filters = ['<=', 'Year', Year2]; //for features in the QMH_Hometowns layer, show the ones for which the Year property <= the entered Year2.
+		map.setFilter('QMH_Hometowns', filters); 
+		}
+		 
+		//Creates popups by mouse hover        
+		var popup = new mapboxgl.Popup({
+          closeButton: false,
+            closeOnClick: false
+        });
+
+        map.on('mouseenter', 'QMH_Hometowns', function(e) {
+          // Change the cursor style as a UI indicator.
+          map.getCanvas().style.cursor = 'pointer';
+          var to_Show = e.features[0].properties.Name +'<br>'+ e.features[0].properties.Year +'<br>'+e.features[0].properties.Count + " patients"
+          if (e.features[0].properties.Count == 1){ //Just so that we never have the plural "1 patients" displayed. 
+            var to_Show = e.features[0].properties.Name +'<br>'+e.features[0].properties.Year +'<br>'+ e.features[0].properties.Count + " patient"
+          }
+          popup.setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(to_Show)
+            .addTo(map);
+            });
+        map.on('mouseleave', 'QMH_Hometowns', function() {
+          map.getCanvas().style.cursor = '';
+          popup.remove();
+        });
+          
+       //A poorly-named but essential function which picks up which year the slider is set to and displays the year and filters by it.       
+        function myFunction(){
+            var x = document.getElementById("slider").value;
+            
+            console.log(x)
+            document.getElementById("label").innerHTML = x;
+            //document.getElementById("year-to-show").textContent = x;
+            filterBy(x);
+        }
+
+  </script>
+
+</div><!-- id="map" -->

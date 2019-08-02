@@ -1,0 +1,470 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<script type="text/javascript" src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+<title>Types of Mental Illness | Quakers &amp; Mental Health</title>
+
+
+<h2>Types of Mental Illness</h2>
+
+
+<style>
+
+svg {
+  display: inline-block;
+}
+
+text {
+  font-size: 0.8em;
+}
+
+.node2 rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node2 text {
+  pointer-events: none;
+  text-shadow: 0 0.1em 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+} 
+</style>
+
+
+<figure class="header">
+  <img src="{% static 'images/carousel4.jpg' %}" alt="drawing of Friends Asylum front view" title="Drawing of Friends Asylum">
+  <figcaption> JJ. M. Butler, Friends' Asylum for the Insane. Philadelphia. N.d., Print. Collection 850,  Quaker and Special Collections, Haverford College, Haverford, PA.</figcaption>
+</figure><!-- class="header" -->
+
+
+<article>
+  <h3>Causes of Mental Illness</h3>
+  <p>As the nineteenth century progressed, physicians responded to mental illness in increasingly systematic ways. At first, physicians at Friends’ Asylum classified patients by the duration of their insanity, as experts held that the longer a person was deprived of the use of their reason, the less likely they were to recover.</p>
+  <p>In 1836, Friends’ Asylum began to also classify patients based on the type of insanity they were thought to have, as deduced from their symptoms. Mania was thought to be the most curable and dementia the least <a href = "#" data-reveal-id = "Esquirol">(Esquirol 128)</a>. Physicians also began recording the causes of mental illness for each patient if they were known. The classification schemes employed by Friends' Asylum doctors illustrate the variety of factors thought to cause mental illness, as well as the ways that physicians attempted to make sense of the wide range of symptoms that patients exhibited. Although Friends' Asylum did not base patients’ ward assignments on these diagnoses like at other institutions, instead choosing to separate patients by the disruptiveness of their behavior, these classifications still informed patients' treatments. Starting in the 1830s, medical and <a href="/medical">moral treatment</a> were actively employed in tandem. Physicians used medical treatment to address physical ailments, while moral treatment was used to restore patients to reason.</p>
+  <p>The following are different ways of visualizing data pertaining to the types and causes of mental illness. The data were originally listed in the <a href = "#" data-reveal-id = "Admissions">Admissions Day Book</a> for the years 1836 to 1877 and contain entries for over 1,000 patients. The data have been compiled in the patient data page, and can be downloaded in multiple formats.</p> 
+</article>
+
+<hr>
+
+<a name="terms"></a>
+<article>
+  <h3>Explanation of Terms</h3>
+  <h4>Dementia</h4>
+  <p>Dementia was originally coined as ‘demence’ in the early nineteenth century by French physician Philippe Pinel. He defined dementia as a "rapid succession or uninterrupted alternation of insulated ideas, and evanescent and unconnected emotions; continually repeated acts of extravagance complete forgetfulness of every previous state; diminished sensibility to external impressions; abolition of the faculty of judgment" <a href = "#" data-reveal-id = "Pinel">(Pinel 6-7)</a>. Jean-Étienne Dominique Esquirol distinguished dementia from imbecility and idiocy: the former involved a regression in understanding and sensibility, whereas in the latter it never properly developed <a href = "#" data-reveal-id = "potato">(Esquirol 177)</a>.</p>
+  <h4>Mania</h4>
+  <p>Also referred to as ‘raving madness,’ mania was the most commonly ascribed type of insanity at Friends’ Asylum. In 1837, the English physician James Prichard described mania as full derangement of the understanding (as opposed to other types of mental illness involving only partial derangement), with the mind in perpetual confusion <a href = "#" data-reveal-id = "Prichard">(Prichard 4)</a>.</p>
+  <h4>Melancholia</h4>
+  <p> Until the 1830s, melancholia referred to all types of partial intellectual derangement (as opposed to mania, the term used for full derangement of the mental faculties). After that, melancholia became most commonly used to describe illnesses marked by a gloomy and sullen demeanor. In the 1870s English physicians John C. Bucknill and Daniel H. Tuke explain that while the symptoms include being “cheerless, moody, and taciturn,” melancholia was usually not accompanied by delusions or mental inactivity <a href = "#" data-reveal-id = "Bucknill">(Bucknill and Tuke 220)</a>.</p>
+  <h4>Monomania</h4>
+  <p>Monomania was a type of partial insanity in which a person showed deluded judgement only on certain subjects and otherwise remained rational. In 1845, French physician Jean-Étienne Dominique Esquirol explained that monomania could be accompanied by a variety of factors including delirium, reasoning, or homicidal tendencies <a href = "#" data-reveal-id = "beach">(Esquirol 319-376)</a>.</p>
+  <h4> Idiocy and Imbecility</h4>
+  <p>Jean-Étienne Dominique Esquirol distinguished dementia from imbecility and idiocy: the former involved a regression in understanding and sensibility, whereas in the latter it never properly developed <a href = "#" data-reveal-id = "potato">(Esquirol 177)</a>.</p>
+  <p style="color:grey;">Information about Idiocy/Imbecility is not included in the data visualizations.</p>
+</article>
+
+
+  <!--AC Maddie has a chart in her document, which she wants to include. However, I have no idea how to go about adding a chart.-->
+
+<hr>
+
+<article>
+  <div id="bubblechart" style="float:right;"></div>
+  <script>
+
+var diameter = 500,
+    format1 = d3.format(",d"),
+    color1 = d3.scaleOrdinal(d3.schemeCategory10);
+
+var bubble = d3.pack()
+    .size([diameter, diameter])
+    .padding(1.5);
+
+var svg1 = d3.select("#bubblechart").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
+
+d3.json("{% static 'old/flareTypesMentalIllness.json' %}", function(error, data) {
+  if (error) throw error;
+
+  var root = d3.hierarchy(classes(data))
+      .sum(function(d) { return d.value; })
+      .sort(function(a, b) { return b.value - a.value; });
+
+  bubble(root);
+  var node1 = svg1.selectAll(".node")
+      .data(root.children)
+      .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+  node1.append("title")
+      .text(function(d) { return d.data.className + ": " + format1(d.value); });
+
+  node1.append("circle")
+      .attr("r", function(d) { return d.r; })
+      .style("fill", function(d) { 
+        return color1(d.data.packageName); 
+      });
+
+  node1.append("text")
+      .attr("dy", ".3em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.data.className.substring(0, d.r / 3); });
+});
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(name, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+    else classes.push({packageName: name, className: node.name, value: node.size});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+
+d3.select(self.frameElement).style("height", diameter + "px");
+
+  </script>
+  <p>This data visualization shows the top causes of insanity divided amongst the four main types of mental illness. The colors represent the different types of mental illness, and the size of each circle shows the number of patients diagnosed with each combination of both type and cause of illness. For example, there were 90 patients with mania whose cause of illness was disease or ill health. On the other hand, there was only one patient with dementia caused by religion.</p>
+  <p>In this graphic, it is easy to see all the different causes attributed to each type of mental illness. Mania has both the largest circles, since it was the most common diagnosis at Friends’ Asylum, and the most circles, since each cause of insanity was linked to at least one insance of mania. The other three types of mental illness each have between 10 and 15 circles, meaning they have between 10 and 15 connected causes. This shows that there was a wide variety of causes for the same type of mental illness, but certain causes did only lead to certain diagnoses. For example, old age and excessive study are only found to cause mania and dementia. But many causes, such as domestic trouble, intemperance, and sexual, were listed under all four types of mental illness. Overall, this graphic shows that mania was the most generalized type of mental illness, and the other three were more particular and defined, in terms of their causes.</p>
+</article>
+
+<hr>
+
+<article>
+  <p>The alluvial diagram below illustrates in further detail the correlations between the most commonly listed types and causes of mental illness. The first column lists the simplified cause used in the visualizations, and the second column lists the specific cause that was listed in the original manuscript materials, along with any relevant background information about the cause. This visualization makes it possible to see which causes were most attributed to which types. While there are some classifications and causes that are strongly correlated, as seen in the thicker bands (such as from dementia to masturbation, melancholia to anxiety, and mania to most of the causes), this visualization proves that the relationships between causes and types of mental illness were incredibly variable. Every cause is connected to at least two types of mental illness. In other words, the classification schemes were not straightforward; physicians could not tell just by a patient’s cause of insanity what they should be diagnosed with, nor could they deduce from their diagnosis a definitive cause.
+</p>
+</article><!-- yrong2019: I ended the tag here, otherwise the text would go out of the div with the fixed-dimension sankey graph on smaller screens -->
+  <div id="sankey" style="text-align:center;"></div>
+  <script src="{% static 'old/sankeyTypesMentalIllness.js' %}"></script>
+  <script>
+	
+var singleUnit = "patient";
+var units = "patients";
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 900 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+// format variables
+var formatNumber = d3.format(",.0f"),    // zero decimal places
+    format = function(d) { 
+    	if (formatNumber(d) == 1) 
+    		{ return formatNumber(d) + " " + singleUnit;} 
+    	else {return formatNumber(d) + " " + units;} },
+    color = d3.scaleOrdinal(d3.schemeCategory20);
+
+// append the svg object to the body of the page
+var svg2 = d3.select("#sankey").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", 
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Set the sankey diagram properties
+var sankey = d3.sankey()
+    .nodeWidth(30)
+    .nodePadding(5)
+    .size([width, height]);
+
+var path = sankey.link();
+
+// load the data
+d3.json("{% static 'old/sankeyTypesMentalIllness.json' %}", function(error, graph) {
+
+  sankey
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .layout(32);
+
+// add in the links
+  var link = svg2.append("g").selectAll(".link")
+      .data(graph.links)
+    .enter().append("path")
+      .attr("class", "link")
+      .attr("d", path)
+      .style("stroke-width", function(d) { return Math.max(1, d.dy); })
+      .style("stroke", function(d){return d.color;})//add this to return the color of link
+      .sort(function(a, b) { return b.dy - a.dy; });
+
+// add the link titles
+  link.append("title")
+        .text(function(d) {
+    		return d.source.name + " → " + 
+                d.target.name + "\n" + format(d.value); });
+
+// add in the nodes
+  var node2 = svg2.append("g").selectAll(".node")
+      .data(graph.nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { 
+		  return "translate(" + d.x + "," + d.y + ")"; })
+      .call(d3.drag()
+        .subject(function(d) {
+          return d;
+        })
+        .on("start", function() {
+          this.parentNode.appendChild(this);
+        })
+        .on("drag", dragmove));
+
+// add the rectangles for the nodes
+  node2.append("rect")
+      .attr("height", function(d) { return d.dy; })
+      .attr("width", sankey.nodeWidth())
+      .style("fill", function(d) { return d.color;}) // modified node color
+      .style("stroke", function(d) { 
+		  return d3.rgb(d.color).darker(2); })
+    .append("title")
+      .text(function(d) { 
+		  return d.name + "\n" + format(d.value); });
+
+// add in the title for the nodes
+  node2.append("text")
+      .attr("x", -6)
+      .attr("y", function(d) { return d.dy / 2; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", "end")
+      .attr("transform", null)
+      .text(function(d) { return d.name; })
+    .filter(function(d) { return d.x < width / 2; })
+      .attr("x", 6 + sankey.nodeWidth())
+      .attr("text-anchor", "start");
+
+// the function for moving the nodes
+  function dragmove(d) {
+    d3.select(this)
+      .attr("transform", 
+            "translate(" 
+               + d.x + "," 
+               + (d.y = Math.max(
+                  0, Math.min(height - d.dy, d3.event.y))
+                 ) + ")");
+    sankey.relayout();
+    link.attr("d", path);
+  }
+});
+
+  </script>
+
+
+<hr>
+        
+<article>
+  <div id="bargraph" style="float:right;"></div>
+  <script>
+
+var margin = {top: 00, right: 10, bottom: 100, left:60},
+    width = 510 - margin.right - margin.left,
+    height = 500 - margin.top - margin.bottom;
+
+
+var svg = d3.select("#bargraph")
+    .append("svg")
+      .attr ("width", width + margin.right + margin.left)
+      .attr("height", height + margin.top + margin.bottom+100)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," +100 + ")");
+
+
+var xScale = d3.scaleBand()
+    .range([0,width], 0, 1);
+
+var yScale = d3.scaleLinear()
+    .range([height, 0]);
+
+// define x axis and y axis
+d3.select(".axis")
+	.call(d3.axisBottom(xScale));
+	
+d3.select(".axis")
+	.call(d3.axisLeft(yScale));
+    
+
+d3.csv("{% static 'old/bargraph.csv' %}", function(error,data) {
+  if(error) console.log("Error: data not loaded!");
+
+  
+  data.forEach(function(d) {
+    d.country = d.country;
+    d.gdp = +d.gdp;       });
+
+
+  xScale.domain(data.map(function(d) { return d.country; }) );
+  yScale.domain([0, d3.max(data, function(d) { return d.gdp+10; } ) ]);
+
+ 
+  svg.selectAll("rect")
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("height", 0)
+    .attr("y", height)
+    .transition().duration(1000)
+    .delay( function(d,i) { return i * 20; })
+    
+    .attr("x", function(d) { return xScale(d.country); })
+    .attr("y", function(d) { return yScale(d.gdp); })
+    .attr("width", xScale.bandwidth())
+    .attr("height", function(d) { return  height - yScale(d.gdp); })
+    .style("fill", function(d,i) { 
+      if(i % 3 == 0){
+      return '#2877B5'  
+      }
+      else return  '#D7392E'
+      });
+
+
+        svg.selectAll('text')
+            .data(data)
+            .enter()
+            .append('text')
+
+            .text(function(d){
+            	if (d.gdp != 0) { //don't show unnecessary zeros
+                	return d.gdp;
+                	}
+            })
+            .attr("x", function(d){ return xScale(d.country) +  xScale.bandwidth() / 2; })
+            .attr("y", function(d){ return yScale(d.gdp) - 3}) //make smaller numbers more visible above the x-axis
+                .style("font-family", 'Amiri')
+                .style("font-size", '12px')
+                .style("font-weight", 'bold')
+                .style("fill", 'black')
+                .style("text-anchor", 'middle');
+
+    // Draw xAxis and position the label
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xScale))
+        .selectAll("text")
+        .attr("dx", "-.8em")
+        .attr("dy", ".25em")
+        .attr("transform", "rotate(-60)" )
+        .style("text-anchor", "end")
+        .style("font-family", "Amiri")
+        .attr("font-size", "10px");
+
+
+    // Draw yAxis and postion the label
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(d3.axisLeft(yScale))
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -height/2)
+        .attr("dy", "-3em")
+        .style("text-anchor", "end")
+        .text("Number of Patients");
+});
+
+  </script>
+  <p>This bar graph shows the total number of male and female patients who were listed under each of the different causes of mental illness at Friends’ Asylum between 1836 and 1877. Female patients are represented by the red bars, and male patients by the blue bars.</p>
+  <p>In the nineteenth century, intemperance, usually used to refer to the excessive indulgence of alcohol, was seen as a dangerous vice. Men especially were the target of reform movements meant to reduce the amount of alcohol consumed in the United States, presumably since they were believed to indulge in alcohol more than women. In addition, intemperance was thought to be a cause of mental illness. At the end of the eighteenth century, American physician Benjamin Rush listed madness one of the diseases caused by alcohol, and did not give much detail since madness was “well known in every township where spirituous liquors are used” <a href = "#" data-reveal-id = "Rush">(Rush 4)</a>. Therefore, the fact that intemperance was such a common cause at Friends’ Asylum and was attributed almost exclusively to men is not surprising.</p>
+  <p>Significantly more women were listed under anxiety, disease or ill health, domestic trouble, and religion. Conversely, more men were listed under business or money, masturbation, and sexual. These differences are in line with the strict conceptions of gender roles in the nineteenth century. Physicians likely held preconceived notions about the range of causes they would expect to find for each gender. Therefore, it is important to interrogate these gender-based distinctions, with the context of nineteenth century society in mind.</p>
+</article>
+
+<article>
+  <h3>Conclusions</h3>
+  <p>The data recorded in the admissions books provide valuable insight into the way that Friends’ Asylum classified mental illness in the nineteenth century.</p>
+  <p>First, mania was both the most common and most generalized type of mental illness. While it did have certain characteristics, it also appears to have been a sort of catch-all category to use when a patient did not exhibit symptoms indicative of a more particular and specialized category of mental illness. </p>
+  <p>Additionally, the data illustrates that the causes and types of mental illness did not correspond in a linear way. Physicians tried their best to make sense of the causes and types, and did so by constructing elaborate connections between the two elements which were complicated and constantly in flux.</p>
+  <p>Finally, the way that gender was viewed during the nineteenth century had a tremendous impact on the way that causes were attributed to patients based on their gender. Preconceived notions and generalizations certainly influenced the causes that were assigned to patients, and these outside factors must be kept in mind when analyzing causal data from the nineteenth century.</p>
+  <p>Overall, using data to visualize the causes and types of mental illness at Friends’ Asylum provides an additional way of studying the workings of the institution. As more data becomes accessible, more opportunities for additional statistical analyses and visualizations will become available, and ultimately give us more insight into Friends’ Asylum.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_philanthropicNetworks' %}">Philanthropic Networks</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_moralTreatment' %}">Moral Treatment >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+<div id ="Esquirol" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle">Esquirol, Jean-Étienne Dominique. Quoted in Prichard, James, <em>A Treatise on Insanity and Other Disorders Affecting the Mind</em>. London: Sherwood, Gilbert, and Piper, 1835.</p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+<div id ="Admissions" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle"> <em>Admission Record Books</em>, Volumes 1-2. Friends Hospital Records, Special Collections, Haverford College, Haverford, PA.</p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+<div id ="Pinel" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle">Pinel, Phillipe. Quoted in Prichard, James,<em> A Treatise on Insanity and Other Disorders Affecting the Mind</em>. London: Sherwood, Gilbert, and Piper, 1835.</p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+<div id ="potato" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle">Esquirol, Jean-Étienne Dominique. Quoted in J.C. Bucknill and Daniel H. Tuke, <em>A Manual of Psychological Medicine</em>. London: J & A Churchill, New Burlington Street, 1879.</p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+
+<div id ="Prichard" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle">Prichard, James. <em>A Treatise on Insanity and Other Disorders Affecting the Mind</em>. London: Sherwood, Gilbert, and Piper, 1835.</p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+<div id ="Bucknill" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle">Bucknill, J.C. and Daniel H. Tuke, <em>A Manual of Psychological Medicine</em>. London: J & A Churchill, New Burlington Street, 1879.</p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+<div id ="beach" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle">Esquirol, E., <em>Mental Maladies: A Treatise on Insanity</em>, translated by E.K. Hunt. Philadelphia: Lea and Blanchard, 1845.</p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+<div id ="Rush" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
+<p id ="modalTitle">Rush, Benjamin, <em>An Inquiry into the Effects of Spirituous Liquors on the Human Body</em>. Boston: Thomas and Andrews, 1790.</p>
+<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+</div>
+
+ 
+       <!--  foundation/jquery files -->
+
+    <script src="{% static 'old/jquery.js' %}"></script>
+    <script src="{% static 'old/foundation.min.js' %}"></script>
+    
+    <!-- Google analytics script below -->
+
+    <script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-45185227-11', 'auto');
+ ga('send', 'pageview');
+
+    </script>
+    <script>
+      $(document).foundation();
+    </script>
+
+{% endblock %}

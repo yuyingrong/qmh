@@ -1,0 +1,58 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Moral Treatment and the Family | Quakers &amp; Mental Health</title>
+
+
+<h2>Moral Treatment and the Family</h2>
+
+<article>
+  <p>Moral Treatment, as found at the Friends Asylum, mimicked the traditional Quaker familial structure and sought to duplicate the ideal Quaker family in its care to re-socialize individuals. This imitation begins in the structure of the asylum itself; the operations of the Friends Asylum were headed by a superintendent and his wife&mdash;the matron&mdash;who embodied the traditional patriarchal family. They lived in the literal center of the main asylum building, and their family spaces were those rooms in which patients, ate, socialized, and worked. The structure of the Friends Asylum was an expanded household, as seen as such; throughout his notes, Isaac Bonsall, a manager and the first superintendent of the Friends Asylum refers to the groups of patients as "the family" (<a data-reveal-id="mModal" href="#">1</a>). He managed the asylum as a patriarch attempting to elicit rational responses, train the patients in proper conduct, and cultivate morality through the use of reason.</p>
+
+  <p>This patriarchal training (<a data-reveal-id="aModal" href="#">2</a>), as if the patient were a child, can be seen in a variety of instances, for instance, in handling recalcitrant patients; "Hannah Lippincott will not go to the table to eat with the family but says she will eat if it is brought to her. We have a mind to try to try her by not indulging in hope she will conform to what we deem a salutary rule which is for all we deem proper to eat at the table with us. Subordination is a lefson she is unwilling to learn." (<a data-reveal-id="bModal" href="#">3</a>)However, upon "feeling the want of hunger" (<a data-reveal-id="cModal" href="#">4</a>) she returned to eating at the table the next day and exhibited acceptable behavior. She was not penalized punitively once returning, but was merely sanctioned until she conformed to the expected activity. The language of the treatment is couched in lessons that need to be taught by parent, and in such a way that mimic the initial socialization that the Quakers utilize on children. One can imagine the exact same lessons being given to a child, and throughout this episode there is no mention of medical diagnoses, psychological explanations, or anything other than the expectation of conformity to communal standards.</p>
+
+<p><p>This practice is part and parcel of moral treatment which sought to elicit attention to the already-present, yet buried, source of the rational and moral. Following Foucault, (<a data-reveal-id="dModal" href="#">5</a>) we can see the asylum redoubling and reinforcing the social norms of the greater community. (<a data-reveal-id="eModal" href="#">6</a>) Rather than emphasizing medical causes or treatment, the Friends Asylum of the early 19th century sought to cure insanity through enforcing social norms rooted in the traditional family structure. The emphasis on enforcing social norms through moral treatment was dominant in the early Friends Asylum, but by 1950 had receded towards a more medical understanding of mental illness.</p>
+
+
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_genderAndTreatment' %}">Gender and Treatment</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_caseStudies' %}">Case Studies >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+<div aria-hidden="true" aria-labelledby="mTitle" class="reveal-modal small" data-reveal="" id="mModal" role="dialog">
+<p id="mTitle">Waln, Robert Jr. <em> An Account of the Asylum for the Insance, Established by the Society of Friends, Near Frankford, in the Vicinity of Philadelphia</em>. Philadelphia: Benjamin and Thomas Kite, 1825.</p>
+<a aria-label="Close" class="close-reveal-modal">&times;</a></div>
+
+<div aria-hidden="true" aria-labelledby="aTitle" class="reveal-modal small" data-reveal="" id="aModal" role="dialog">
+<p id="aTitle">Jerry W. Frost, &ldquo;As the Twig Is Bent: Quaker Ideas of Childhood,&rdquo; Quaker History 60, no. 2 (1971): 67&ndash;97.</p>
+<a aria-label="Close" class="close-reveal-modal">&times;</a></div>
+
+<div aria-hidden="true" aria-labelledby="bTitle" class="reveal-modal small" data-reveal="" id="bModal" role="dialog">
+<p id="bTitle">Bonsall, Superintendents Daybook, 1820, 1:98–99.</p>
+<a aria-label="Close" class="close-reveal-modal">&times;</a></div>
+
+<div aria-hidden="true" aria-labelledby="cTitle" class="reveal-modal small" data-reveal="" id="cModal" role="dialog">
+<p id="cTitle">Bonsall, 1:99.</p>
+<a aria-label="Close" class="close-reveal-modal">&times;</a></div>
+
+<div aria-hidden="true" aria-labelledby="dTitle" class="reveal-modal small" data-reveal="" id="dModal" role="dialog">
+<p id="dTitle">Michel Foucault, Madness and Civilization (New York: Pantheon Books, 1965).</p>
+<a aria-label="Close" class="close-reveal-modal">&times;</a></div>
+
+<div aria-hidden="true" aria-labelledby="eTitle" class="reveal-modal small" data-reveal="" id="eModal" role="dialog">
+<p id="eTitle">Contributors of the Friends’ Asylum, Minutes of the Contributors, 1834, Third Month 10th 1845.</p>
+<a aria-label="Close" class="close-reveal-modal">&times;</a></div>
+</div>
+
+
+{% endblock %}

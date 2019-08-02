@@ -4,311 +4,65 @@
 
 {% block content %}
 
-<!doctype html>
-<html>
+<!-- removed link to "foundation.css", "occu.css", "modernizr.js" -->
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
 
-    <head>
-        
-        <meta charset='utf-8' />
-        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-        <Title> Patient Hometowns</Title>
-        <script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
-        
-        <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />
-            <style> body{ margin:0; padding:0; }
-                    body { margin:0; padding:0;}
-       #map { position:absolute; left:10%; right:10%; top:4%; bottom:0; width:75%; max-height: 750px }
-        </style>
-    </head>
- 
-            
-<!--- Now that scripts are included, we have to access mapbox from my (Alison's) public token... after the nav-bar break!-->  
-    
-    <body>
+<title>Patient Hometowns | Quakers &amp; Mental Health</title>
 
 
-           <style>
-            /* Styles the map + legends + zoom bar... still tryna get the map box to have borders */ 
-                .map-overlay {
-                    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-                    position: absolute;
-                    width: 25%;
-                    top: 0;
-                    left: 0;
-                    padding: 10px;
-                    margin-top: 415px;
-                    margin-left: 10%;
-                                    }
-                .map-overlay .map-overlay-inner {
-                    background-color: #fff;
-                    box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
-                    border-radius: 3px;
-                    padding: 10px;
-                    margin-bottom: 10px;
-                }
-                .map-overlay h2 {
-                    line-height: 24px;
-                    display: block;
-                    margin: 0 0 10px;
-                }
-                .map-overlay .legend .bar {
-                    height: 10px;
-                    width: 100%;
-                    background: linear-gradient(to right, #f5cc8f, #7F3121);
-                    /* change the color bar here!!!!*/
-                }
-                .map-overlay input {
-                    background-color: transparent;
-                    display: inline-block;
-                    width: 100%;
-                    position: relative;
-                    margin: 0;
-                    cursor: ew-resize;
-                }
-               #map{
-                   margin-top: 350px;
-                   margin-bottom: 0px; 
-               }
-               .mapboxgl-popup {
-                    max-width: 400px;
-                    font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-                }
-                #map-container {
-                  border-left-width: 50px;
-                  height: 750px;
-                  padding-bottom:10px;
-                  margin-bottom: 10px;
-                }
-                h2{
-                  font-family: "Amiri";
-                }
-  
-        </style> 
+<h2>Patient Hometowns</h2>
 
-        <div id = "row6"> <!-- This was a quick steal to ensure font uniformity across all pages. -->
-        <div class ="row full-width" >
-        <h2> Where Did the Asylum's Patients Come From? </h2>
-        <p> The Friends Hospital collection's <a href = "#" data-reveal-id = "myNewModal">Minutes and Register of the Committee of Admission, 1817-1856</a> provides valuable information about where the Asylum's earliest patients came from. A majority of the patients lived in the Philadelphia area prior to admittance. However, over time, the Asylum began to treat patients from the reaches of the United States at the time, as well as Canada, France, and Britain. The Friends’ Asylum often treated patients who came from the same place, establishing recognition and reputation throughout certain regions. The interactive map shows the increase in patients over time and some of the "hubs" which sent multiple patients to the Asylum. Drag the slider below to view patients' hometowns in a particular year. The size of each marker represents the number of patients sent from each location, and the color represents the year. </p>
+<article>
+  <h3>Where did the patients come from?</h3>
+  <p>The Friends Hospital collection's <a href = "#" data-reveal-id = "myNewModal">Minutes and Register of the Committee of Admission, 1817-1856</a> provides valuable information about where the Asylum's earliest patients came from. A majority of the patients lived in the Philadelphia area prior to admittance. However, over time, the Asylum began to treat patients from the reaches of the United States at the time, as well as Canada, France, and Britain. The Friends’ Asylum often treated patients who came from the same place, establishing recognition and reputation throughout certain regions. The interactive map shows the increase in patients over time and some of the "hubs" which sent multiple patients to the Asylum. Drag the slider below to view patients' hometowns in a particular year. The size of each marker represents the number of patients sent from each location, and the color represents the year.</p>
+
+<a id="mapboxPatientHometowns"></a>
+
+<figure class="header"><!--- access mapbox from Alison's public token -->
+
+{% include 'visual_mapboxPatientHometowns.html' %}
+
+</figure>
+
+</article>
 
 
-        </div>
-        </div>
-        <br>
-i        <br>
-        <br>
-        <br>
-
-   <!--- Now, for the map:-->     
-  <div id="map-container">
-    <div id='map'></div>
-
-        <div class='map-overlay top'>
-            <div class='map-overlay-inner'>
-                <h2>Patient Hometowns</h2>
-            <!--<label id='year-to-show'></label> -->
-            Select Year: <input id='slider' type='range' min='1817' max='1856' step='1' value='1817' onchange="myFunction()"/>
-                  <script type="text/javascript">
-      //My first intentional accessibility feature! This function lets the arrow keys tab through the slider, rather than dragging!
-      document.getElementById('slider').addEventListener('click', function() {
-        this.focus(); 
-      });
-    </script>
-            <p id = "label"> </p>
-            <!--<button onclick="myFunction()">Update Map</button>--> <!---Button option, but slider slides automatically now :) -->
+<article>
+  <p>As you may observe, a lot has changed since the first patients entered the asylum. For example, some patients' hometowns were recorded as places we consider to be neighborhoods of Philadelphia today, such as Germantown and Manayunk, because Philadelphia during the 1800s had not yet grown enough include those areas. Additionally, some entries in the collection's Minutes and Register of the Committee of Admission are ambiguous, listing only a state or region and no city. Additionally, state and national borders were still being drawn during the early days of the Asylum leave us with only a rough idea of where patients came from. With two entries stating only "Western Canada," and several entries specifying regions but not cities, it can be hard to place certain patients.</p>
+</article>
 
 
-    </div>
-    <div class='map-overlay-inner'>
-        <div id='legend' class='legend'>
-            <div class='bar'></div>
-            <div>Year (Earlier to Later)</div>
-        </div>
-    </div>
-</div>
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_caseStudies' %}">Case Studies</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_patientDemographics' %}">Patient Demographics >>></a></span></h5>
 
-      <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiYWxpc29ucjIiLCJhIjoiY2ozMGc2cmJzMDAxMTJ3bjNtbGR5eGpnMyJ9.UvriR_RhUCjK72YOqAghUw';
-        //Creates map. This is the only place where we pull from Mapbox——to get the style! You can use the generic mapbox styles (light and outdoors commented out below, but my custom map is just the outdoors one minus some of the place name layers to declutter)
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/alisonr2/cj31orqf5000a2sqoehbxrfpe', //'mapbox://styles/mapbox/outdoors-v9',//mapbox://styles/mapbox/light-v9',
-            center: [-75.1043514, 40.0264575, ], // starting position, the friends asylum!
-            zoom: 5, // starting zoom
-           
-        });
-  
-       
-        map.on('load', function(){ 
- 
-         //Adds the righthand zoom box:
-        map.addControl(new mapboxgl.NavigationControl());
-        //Makes a source called django-data which uses Django data in the GeoJSON Format. Be careful——any change of a comma, bracket, brace, or parentheses will screw up the GeoJSON format. 
-        map.addSource("django-data", {
-            "type": "geojson",
-            "data": { "type" : "FeatureCollection",
-            "features" : [{{places|safe}}, 
-        }) //If this extra parenthese goes away, the whole map breaks. It looks like it's extra, but it closes the GeoJSON format. 
-        
-        //Creates a layer called QMH_Hometowns, populated by circles, whose source is the django-data from above and who is styled as specified below:
-        map.addLayer({
-        'id': 'QMH_Hometowns',
-        'type': 'circle',
-        "source": "django-data",
-        //'source-layer': 'QMH_Hometowns',
-         'paint': {
-              'circle-opacity': 0.6,
-            // Makes size proportional to # of people
-            'circle-radius': {
-                property:"Count",
-                type:'categorical',
-                stops:[
-                    ['0', 0], ['1',8], ['2',9], ['3',10], ['4',11], ['5',12],['6',13], ['7',13], ['8',13], ['9', 14], ['10',14],
-                    ['11',14], ['12',15], ['13',16], ['14', 17], ['15',18], ['16',19], ['17',20], ['18',21], ['19',22], ['20',23],
-                    ['21',24], ['22',25],['23',26],['24',27],['25',28],['26',29],['27',30],['28',31],['29',32],['30',33],
-                    ['31',34],['32',35],['33',36],['34',37],['35', 38],['36',39],['37',40],['38',41],['39',42], ['40', 43],
-                    ['41', 44],
-                    ['42', 45],
-                    ['43', 45],
-                    ['44', 45],
-                    ['45', 45],
-                    ['46', 45],
-                    ['47', 45],
-                    ['48', 45],
-                    ['49', 45],
-                    ['50', 45],
-                    ['51', 45],
-                    ['52', 45],
-                    ['53', 45],
-                    ['54', 45],
-                    ['55', 45],
-                    ['56', 45],
-                    ['57', 45],
-                    ['58', 45],
-                    ['59', 45],
-                    ['60', 45],
-                    ['61', 45],
-                    ['62', 45],
-                    ['63', 45],
-                    ['64', 45],
-                    ['65', 45],
-                    ['66', 45],
-                    ['67', 45],
-                    ['68', 45],
-                    ['69', 45],
-                    ['70', 45]
-                        ]   
-            },
-            // Makes color correspond to # of people—darker orange/red = more (=bigger, from above)
-             'circle-color':{
-                 property:"Year",
-                 type:'categorical',
-                 stops: [
-                    
-                    ['1817', '#f7d5a1'],
-                    ['1818', '#f7d5a1'],
-                    ['1819', '#f5cc8e'],
-                    ['1820', '#f5cc8e'],
-                    ['1821', '#f4c47c'],
-                    ['1822', '#f4c47c'],
-                    ['1823', '#f2bb69'],
-                    ['1824', '#f2bb69'],
-                    ['1825', '#f0b356'],
-                    ['1826', '#f0b356'],
-                    ['1827', '#efaa43'],
-                    ['1828', '#efaa43'],
-                    ['1829', '#eda231'],
-                    ['1830', '#eda231'],
-                    ['1831', '#eb991e'],
-                    ['1832', '#eb991e'],
-                    ['1833', '#e18f14'],
-                    ['1834', '#e18f14'],
-                    ['1835', '#ce8312'],
-                    ['1836', '#ce8312'],
-                    ['1837', '#bc7710'],
-                    ['1838', '#bc7710'],
-                    ['1839', '#a96b0f'],
-                    ['1840', '#a96b0f'],
-                    ['1841', '#965f0d'],
-                    ['1842', '#965f0d'],
-                    ['1843', '#83530b'],
-                    ['1844', '#83530b'],
-                    ['1845', '#71470a'],
-                    ['1846', '#71470a'],
-                    ['1847', '#5e3c08'],
-                    ['1848', '#5e3c08'],
-                    ['1849', '#5e3c08'],
-                    ['1850', '#4b3007'],
-                    ['1851', '#4b3007'],
-                    ['1852', '#4b3007'],
-                    ['1853', '#382405'],
-                    ['1854', '#382405'],
-                    ['1855', '#382405'],
-                    ['1856', '#261803']]
-             },
-            
-            },
-        }); //end of addLayer
-      
-        //Intializes map: start set at 1817, the early end of our slider/data.
-        filterBy('1817')
-        document.getElementById('slider').addEventListener('input', myFunction()); //Helps initialize
-        }); //End of onLoad
-        
-        //Filters by the property Year; shows all points whose Year property is <= to the Year2 Parameter (taken from slider)
-        function filterBy (Year2){
-        var filters = ['<=', 'Year', Year2]; //for features in the QMH_Hometowns layer, show the ones for which the Year property <= the entered Year2.
-        map.setFilter('QMH_Hometowns', filters); 
-        }
-         
-        //Creates popups by mouse hover        
-        var popup = new mapboxgl.Popup({
-          closeButton: false,
-            closeOnClick: false
-        });
-        map.on('mouseenter', 'QMH_Hometowns', function(e) {
-          // Change the cursor style as a UI indicator.
-          map.getCanvas().style.cursor = 'pointer';
-          var to_Show = e.features[0].properties.Name +'<br>'+ e.features[0].properties.Year +'<br>'+e.features[0].properties.Count + " patients"
-          if (e.features[0].properties.Count == 1){ //Just so that we never have the plural "1 patients" displayed. 
-            var to_Show = e.features[0].properties.Name +'<br>'+e.features[0].properties.Year +'<br>'+ e.features[0].properties.Count + " patient"
-          }
-          popup.setLngLat(e.features[0].geometry.coordinates)
-            .setHTML(to_Show)
-            .addTo(map);
-            });
-        map.on('mouseleave', 'QMH_Hometowns', function() {
-          map.getCanvas().style.cursor = '';
-          popup.remove();
-        });
-          
-       //A poorly-named but essential function which picks up which year the slider is set to and displays the year and filters by it.       
-        function myFunction(){
-            var x = document.getElementById("slider").value;
-            
-            console.log(x)
-            document.getElementById("label").innerHTML = x;
-            //document.getElementById("year-to-show").textContent = x;
-            filterBy(x);
-        }
- 
-      </script>
-<br>
-<br>
-<br>
-<br>
-  </div> <!--- Ends map div -->
-     <div id = "row6"> <!-- This was a quick steal to ensure font uniformity across all pages. -->
-  <div class ="row full-width" >
-  <p> As you may observe, a lot has changed since the first patients entered the asylum. For example, some patients' hometowns were recorded as places we consider to be neighborhoods of Philadelphia today, such as Germantown and Manayunk, because Philadelphia during the 1800s had not yet grown enough include those areas. Additionally, some entries in the collection's Minutes and Register of the Committee of Admission are ambiguous, listing only a state or region and no city. Additionally, state and national borders were still being drawn during the early days of the Asylum leave us with only a rough idea of where patients came from. With two entries stating only "Western Canada," and several entries specifying regions but not cities, it can be hard to place certain patients.  </p>
-  
-</div>
-</div>
+
+<hr>
+
+<h3>Footnote</h3>
 <div id ="myNewModal" class = "reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role = "dialog">
-<p id ="modalTitle"> Minutes and Register of the Committee of Admission, 1817-1856, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania. </p>
-<a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
+  <p id ="modalTitle">Minutes and Register of the Committee of Admission, 1817-1856, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+  <a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
 </div>
 
-</body>
-</html>
+
+<!--  foundation/jquery files -->
+
+<script src="{% static 'old/jquery.js' %}"></script>
+<script src="{% static 'old/foundation.min.js' %}"></script>
+    
+<!-- Google analytics script -->
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-45185227-11', 'auto');
+ ga('send', 'pageview');
+
+</script>
+<script>
+      $(document).foundation();
+</script>
 
 {% endblock %}

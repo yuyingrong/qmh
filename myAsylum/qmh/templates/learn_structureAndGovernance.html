@@ -1,0 +1,92 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Structure &amp; Governance | Quakers &amp; Mental Health</title>
+
+<style>
+.row {
+  clear: both;
+  width: 100%;
+  text-align: center;
+}
+
+.column {
+  width: 35%;
+  display: inline-block;
+  margin: 0 5% 0 5%;
+}
+
+@media (max-width: 500px) {
+  .column {
+    width: 100%;
+    margin: 5% auto;
+  }
+}
+
+.row:after {
+  clear: both;
+  display: table;
+  content: "";
+}
+</style>
+
+<h2>Friends Structure &amp; Governance</h2>
+
+
+<figure class="header">
+  <img src="{% static "images/DaybookText2.jpg" %}" alt="Daybook Text" title="Daybook Text">
+  <figcaption>Daybook Text - author unclear</figcaption>
+</figure><!-- class="header" -->
+
+<article>
+  <h3>Asylum Committees</h3>
+  <figure class="in-text">
+    <img class="in-text" src="{% static 'images/SamuelBettleSr.jpg' %}" alt="Drawing of Samuel Bettle, Sr." title="Drawing of Samuel Bettle, Sr.">
+    <figcaption>Samuel Bettle, Sr., a member of the Board of Managers - author unclear</figcaption>
+  </figure>
+  <p>The Asylum was run, in true Quaker fashion, using an interlocking system of committees. At the broadest level, the contributors who financed the Asylum (both individual Quakers and <a href = "/glossary#Monthly Meeting">Monthly Meetings</a>) met at the Yearly Meeting of Contributors to make large decisions about the welfare of the Asylum. In a more immediate way, the Board of Managers, which was made up of twenty contributors chosen at the Yearly Meeting of Contributors, was responsible for the business of the Asylum. The Board of Managers approved the admission and boarding rate of new patients, as well as supervised the Asylum’s finances and employees. A subset of the Board, the<a href = "/glossary#Visiting Manager"> Visiting Managers</a>, were responsible for visiting and inspecting the Asylum once a week and for inspecting the superintendent’s account book once a month. This kept the superintendent and his staff accountable for their behavior.</p>
+</article>
+
+<article>
+  <h3>Contribution by Meeting</h3>
+  <p>Where did the Asylum's funding come from? Philadelphia Meetings overwhelmingly had the most members contribute to the Friends' Asylum, though contributors also belonged to Meetings from Massachusetts, Rhode Island, and even farther. To view the complete data of the asylum's benefactors by Meeting, click on the first pie-chart below. Additionally, click on the second chart to view this data with the Philadelphia majority removed.</p>
+  <div class="row">
+    <div class="column">
+      <figure style="margin:0;">
+        <figcaption style="margin:0.5em 0 1em;">Complete Information</figcaption>
+        <img style="width:100%;" src="{% static 'images/PieQuakerMeetingContribution.jpg' %}">
+      </figure>
+    </div>
+    <div class="column">
+      <figure style="margin:0;">
+        <figcaption style="margin:0.5em 0 1em;">Information with Philadelphia Majority Removed</figcaption>
+        <img style="width:100%;" src="{% static 'images/PieQuakerMeetingContribution-noPA.jpg' %}">
+      </figure>
+    </div>
+  </div><!-- class="row" -->
+</article>
+
+<article>
+  <h3>Life at the Asylum</h3>
+  <p>The superintendent of the Asylum, and his wife, the matron, answered to the Visiting Managers, and they were responsible for the day-to-day welfare of the patients, as well as running the farm and the household. The superintendent and matron also oversaw the caretakers, or keepers, who supervised, cleaned, and entertained the patients. The Resident Physician directed the patients’ medical care and diet (which was a part of their treatment). Since the physician lived with the family, the overlapping responsibilities of the physician and the superintendent often caused friction between him and the superintendent. Other asylums solved this problem by appointing a doctor as the superintendent, but the Asylum did not think that medical experience was necessary to be a good superintendent.</p>
+  <h4>Bonsall versus Doctor</h4>
+  <p>In one instance, the patients complained to the Bonsalls about their diets, which were controlled by the doctor, not by the Bonsalls. Although Bonsall thought that their agitation about food was increasing their insanity, he could not overrule the doctor in order to change the menu. This frustrated him <a class="footnote">(First Month, 11, 1821)</a>. In another instance, Bonsall determined that a patient needed to be given a <a class="glossary"> blister</a>, but the doctor was out. Annoyed, Bonsall made the blister himself, despite his lack of medical authority <a class="footnote">(Third Month, 17, 1820)</a>.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_foundation' %}">Foundation</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_changesInAdminOverTime' %}">Changes in the Administration >>></a></span></h5>
+
+<hr>
+
+<article>
+  <h3>Footnotes</h3>
+  <p>Bonsall, Isaac.<em> Superintendent's Day Book</em>, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+</article>
+
+
+{% endblock %}

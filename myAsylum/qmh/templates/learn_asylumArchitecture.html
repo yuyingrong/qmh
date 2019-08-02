@@ -1,0 +1,98 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Asylum Architecture | Quakers &amp; Mental Health</title>
+
+
+<h2>Asylum Architecture</h2>
+
+
+<!--
+      <ul class = "exorbit" data-orbit data-options= "animation:fade;pause_on_hover: false; next_on_click: true; timer_speed:2500;swipe:true;">
+            <li>
+              <img src="{% static "Images/carousel1.jpg" %}">
+              <div class = "orbit-caption show-for-medium-up">
+                The Trajectory of Friends' Asylum's Architecture <br> Friends' Asylum. 1826. Print. From: State of the Asylum for the Relief of Persons Deprived of the Use of their Reason. Philadelphia: Solomon W. Conrad, 1826. Quaker and Special Collections, Haverford College, Haverford, PA. Available on http://triptych.brynmawr.edu/.  
+
+              </div>
+            </li>
+            <li>
+              <img src= "{% static "Images/carousel2.jpg" %}">
+		<div class = "orbit-caption show-for-medium-up">
+                W. Strickland, View of the North and Front of Friends’ Asylum near Philadelphia. N.d., Print. Collection 850, Quaker and Special Collections, Haverford College, Haverford, PA. 
+
+              </div>
+            </li>
+            <li>
+              <img src="{% static "Images/carousel3.jpg" %}">
+        	<div class = "orbit-caption show-for-medium-up">
+                J. Sartain, Friends’ Asylum for the Insane, near Frankford. N.d., Print. Collection 850, Quaker and Special Collections, Haverford College, Haverford, PA.
+              </div>   
+	
+	    </li>
+            <li>
+              <img src="{% static "Images/carousel4.jpg" %}">
+           	<div class = "orbit-caption show-for-medium-up">
+                J. M. Butler, Friends' Asylum for the Insane. Philadelphia. N.d., Print. Collection 850, Quaker and Special Collections, Haverford College, Haverford,
+              </div>
+
+		 </li>
+            <li>
+              <img src="{% static "Images/carousel5.jpg" %}">
+        	<div class = "orbit-caption show-for-medium-up">
+                J. McGoffin, Friends' Asylum for the Insane, Philadelphia. N.d., Print. Collection 850, Quaker and Special Collections, Haverford College, Haverford, PA.
+              </div>   
+
+	 </li>
+	  <li>
+              <img src="{% static "Images/new.jpg" %}">
+                <div class = "orbit-caption show-for-medium-up">
+               Reali, Michael E. Jr. Friends Hospital Today. Wikipedia, 2010.
+              </div>
+
+         </li>
+
+          </ul> 
+-->
+
+
+<figure class="header">
+  <img src="{% static "images/carousel5.jpg" %}" alt="Drawing of Friends Asylum" title="Drawing of Friends Asylum">
+  <figcaption>J. McGoffin, Friends' Asylum for the Insane, Philadelphia. N.d., Print. Collection 850, Quaker and Special Collections, Haverford College, Haverford, PA.</figcaption>
+</figure><!-- class="header" -->
+
+<article>
+  <figure class="in-text">
+    <img class="in-text" src="{% static 'images/window.jpg' %}" alt="photo of a window at Friends Hospital" title="Window at Friends Hospital">
+    <figcaption>Window at Friends Hospital, Present Day</figcaption>
+  </figure>
+  <h3>Light and Air</h3>
+  <p>The Building Committee put a lot of thought into their architectural decisions about the Asylum because, according to the tenets of moral treatment, architecture influenced patients’ recovery. The Committee based the Asylum’s architecture on that of York Retreat. At the Retreat, the architect had put rooms on both sides of the hallway, which left some of the rooms dark and gloomy. So the Asylum’s Building Committee made sure to put patient rooms only on one side of the hallway, with windows on the opposite side of the hall, ensuring that all patients had access to curative fresh air and light. This fit in with Quaker ideas about equality. All patients deserved equal access to air and light. The Building Committee also worried about keeping the Asylum safe. They wanted the building to hold the patients securely, but did not want it to look or feel like a prison, which they thought would harm the patients’ recovery and insult their dignity. For this reason, they put iron sashes painted to look like wood in the windows, which made the Asylum look less forboding. The Asylum continued to use these type of windows even after patients arrived and began smashing panes of glass with alarming frequency, showing that the Asylum’s appearance of normalcy mattered more than the inconvenience of putting in new panes of glass every few days.</p>
+  <p><blockquote>"The free circulation of air, the great supporter of life, is of primary importance [in the treatment of the insane]."<br><cite>-Robert Waln Jr.</cite></blockquote></p>
+</article>
+
+<article>
+  <figure class="in-text">
+    <img class="in-text" src="{% static 'images/asylumfloorplan.jpg' %}" alt="asylum floor plan" title="Asylum Floor Plan">
+    <figcaption>Plan of Friends’ Asylum and Grounds, from Annual Report, 1832. From: Friends’ Asylum for the Insane, 1813-1913. Philadelphia: John C. Winston Company, 1913.</figcaption>
+  </figure>
+  <h3>Noisy Patients</h3>
+  <p><blockquote>"Last night a very disturbing one. Martha F. commenced making a noise after which several of the other Women [joined in and] kept it up nearly all night."<br><cite>-Isaac Bonsall, July 21, 1822</cite></blockquote></p>
+  <p>Despite the amount of thought that the founders put into the construction of the building, their lack of experience with mentally ill people meant that they failed to consider the problem of noisy patients. Used to their quiet and orderly Quaker home lives, they did not realize that many of the patients at the Asylum would be very loud, and often make noises all night. For example, Ruth S. spent weeks at a time knocking at her door all night unless she was fastened to her bed.  This kept other patients, as well as the superintendent, Isaac Bonsall, and the caretakers, awake. Sometimes the noise of one patient started a chain reaction, and other patients quickly joined in the din. Bonsall tried to deal with the noise problems by putting loud patients on the third floor, away from other patients, and begging them to be quiet at night, but these fixes did not prove satisfactory. By 1822, Bonsall wrote despairingly of his desire to build a separate building to house noisy patients. He knew that the Board of Managers would not agree because the Asylum was not full, and they saw no need to construct a new building when the existing one had plenty of room.  It was not until 1828, several years after Bonsall had left the Asylum, that the contributors agreed to add little buildings for the noisy patients at the ends of each wing.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_changesInAdminOverTime' %}">Changes in the Administration Over Time</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_genderAndStaff' %}">Gender and Staff >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+
+{% endblock %}

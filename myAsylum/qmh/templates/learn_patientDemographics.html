@@ -1,0 +1,32 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Patient Demographics | Quakers &amp; Mental Health</title>
+
+
+<h2>Report on Study of Occupational Status of Patients at the Friends' Asylum (1842-58)</h2>
+
+<article>
+  <p>No previous research on the Friends’ Asylum has attempted to model the effect of class and religious on the experience and treatment of patients. The Friends’ Asylum of the early 19th century was an expensive institution. Weekly rates started at $3.50, while the average wage of a laborer in 1830’s Philadelphia was approximately $1. (1) Due to the great expense, I hypothesize that those from higher class and income brackets would be more likely to have access to the Asylum and be able to stay at the Asylum for longer periods of time as they would have the familial resources to pay costs of institutionalization.</p>
+  <p>Culturally, I would expect that those from higher classes would be treated differently within the institution. The diagnosis of insanity in the early Friends’ Asylum was dependent upon the lack of reason. Rationality, and the ability to display that is clearly dependent upon the cultural practices a community, and particularly upon the education and cultural capital possessed by an individual; this would be no different from an individual diagnosed with insanity. Thus, I would expect that those of higher status would be more likely to be identified as cured, or as making better progress or showing better behavior within the institutions than those of lower statuses. Individuals of lower status would be expected to have a shorter stay at the Asylum, and not be as commonly identified as cured. Similarly, I expected non-Quaker patients to not be identified as cured as often as Quakers. As an explicitly Quaker institution, even once non-Quaker were admitted, I would expect that non-Quakers would be less likely to be socialized into the dominant cultural and be less likely to be perceived as rational and sane.</p>
+  <p>Using the Statistics gathered by the Friends’ Asylum 1842-58, I attempted to measure to measure the effect of class and status on the patients’ experiences at the Friends’ Asylum. Because I did not have a random sample of individuals where access to the Friends’ Asylum is a dependent variable, I was unable to test the accessibility of the Asylum. Utilizing the data from patient records, I imported listed occupations into a dataset which utilized medical and other demographic data from the Friends Hospital Archives. I normalized the occupations and separated out the familial position of the patient from the wage earner status to allow to broader analysis. I then sorted occupations into broader sets to analyze occupational categories. Utilizing data from the Case Histories 1842-56 as compiled in “Spreadsheet for Religion from Case Histories” I imported the patients’ religious status.</p>
+  <p>Utilizing religious status, occupation, gender, familial occupation, and relationship to familial wage earner, I attempted to examine their effect on length of time in the Asylum, diagnoses, identified cause of affliction, condition upon discharge from the Asylum, and likelihood of reentry into the Asylum. However, no correlations proved significant, and I was thus unable to disqualify the null hypothesis that the independent variables had no effect on the dependent variables. For religion, this was fairly simple to explain; the n for non-Quaker patients was under 100, and divided between 14 religious groups, the most common having a mere 19 members. There simply aren’t enough data to draw meaningful patterns and correlations.</p>
+  <p>For occupational and familial position data an analogous issue is found except for a few large occupational categories: most occupations have only a few members, and almost all respondents are either male wage earners or female wives of male wage earners. However, the greater problem found in the quality of the data presented. Utilizing occupational data as a proxy for socio-economic position is difficult with well-specified data, and is better used in conjunction with income, home value, etc. These data simply weren’t available. Moreover, the occupational terminology is overly broad. For example, one of the more common occupations listed is that of “merchant,” at 69 entries. However, a merchant could refer to a variety of different positions with varying economic and class positions, a large wholesale international trader, a wholesale distributor, the owner of a retail store, or the clerk in a store. The individual could be a proprietor or an employee at any of these levels. Thus, although I presume that there are real effects differentiated by class and occupation, the findings could not be found in the data recorded by the Friends’ Asylum, and require further research.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_patientHometowns' %}">Patient Hometowns</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_mentalHealthAndQuakerTheology' %}">Mental Health and Quaker Theology >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+U.S. Department of Commerce: Bureau of the Census, Historical Statistics of the United States: Colonial Times to 1970, vol. 1 (Washington D.C.: U.S. Bureau of the Census, 1975), 163.
+
+{% endblock %}

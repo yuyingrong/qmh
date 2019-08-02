@@ -1,0 +1,37 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Race and Staff | Quakers &amp; Mental Health</title>
+
+
+<h2>Race and Staff</h2>
+
+
+<figure class="header">
+  <img src="{% static 'images/FriendsAsylum.jpg' %}" alt="Drawing of Friends Asylum" title="Drawing of Friends Asylum">
+  <figcaption>Sartain, Friends’ Asylum for the Insane, near Frankford. N.d., Print. Collection 850, Quaker and Special Collections, Haverford College, Haverford, PA.</figcaption>
+</figure><!-- class="header" -->
+
+<article>
+  <p>The relationship between the Asylum and people of color was complicated by the time period and the implicit expectation of who should be admitted to the Asylum. This can be seen in the fact that there was only one female patient of color for a very long time and that the staff of color were only given certain jobs. It can also be seen through the lack of records on patient and staff of color. This could be because the jobs that they were doing were not considered interesting enough at the time, since it appears to be mostly domestic work. The lack of information which would be interesting now could be because the Managers or the Superintendent or Physicians thought that nothing of note occurred.</p>        
+  <p>Both women and men of color were employed as "domestics," household workers who did cooking and cleaning, in the Asylum. In November 1823 "Mary a coloured", arrived at the Friends Asylum to take over the duties of another domestic. This likely included work in the kitchen, where Anne Verree was particularly helpful (<a href = "#" data-reveal-id = "aModal">Second Month, 15th, 1823</a>). It appears that the staff of color did not work as attendants or in other roles associated with the medical aspects of the Asylum, but instead did housework and other jobs necessary to keep the institution running smoothly. These jobs were likely the least skilled of those available at the Asylum.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_genderAndStaff' %}">Gender and Staff</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_philanthropicNetworks' %}">Philanthropic Networks >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+       <div id = "aModal" class = "reveal-modal small" data-reveal aria-labelledby = "aTitle" aria-hidden = "true" role= "dialog"><p id = "aTitle">Superintendent's Daybook.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+
+{% endblock %}

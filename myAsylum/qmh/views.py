@@ -72,8 +72,23 @@ def learn_theYorkRetreat(request):
 def learn_foundation(request):
     return render(request, 'learn_foundation.html')
 
+def learn_structureAndGovernance(request):
+    return render(request, 'learn_structureAndGovernance.html')
+
 def learn_changesInAdminOverTime(request):
     return render(request, 'learn_changesInAdminOverTime.html')
+
+def learn_asylumArchitecture(request):
+    return render(request, 'learn_asylumArchitecture.html')
+
+def learn_genderAndStaff(request):
+    return render(request, 'learn_genderAndStaff.html')
+
+def learn_raceAndStaff(request):
+    return render(request, 'learn_raceAndStaff.html')
+
+def learn_philanthropicNetworks(request):
+    return render(request, 'learn_philanthropicNetworks.html')
 
 #def learn_fromYorkRetreatToFriendsAsylum(request):# one of the new grouping topic of articles; effort aborted
 #    return render(request, 'learn_fromYorkRetreatToFriendsAsylum.html')
@@ -89,6 +104,24 @@ def learn_typesOfMentalIllness(request):
 def learn_moralTreatment(request):
     return render(request, 'learn_moralTreatment.html')
 
+def learn_occupationalTherapy(request):
+    return render(request, 'learn_occupationalTherapy.html')
+
+def learn_asylumLibrary(request):
+    return render(request, 'learn_asylumLibrary.html')
+
+def learn_medicalTreatment(request):
+    return render(request, 'learn_medicalTreatment.html')
+
+def learn_genderAndLengthOfStay(request):
+    return render(request, 'learn_genderAndLengthOfStay.html')
+
+def learn_genderAndTreatment(request):
+    return render(request, 'learn_genderAndTreatment.html')
+
+def learn_moralTreatmentAndFamily(request):
+    return render(request, 'learn_moralTreatmentAndFamily.html')
+
 #    "patients"
 
 def learn_caseStudies(request):
@@ -97,14 +130,14 @@ def learn_caseStudies(request):
 def learn_patientHometowns(request):
     return render(request, 'learn_patientHometowns.html')
 
-#    "religion"
+def learn_patientDemographics(request):
+    return render(request, 'learn_patientDemographics.html')
 
-def learn_religiousDiversity(request):
-    return render(request, 'learn_religiousDiversity.html')# adopted from an old html which needed cleaning up
+#    "religion"
 
 def learn_mentalHealthAndQuakerTheology(request):
     glossary_list = Glossary.objects.order_by('term')
-    term_list = [''.join([w.lower() for w in glossary.term.split(' ')]) for glossary in glossary_list]# when retrieving value from glossary_dict in HTML templates, all keys need to have no separator
+    term_list = [glossary.term for glossary in glossary_list]
     meaning_list = [glossary.meaning for glossary in glossary_list]
 
     glossary_dict = {}
@@ -113,6 +146,17 @@ def learn_mentalHealthAndQuakerTheology(request):
         glossary_dict[term] = meaning
     return render(request, 'learn_mentalHealthAndQuakerTheology.html', {'glossary_dict': glossary_dict})
 
+def learn_religiousLife(request):
+    return render(request, 'learn_religiousLife.html')
+
+def learn_religiousDiversity(request):
+    return render(request, 'learn_religiousDiversity.html')
+
+def learn_decisionToAdmitNonQuakers(request):
+    return render(request, 'learn_decisionToAdmitNonQuakers.html')
+
+def learn_theologyAndFamily(request):
+    return render(request, 'learn_theologyAndFamily.html')
 
 ###### sidebar other ######
 
@@ -124,3 +168,22 @@ def glossary(request):
 
 def bibliography(request):
     return render(request, 'bibliography.html')
+
+
+###### essays ######
+
+def essays(request):
+    return render(request, 'essays.html')
+
+def essay_20cbattis(request):
+    return render(request, 'essay_20cbattis.html')
+
+def essay_18bkaplow(request):
+    return render(request, 'essay_18bkaplow.html')
+
+def essay_18cmichel(request):
+    return render(request, 'essay_18cmichel.html')
+
+def essay_17acorcoran(request):
+    return render(request, 'essay_17acorcoran.html')
+

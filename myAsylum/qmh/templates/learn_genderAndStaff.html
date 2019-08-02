@@ -1,0 +1,67 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Gender &amp; Staff | Quakers &amp; Mental Health</title>
+
+
+<h2>Gender and Staff</h2>
+
+
+<figure class="header">
+  <img src="{% static 'images/header_female_staff.jpg' %}" alt="List of officers of Friends Asylum" title="List of Officers of Friends Asylum">
+  <figcaption>Friends’ Asylum for the Insane: Reports of the Board of Managers</em>…. Philadelphia: George H. Buchanan and Company, 1894.</figcaption>
+</figure><!-- class="header" -->
+
+<article>
+  <h3>Female Staff at Friends Asylum</h3>
+  <h4>Anna Broomall</h4>
+  <p><p>The Managers of Friends' Asylum had “long favored the employment of women as nurses, ward maids, etc., in certain parts of the men’s wards” (<a href = "#" data-reveal-id = "aModal">33</a>). In 1889 the Managers hired Dr. Anna Broomall as “gynecologist to the asylum at an annual salary of $200 which is satisfactory” (<a href = "#" data-reveal-id = "bModal">Fourth Month, 1889</a>). Broomall was the first female doctor to work at Friends' Asylum. Broomall’s life outside of the Asylum is just as impressive. Born into a Quaker family that encouraged her career, she eventually became the chief resident physician at the Women’s Hospital in Philadelphia while teaching at the Women’s Medical College and opening her own out-patient maternity clinic (<a href = "#" data-reveal-id = "cModal"><em>Changing the Face of Medicine</em></a>). Later, while working at Friends' Asylum, she continued to teach obstetrics at the Women’s Medical College. She helped to reduce the mortality rate in the Women’s Hospital and she established her own clinic in order to “improve obstetrical training.” However, the way the Managers treated her is more complicated than hiring the first female doctor. The same year a male assistant physician was hired with an annual salary of $800 (<a href = "#" data-reveal-id = "bModal">Sixth Month, 10th, 1889</a>). Broomall, who was the head gynecologist, still made less than this male assistant physician. It is possible that she had a lower salary in part because she saw fewer patients, but it is also possible that gender played a role in this disparity.</p>
+
+  <h4>S. Elizabeth Winter</h4>
+  <p>In 1894 “in accordance with the authority given … to nominate a woman assistant physician,” the asylum hired Dr. S Elizabeth Winter since “she had been warmly recommended for the post by … [the] superintendent” (<a href = "#" data-reveal-id = "bModal">Eleventh Month, 12th, 1894</a>). It is unclear why the management decided to hire a female assistant physician. Winter’s annual salary was $700, which is in the same range as her male counterparts (<a href = "#" data-reveal-id = "bModal">Eleventh Month, 12th, 1894</a>). However, there is very little record about what it would have been like to be a female doctor in the Asylum or on Winter’s experience there. Perhaps the male physicians in the Asylum regarded her as their equal since she was a physician who had more responsibility in the asylum than any female previously; perhaps they did not.</p>
+</article>
+
+<article>
+  <h3>Nursing Classes and a Nursing School</h3>
+  <p>In 1891 the Asylum began offering classes in nursing to female attendants. The Managers announced that it “has had under consideration the propriety of establishing a training school, to qualify our attendants and prepare others as nurses for the care of nervous and insane patients”(<a href = "#" data-reveal-id = "bModal">Third Month, 12th, 1894</a>). After carefully investigating the subject the Managers decided “on the recommendation of our superintendent, to appoint Florence B. Rowe, … as head nurse in charge of female attendants;” (<a href = "#" data-reveal-id = "dModal">First Month, 14th, 1894</a>) Rowe also taught the classes for the female attendants. In 1894 the classes became a full-fledged nursing school. The school consisted of “a course of lectures, two evenings in the week, by Dr. S Elizabeth Winter,” who would later be joined by two other male doctors (<a href = "#" data-reveal-id = "bModal">First Month, 14th, 1895</a>). The opening of the training school for nurses also, interestingly, came with the addition of male students and teachers.</p>
+</article>
+
+<article>
+  <h3>The Visiting Managers</h3>
+  <p>At other asylums in the late 19th century, female visitors were “appointed every month, by the Committee, to pay visits to those of their own sex; to converse with them, and to propose to the superintendents, or the Committee, any improvements which may occur to them (<a href = "#" data-reveal-id = "eModal">194</a>). At Friends’ Asylum, however, there were no female <a href="http://qmh.haverford.edu/structure/">Visiting Managers</a>. The Contributors to the Asylum considered “the subject of appointing female visitors to the Asylum,” but were “not able to unite in recommending the measure” (<a href = "#" data-reveal-id = "fModal">68</a>). The full discussion of this decision is unavailable as these minutes were lost in a fire. However, it is interesting that Friends’ Asylum chose not to include female Visiting Managers as part of the oversight of the Asylum.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_asylumArchitecture' %}">Asylum Architecture</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_raceAndStaff' %}">Race and Staff >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+       <div id = "aModal" class = "reveal-modal small" data-reveal aria-labelledby = "aTitle" aria-hidden = "true" role= "dialog"><p id = "aTitle"><em>Friends’ Asylum for the Insane: 1813-1913</em> (Philadelphia, PA; The John C. Winston Company).</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "bModal" class = "reveal-modal small" data-reveal aria-labelledby = "bTitle" aria-hidden = "true" role= "dialog"><p id = "bTitle">Minutes of the Managers.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "cModal" class = "reveal-modal small" data-reveal aria-labelledby = "cTitle" aria-hidden = "true" role= "dialog"><p id = "cTitle">“Dr. Anna Elizabeth Broomall,”<em>Changing the Face of Medicine</em>, https://cfmedicine.nlm.nih.gov/physicians/biography_45.html.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "dModal" class = "reveal-modal small" data-reveal aria-labelledby = "dTitle" aria-hidden = "true" role= "dialog"><p id = "dTitle">Minutes of the Corporation.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "eModal" class = "reveal-modal small" data-reveal aria-labelledby = "eTitle" aria-hidden = "true" role= "dialog"><p id = "eTitle">Samuel Tuke, <em>Description of the Retreat, an Institution near York, for Insane Persons of the Society of Friends: Containing an Account of its Origin and Progress, the Modes of Treatment, and a Statement of Cases</em>.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>
+       <div id = "fModal" class = "reveal-modal small" data-reveal aria-labelledby = "dTitle" aria-hidden = "true" role= "dialog"><p id = "dTitle"><em>Friends’ Asylum for the Insane: 1813 -1913</em>.</p>
+        <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>
+       </div>      
+ 
+
+{% endblock %}

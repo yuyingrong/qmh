@@ -1,0 +1,24 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+
+<title>Essays | Quakers &amp; Mental Health</title>
+
+<h2>Essays</h2>
+
+<h3>Universalism & Particularism in Quaker Philanthropy: 1770-1830</h3>
+<h4>Ben Kaplow '18</h4>
+
+<object data="{% static 'essays/18bkaplow.pdf' %}" type="application/pdf" width="100%" height="100%">
+  <p>Download <a href="{% static 'essays/18bkaplow.pdf' %}">the PDF</a>.</p>
+</object>
+
+<p>Download <a href="{% static 'essays/18bkaplow.pdf' %}">the PDF</a>.</p>
+
+<h5 class="prev-next"><span style="float: left;"><a href="{% url 'home' %}">Back to Homepage</a></span><span style="float: right;"><a href="{% url 'essays' %}">View All Essays</a></span></h5>
+
+{% endblock %}

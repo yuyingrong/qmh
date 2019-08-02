@@ -1,0 +1,44 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Decision to Admit Non-Quakers | Quakers &amp; Mental Health</title>
+
+
+<h2>Decision to Admit Non-Quakers</h2>
+
+
+<figure class="header">
+  <img src="{% static 'images/header_admission_nonquakers.jpg' %}" alt="Photo of Text on Minutes of the Contributors of Friends Asylum" title="Minutes of the Contributors of Friends Asylum">
+  <figcaption>Minutes of the Contributors of Friends Asylum</figcaption>
+</figure><!-- class="header" -->
+
+<article>
+  <blockquote>"The continued deficiency in the receipts from the Board of Patients at the Asylum to meet the unavoidable expenses of the house payments of interest as presented in the report of the Managers again claiming the attention of the Contributors. It was after mature deliberation agreed to allow the managers during the ensuing years to admit such patients not members or professors as they may deem suitable provided that such admission shall in no case exclude any members of our religious society."<br><cite>- <a href = "#" data-reveal-id = "mModal">Managers, 1834</a></cite></blockquote>
+  <p>Since the Contributors made the decision to admit non-Quakers we know that this was a way to raise money for the Asylum. The Contributors to the Asylum were responsible for the finances in the Asylum. For example, they were in charge of approving which buildings were built on the grounds and keeping track of how much was grown on the Asylum’s farm. It is telling that the <a href="http://qmh.haverford.edu/structure/" target="_blank">Board of Managers</a>, who were in charge of admitting new patients and supervising new employees, did not make the decision to admit non-Quakers. It indicates that the Asylum was motivated by money to change the policy and was concerned with the longevity of the Asylum.</p>
+  <p>The Contributors renewed their permission for the Managers to admit individuals who were not Quakers or professors each year, as they were hoping the Asylum would be financially stable enough to support itself without the extra income from non-Quakers. In 1842 the Managers reported that there were 39 patients who were members or professors who paid on average $4.14 per week and $161.50 total, while there were 19 patients who were neither a member nor a professor who paid $6.94 per week on average and a total of $132.00 (<a href = "#" data-reveal-id = "bModal">Third Month, 16th, 1842</a>). The Asylum made more profit per person on the patients who were not Quakers, but weekly Quaker patients brought in more revenue.</p>
+  <p>In 1845 the Contributors “concluded to discontinue the authority hitherto given to admit such patients into the asylum” (<a href = "#" data-reveal-id = "bModal">Third Month, 10th, 1845</a>). The decision must have not been the best financially for the Asylum because the following year the Contributors again gave the Managers permission to admit patients who were not members or professors. The decision not to limit admission to those who belonged to the Society of Friends appears to be permanent because the Contributors do not annually grant permission to admit non-Quakers after this point.</p>
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_religiousDiversity' %}">Religious Diversity</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_theologyAndFamily' %}">Theology and Family >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+<div id = "mModal" class = "reveal-modal small" data-reveal aria-labelledby = "mTitle" aria-hidden = "true" role= "dialog"><p id = "mTitle">Minutes of the Managers, 1834, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+	<a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>	
+</div>
+
+
+<div id = "bModal" class = "reveal-modal small" data-reveal aria-labelledby = "bTitle" aria-hidden = "true" role= "dialog"><p id = "bTitle">Minutes of the Contributors to the Friends’ Asylum, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+	 <a class = 'close-reveal-modal' aria-label= "Close">&#215;</a>	
+</div> 
+
+{% endblock %}

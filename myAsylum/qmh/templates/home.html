@@ -26,11 +26,12 @@
 <article>
     <h3>Our Research</h3>
     <ul class="essays">
-      <li><a href="">Transitions</a> - Colin Battis '20<li>
-      <li><a href="">The Principle of Family: Race, Religion, and Gender Inside the Friends' Asylum in the Nineteenth Century</a> - Claire Michel '18</li>
-      <li><a href="">Universalism & Particularism in Quaker Philanthropy: 1770-1830</a> - Ben Kaplow '18</li>
-      <li><a href="">A Mild and Appropriate System of Treatment: Moral Treatment and the Curability of Mental Illness at Friends Asylum</a> - Abby Corcoran '17</li>
+      <li><a href="{% url 'essay_20cbattis' %}">The Probable Good: Changes in Mental Health Care at Friends Asylum, 1870-1900</a> - Colin Battis '20<li>
+      <li><a href="{% url 'essay_18cmichel' %}">The Principle of Family: Race, Religion, and Gender Inside the Friends' Asylum in the Nineteenth Century</a> - Claire Michel '18</li>
+      <li><a href="{% url 'essay_18bkaplow' %}">Universalism & Particularism in Quaker Philanthropy: 1770-1830</a> - Ben Kaplow '18</li>
+      <li><a href="{% url 'essay_17acorcoran' %}">A Mild and Appropriate System of Treatment: Moral Treatment and the Curability of Mental Illness at Friends Asylum</a> - Abby Corcoran '17</li>
     </ul>
+    <p><a href="{% url 'essays' %}">View All Essays >>></a></p>
 </article>
 
 
@@ -61,7 +62,7 @@
 
     </div><!-- class="thumbnail" -->
 
-    <p><a href="{% url 'visualizations' %}">Data Visualization Gallery>>></a></p>
+    <p><a href="{% url 'visualizations' %}">Data Visualization Gallery >>></a></p>
 </article>
 
 
@@ -71,9 +72,6 @@
     <p>Projects engaging with the history of mental health, mental health care reform, and the role of Quakerism in mental health care will be considered. We hope that materials created through these fellowships advance scholarship and engage with our collections in unique and creative ways. Fellowships are open to scholars at any stage in their careers.</p>
     <p style="text-align:center;"><span class="button"><a href="https://www.haverford.edu/library/quaker-special-collections/fellowships#scattergood" target="_blank">Read More &amp; Apply</a></span><br>(Application cycle: October 1, 2019 to June 30, 2020)</p>
 </article>
-
-
-    <h5 class="prev-next"></h5>
 
 
 {% endblock %}
