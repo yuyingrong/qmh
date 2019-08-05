@@ -81,6 +81,15 @@ def learn_changesInAdminOverTime(request):
 def learn_asylumArchitecture(request):
     return render(request, 'learn_asylumArchitecture.html')
 
+def learn_gurneyCottage(request):
+    return render(request, 'learn_gurneyCottage.html')
+
+def learn_trainingOfDoctors(request):
+    return render(request, 'learn_trainingOfDoctors.html')
+
+def learn_trainingOfNurses(request):
+    return render(request, 'learn_trainingOfNurses.html')
+
 def learn_genderAndStaff(request):
     return render(request, 'learn_genderAndStaff.html')
 
@@ -112,6 +121,9 @@ def learn_asylumLibrary(request):
 
 def learn_medicalTreatment(request):
     return render(request, 'learn_medicalTreatment.html')
+
+def learn_medicalAdvancements(request):
+    return render(request, 'learn_medicalAdvancements.html')
 
 def learn_genderAndLengthOfStay(request):
     return render(request, 'learn_genderAndLengthOfStay.html')

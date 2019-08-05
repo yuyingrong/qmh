@@ -1,0 +1,37 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Foundation | Quakers &amp; Mental Health</title>
+
+
+<h2>The Training of Doctors at Friends Asylum</h2>
+
+<article>
+  <p>Over the course of its history, Friends Asylum played a significant role in the education of caregivers and medical professionals treating the mentally ill. One way this took place was in the opportunity for prospective doctors to receive practical training through a residency at the Asylum, a particularly valuable prospect for the time. Early in the 19th century, most Americans who wanted to become doctors worked as apprentices to practicing physicians for several years, learning from assisting and observing their instructor. While it was supplemented with studying medical books, this form of education was quite dependent on the skill and knowledge of the apprentice’s teacher[1]. There were few medical schools in America in the early 19th century, such as the University of Pennsylvania School of Medicine, which remains the oldest medical school in the United States. However, these schools offered limited practical experience to their students, and postgraduate training opportunities were extremely rare[2]. A chance at a resident position immediately after medical school would have been indispensable at a time when the alternatives were to either travel to Europe to attend a postgraduate institution or to simply begin practicing with no further training. Formal residency programs did not exist yet, though the idea was beginning to propagate among medical schools in the early 19th century.</p>
+  <p>When Friends Asylum opened its doors in 1817, the post of “Resident Physician” did not refer to a doctor who was performing clinical practice after graduation; rather it was a doctor who remained on hand at Friends Asylum. This was a contrast to the “Consulting Physicians,” who did not live on location and were on-call only. The resident physician shared responsibility for directing the medical department alongside the “Attending Physician”, with their duties including determining the diets and medical treatments that would be administered and overseeing the other doctors who treated patients. When the Asylum’s first superintendent, Isaac Bonsall, resigned his post in 1823, he was replaced by Dr. Edward Taylor, a trained doctor. Dr. Taylor’s experience meant that the post of resident physician was relaxed, with most of the authority over medical treatment placed in the hands of the attending physician, who worked daily[3]. When Taylor resigned in 1832, the medical department was reorganized again, with Drs. Charles Evans and Robert Morton placed in charge of medical treatment, where they promptly announced their intention to reform the department in conformity with modern standards. The next year, the first recent graduate who would hold the position of resident physician at the Asylum joined the staff.</p>
+  <p>The post of resident physician was never an official training position. However, between 1832 and 1842, it appears to have been customary for recent medical graduates to hold the position for one to two years. During this decade, seven new doctors served as resident physician, including Drs. Thomas Story Kirkbride and Pliny Earle, two men who became high-profile and well-respected doctors and theorists in the field of mental health and asylum medicine. Dr. Kirkbride was the resident physician from 1832 to 1833 before taking a resident position at the University of Pennsylvania’s school of medicine for two years. Dr. Earle was the last inexperienced graduate to hold the resident position, serving from 1840 to 1842. Edward Mott Moore, a future president of the American Medical Association and the American Surgical Association, also resided at Friends Asylum for two years. Moore was resident physician from 1837 to1839 after graduating from the University of Pennsylvania’s medical school in 1837[4]. In correspondence with family, Moore stated that part of his reason for taking the position was that he desired more experience before starting his own medical practice. Moore used his two years at the Asylum to publish research on heart functions, and also went beyond his medical duties to entertain patients by delivering lectures on scientific topics and helping to run “a kind of debating society” among them[5]. Another resident physician was Dr. James McCrea, who worked at Friends Asylum for the year of 1833, which allowed him to take up a position at Pennsylvania Hospital after they officially stopped accepting apprentice doctors to work at the hospital[6].</p>
+  <p>The decade-long tradition of doctors gaining experience as the resident physician ended in 1842, as Dr. Joshua Worthington was appointed resident and remained in the position until 1850, when he became superintendent and no replacement was chosen. However, when Friends Asylum had begun to officially invest in educating staff through its own nursing school, a similar practice was implemented in a more formal sense: The superintendent had recommended investing in a medical officer who examined the causes of the illnesses with which patients came to the Asylum, and the Board of Managers “thought that the results of his work and investigations [would] justify the investment.” In 1898, the Asylum appointed its first assistant pathologist, a doctor performing his residency at the asylum. It is notable that the assistant pathologist was expected to conduct research as part of their residency at the Asylum. In the same year, a new room was added to the central building of the Asylum for use as a laboratory by the new pathologist, as well as any doctors that might need its facilities[7].
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_gurneyCottage' %}">Gurney Cottage</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_trainingOfNurses' %}">Training Of Nurses >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+<p>[1] Falvey, Kerry. “The Physician's Apprentice.” Yale Medicine Magazine, 2010.</p>
+<p>[2] Howell, Joel D. “A History of Medical Residency.” Reviews in American History, vol. 44, no. 1, Mar. 2016, pp. 126–131. Project MUSE, doi:https://doi.org/10.1353/rah.2016.0006. Pg 127.</p>
+<p>[3] Friends Hospital Annual Reports, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+<p>[4] Obituary of Edward M. Moore from Rochester Democrat & Chronicle, Tuesday, March 4, 1902.</p>
+<p>[5] Letter from Edward Mott Moore to his parents, Friends Asylum, 12th Mo. 22, 1838. Letter on file with Edward Mott Moore Papers at the  University of Rochester</p>
+<p>[6] Wood, George Bacon. An Address on the Occasion of the Centennial Celebration of the Founding of the Pennsylvania Hospital. Library Company of Philadelphia, 1851.</p>
+<p>[7] Minutes of the Corporation of Friends Asylum, 1898. Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+
+{% endblock %}

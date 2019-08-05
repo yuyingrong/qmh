@@ -102,29 +102,3 @@ a.glossary:hover {
 #block .thumbnail img:hover {
     box-shadow: 0 0 0.2em 0.1em #008cba;
 }
-
-/* adapted from: https://css-tricks.com/seamless-responsive-photo-grid */
-#block .imgwall {
-  column-count: 2;
-  column-gap: 0;  
-}
-
-@media (max-width: 800px) {
-    #block .imgwall {
-      column-count: 1;
-    }
-}
-
-
-#block .imgonwall {
-    margin: 2%;
-    border-style: solid;
-    border-width: 0.5em;
-    border-color: white;
-    box-shadow: 0.2em 0.2em 0.5em grey;
-}
-
-#block .imgonwall img {
-  width: 100%;
-  height: auto;
-}

@@ -1,0 +1,37 @@
+﻿
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/learn.css' %}">
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+<title>Foundation | Quakers &amp; Mental Health</title>
+
+
+<h2>The Training of Nurses at Friends Asylum</h2>
+
+<article>
+  <p>Friends Asylum began investing in educating its own staff during the 1890s. Finding professionals who could satisfactorily fulfill the duties of nursing patients was a challenge for institutions working with people with mentally illnesses, but composed and dedicated staff were a necessary part of any psychiatric hospital. In the words of Caleb Wood, secretary of the Corporation of Friends Asylum in 1893, “the success of an Institution of this kind, depends very largely on the character of its nurses[8].” The Corporation first considered opening a nursing school in 1891, discussing the need for qualified nurses compared to the low number of schools in the United States training nurses to work with mentally ill patients. The Corporation believed that operating a nursing school would benefit both the Asylum and other American psychiatric hospitals. A suggested plan was to require their nurses and attendants to enroll, though it would also be open for individuals outside the Asylum, all of whom would be able to receive nursing qualifications and find work in any psychiatric hospital, not necessarily at the Asylum.</p>
+  <p>Four years after the Corporation and the Board of Managers first began discussing plans for a nursing school, the first class of men and women entered training in December 1894. The first class was a trial to determine whether the investment would be worthwhile. The school would be a two year program, with doctors at the Asylum rotating as lecturers who gave a series of lessons that lasted several months. After each set of lectures concluded, that doctor and the head nurses conducted recitations and practical exams to assess the learning of the students[9].</p>
+  <p>The results were satisfactory to the Corporation, because the officially named Training School for Nurses was opened to the public in October 1895, using the same two-year structure. Once open to the public, the Training School expanded its curriculum -- in addition to attending two lectures a week from a practicing doctor, students would also take hands-on instructional courses on subjects like proper bandaging techniques and therapeutic massage. After the official opening, all nurses and attendants at Friends Asylum were required to attend[10] the Training School for Nurses.[11]</p>
+  <p>By opening the school to the public and providing graduates with credentials as nurses who specialized in caring for the mentally ill, the Corporation accepted that not all of its students would remain to work at the Asylum and pay off the investment in their education. In fact, half of the second graduating class left to work at other private institutions. Operating the school was a way to increase the appeal of Friends Asylum to prospective employees. According to the correspondence between members of the Association of Medical Superintendents of American Institutions for the Insane, or AMSAII, suspicion towards attendants and their perceived lack of intelligence, diligence, or empathy with patients was a common theme by the 1870s[12]. To combat this, the Board of Managers wished to draw “young women of education and refinement” as nurses. Along with the training school, the Corporation raised enough money in 1897 to build a residence on the Asylum grounds for use by female nurses when they were off duty.</p>
+  <p>The training school was just one part of Friends Asylum’s continued efforts to compete as a business during the last three decades of the 19th century, when the psychiatric hospital industry faced increasing pressures and hostility. Providing education to nurses also helped the public image of the Asylum, which was valuable due to the institution’s increasing practice of advertising itself to philanthropists and public figures as a worthwhile recipient for donations.</p>
+  
+</article>
+
+
+<h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_trainingOfDoctors' %}">Training Of Doctors</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_genderAndStaff' %}">Gender and Staff >>></a></span></h5>
+
+
+<hr>
+
+<h3>Footnote</h3>
+
+<p>[8] Minutes of the Corporation of Friends Asylum, 1893. Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+<p>[9] Minutes of the Corporation of Friends Asylum, 1895. Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+<p>[10] The first official class also included eleven women and two men from outside the Asylum who enrolled at the school.</p>
+<p>[11] Minutes of the Corporation of Friends Asylum, 1896. Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+<p>[12] Pg 271. Tomes, Nancy. The Art of Asylum-Keeping: Thomas Story Kirkbride and the Origins of American Psychiatry. University of Pennsylvania Press, 1994. JSTOR, www.jstor.org/stable/j.ctv4s7g0h.</p>
+
+{% endblock %}

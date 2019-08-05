@@ -11,59 +11,75 @@
 
 <div class="gallery">
 
-  <div class="responsive">
-    <div class="album">
-      <a target="_blank" href="{% url 'visual_scatterplotPatientAdmitAgeVsAdmitYear' %}"><img src="{% static 'images/ScatterplotAdmitAgeYear.jpg' %}" alt="dotplot showing relation between the age at which a patient was admitted to Friends Asylum and the year admitted" title="view visualization enlarged"></a>
-      <div class="overlay">
-        <p>Age of Patient at the Year of Admission</p>
-      </div><!-- class="overlay" -->
-    </div><!-- class="album" -->
+  <div class="frame">
+    <a target="_blank" href="{% url 'visual_scatterplotPatientAdmitAgeVsAdmitYear' %}"><img src="{% static 'images/ScatterplotAdmitAgeYear.jpg' %}" alt="dotplot showing relation between the age at which a patient was admitted to Friends Asylum and the year admitted" title="view visualization enlarged"></a>
+    <div class="overlay">
+      <p>Age of Patient at the Year of Admission</p>
+    </div><!-- class="overlay" -->
   </div><!-- class="responsive" -->
 
-  <div class="responsive">
-    <div class="album">
-      <a href="{% url 'learn_philanthropicNetworks' %}#sankeyPhilanthropistsOrganizationsAssociation"><img src="{% static 'images/SankeyPhilanthropistsOrganizationsAssociation.jpg' %}" alt="chart of lines connecting Quaker philanthropist donors to their recipient organizations" title="view visualization enlarged"></a>
-      <div class="overlay">
-        <p>some text about the image</p>
-      </div><!-- class="overlay" -->
-    </div><!-- class="album" -->
-  </div><!-- class="responsive" -->
+  <div class="frame">
+    <a href="{% url 'learn_philanthropicNetworks' %}#sankeyPhilanthropistsOrganizationsAssociation"><img src="{% static 'images/SankeyPhilanthropistsOrganizationsAssociation.jpg' %}" alt="chart of lines connecting Quaker philanthropist donors to their recipient organizations" title="view visualization enlarged"></a>
+    <div class="overlay">
+      <p>Philanthropists &amp; Organizations Association</p>
+    </div><!-- class="overlay" -->
+  </div><!-- class="frame" -->
 
-  <div class="responsive">
-    <div class="album">
-      <a target="_blank" href="{% url 'visual_heatmapPatientMonthlyAdmissionFrequency' %}"><img src="{% static 'images/HeatmapPatientMonthlyAdmissionFrequency.jpg' %}" alt="map of squares whose coloration is based on frequency of monthly patient admission" title="view visualization enlarged"></a>
-      <div class="overlay">
-        <p>Patient Monthly Admission (1817 -- 1888)</p>
-      </div><!-- class="overlay" -->
-    </div><!-- class="album" -->
-  </div><!-- class="responsive" -->
+  <div class="frame">
+    <a target="_blank" href="{% url 'visual_heatmapPatientMonthlyAdmissionFrequency' %}"><img src="{% static 'images/HeatmapPatientMonthlyAdmissionFrequency.jpg' %}" alt="map of squares whose coloration is based on frequency of monthly patient admission" title="view visualization enlarged"></a>
+    <div class="overlay">
+      <p>Patient Monthly Admission (1817 -- 1888)</p>
+    </div><!-- class="overlay" -->
+  </div><!-- class="frame" -->
 
-  <div class="responsive">
-    <div class="album">
-      <a title="view visualization in context" alt="a figure" href="{% url 'learn_patientHometowns' %}#mapboxPatientHometowns"><img src="{% static 'images/MapboxPatientHometowns.jpg' %}" alt="etching of York Retreat"></a>
+  <div class="frame">
+    <a title="view visualization in context" alt="a figure" href="{% url 'learn_patientHometowns' %}#mapboxPatientHometowns"><img src="{% static 'images/MapboxPatientHometowns.jpg' %}" alt="interactive map of patient hometowns by year"></a>
       <div class="overlay">
-        <p>some text about the image</p>
+        <p>Interactive Map of Patient Hometowns by Year</p>
       </div><!-- class="overlay" -->
-    </div><!-- class="album" -->
-  </div><!-- class="responsive" -->
+  </div><!-- class="frame" -->
 
-  <div class="responsive">
-    <div class="album">
-      <a target="_blank" href="" alt="a figure" title="view visualization in context"><img src="{% static 'images/AlluvialCausesTypes.jpg' %}" alt="etching of York Retreat"></a>
+  <div class="frame">
+    <a target="_blank" href="{% url 'learn_typesOfMentalIllness' %}" alt="alluvial graph of mental illness types &amp; documented causes" title="view visualization in context"><img src="{% static 'images/AlluvialCausesTypes.jpg' %}"></a>
       <div class="overlay">
-        <p>some text about the image</p>
+        <p>Mental Illness Types &amp; Documented Causes</p>
       </div><!-- class="overlay" -->
-    </div><!-- class="album" -->
-  </div><!-- class="responsive" -->
+  </div><!-- class="frame" -->
 
-  <div class="responsive">
-    <div class="album">
-      <a title="view visualization in context" alt="a figure" href=""><img src="{% static 'images/BubbleCausesTypes.jpg' %}" alt="etching of York Retreat"></a>
+  <div class="frame">
+    <a title="view visualization in context" alt="graph of bubbles representing illness types, with sizes varying according to the number of documented causes" href="{% url 'learn_typesOfMentalIllness' %}"><img src="{% static 'images/BubbleCausesTypes.jpg' %}"></a>
       <div class="overlay">
-        <p>some text about the image</p>
+        <p>Mental Illness Types &amps; Frquency of Documented Causes</p>
       </div><!-- class="overlay" -->
-    </div><!-- class="album" -->
-  </div><!-- class="responsive" -->
+  </div><!-- class="frame" -->
+
+  <div class="frame">
+    <a target="_blank" href="{% url 'learn_structureAndGovernance' %}" alt="pie chart showing percentages of Friends Asylum's benefactors by Meeting" title="view visualization in context"><img src="{% static 'images/PieQuakerMeetingContribution-title.jpg' %}"></a>
+      <div class="overlay">
+        <p>Friends Asylum's Benefactors by Meeting</p>
+      </div><!-- class="overlay" -->
+  </div><!-- class="frame" -->
+
+  <div class="frame">
+    <a target="_blank" href="{% url 'learn_structureAndGovernance' %}" alt="stacked bar graph about religious diversity" title="view visualization in context"><img src="{% static 'images/StackedBarReligiousDiversity.jpg' %}"></a>
+      <div class="overlay">
+        <p>Religious Diversity by Year</p>
+      </div><!-- class="overlay" -->
+  </div><!-- class="frame" -->
+
+  <div class="frame">
+    <a target="_blank" href="{% url 'learn_genderAndTreatment' %}" alt="bar graph relating patient gender and their received treatment" title="view visualization in context"><img src="{% static 'images/BarGenderTreatment.jpg' %}"></a>
+      <div class="overlay">
+        <p>Patient Gender &amp; Treatment</p>
+      </div><!-- class="overlay" -->
+  </div><!-- class="frame" -->
+
+  <div class="frame">
+    <a target="_blank" href="{% url 'learn_changesInAdminOverTime' %}" alt="tree graph illustrating administration structure of Friends Asylum" title="view visualization in context"><img src="{% static 'images/HTMLTreeStructureChange.jpg' %}"></a>
+      <div class="overlay">
+        <p>Administration Structure of Friends Asylum</p>
+      </div><!-- class="overlay" -->
+  </div><!-- class="frame" -->
 
 </div><!-- class="gallery" -->
 
