@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from qmh.models import Glossary, Patient
+# yrong2019: for in-text glossary fetching with custom tag to work, coding for glossary_list has to be added under every views function - is there a way for all function to inherit these lines, so that the custom tag is enabled on every page?
 
 ###### topnav ######
 
@@ -59,7 +60,7 @@ def visual_sankeyPhilanthropistsOrganizationsAssociation(request):
 ###### sidebar learn ######
 
 
-# Sarah Horowitz does not like the name "learn", but the summer 2019 team had not settled on an alternative name for the entire body of short articles
+# yrong2019: Sarah Horowitz does not like the name "learn", but the summer 2019 team had not settled on an alternative name for the entire body of short articles
 
 #def learn(request):# the summer 2019 team wanted to write a landing page for each topic in "learn", but we aborted the effort 
 #    return render(request, 'learn.html')
@@ -70,7 +71,13 @@ def learn_theYorkRetreat(request):
     return render(request, 'learn_theYorkRetreat.html')
 
 def learn_foundation(request):
-    return render(request, 'learn_foundation.html')
+    glossary_list = Glossary.objects.order_by('term')
+    term_list = [glossary.term for glossary in glossary_list]
+    meaning_list = [glossary.meaning for glossary in glossary_list]
+    glossary_dict = {}
+    for (term, meaning) in zip(term_list, meaning_list):
+        glossary_dict[term] = meaning
+    return render(request, 'learn_foundation.html', {'glossary_dict': glossary_dict})
 
 def learn_structureAndGovernance(request):
     return render(request, 'learn_structureAndGovernance.html')
@@ -151,9 +158,7 @@ def learn_mentalHealthAndQuakerTheology(request):
     glossary_list = Glossary.objects.order_by('term')
     term_list = [glossary.term for glossary in glossary_list]
     meaning_list = [glossary.meaning for glossary in glossary_list]
-
     glossary_dict = {}
-
     for (term, meaning) in zip(term_list, meaning_list):
         glossary_dict[term] = meaning
     return render(request, 'learn_mentalHealthAndQuakerTheology.html', {'glossary_dict': glossary_dict})

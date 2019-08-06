@@ -44,7 +44,7 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 
 
 #main {
-    float: left;
+    float: right;
     width: 80.99%;
     background-color: white;
     padding: 0;
@@ -53,12 +53,12 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 
 #side {
     z-index: 2;
-    float: right;
+    float: left;
     width: 19%;
     height: 100%;
     position: fixed;
-    right: 0;
-    background-color: #888;
+    left: 0;
+    background-color: #999;
     padding: 0 2em 0 2em;
     top: 2em;
     overflow: scroll;
@@ -71,6 +71,10 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
     #side:hover {
         width: 40%;
     }
+}
+
+#side li {
+    font-size: 1.2em;
 }
 
 /* there's no img in sidebar right now */

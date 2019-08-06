@@ -83,6 +83,7 @@ text {
 <hr>
 
 <article>
+  <a name="bubbleCausesTypes"></a>
   <div id="bubblechart" style="float:right;"></div>
   <script>
 
@@ -154,6 +155,8 @@ d3.select(self.frameElement).style("height", diameter + "px");
   <p>The alluvial diagram below illustrates in further detail the correlations between the most commonly listed types and causes of mental illness. The first column lists the simplified cause used in the visualizations, and the second column lists the specific cause that was listed in the original manuscript materials, along with any relevant background information about the cause. This visualization makes it possible to see which causes were most attributed to which types. While there are some classifications and causes that are strongly correlated, as seen in the thicker bands (such as from dementia to masturbation, melancholia to anxiety, and mania to most of the causes), this visualization proves that the relationships between causes and types of mental illness were incredibly variable. Every cause is connected to at least two types of mental illness. In other words, the classification schemes were not straightforward; physicians could not tell just by a patient’s cause of insanity what they should be diagnosed with, nor could they deduce from their diagnosis a definitive cause.
 </p>
 </article><!-- yrong2019: I ended the tag here, otherwise the text would go out of the div with the fixed-dimension sankey graph on smaller screens -->
+
+  <a name="alluvialCausesTypes"></a>
   <div id="sankey" style="text-align:center;"></div>
   <script src="{% static 'old/sankeyTypesMentalIllness.js' %}"></script>
   <script>

@@ -11,14 +11,14 @@
 
 
 <figure class="header">
-    <img src="{% static 'images/FriendsAsylum.jpg' %}" alt="drawing of Friends Asylum" title="J. Sartain, Friends’ Asylum for the Insane, near Frankford. N.d., Print. Collection 850, Quaker and Special Collections, Haverford College, Haverford, PA.">
-    <figcaption>"Friends Asylum for the Insane" - J. Sartain, PA.</figcaption>
+    <img src="{% static 'images/FriendsAsylum.jpg' %}" alt="drawing of Friends Asylum" title="Friends Asylum for the Insane">
+    <figcaption>J. Sartain, Friends’ Asylum for the Insane, near Frankford. N.d., Print. Collection 850, Quaker and Special Collections, Haverford College, Haverford, PA.</figcaption>
 </figure><!-- class="header" -->
 
 
 <article>
     <h3>About The Project</h3>
-    <p>The Friends' Asylum for the Relief of Persons Deprived of the Use of their Reason was founded in 1813 by a group of Philadelphia Quakers who were concerned about the state of mentally ill Quakers. The Asylum was established upon the Quaker idea that there is <a class="glossary" title="That of God in Everyone: A phrase used to describe the Inner Light, the idea that each person has something of God in them, which they can listen to for guidance.">that of God</a> in every person, and that mental illness does not change that fact. Under the leadership of Isaac Bonsall as the first superintendent, and a group of other influential, soon-to-be <a class="glossary" title="Orthodox Quakers: Formed during the Hicksite-Orthodox schism in 1827; Orthodox Quakers moved more towards standard Protestantism; they were on top of the Quaker power structure, and they were uneasy with what they saw as the Hicksite Friends' dismissal of the Bible as a source of authority.">Orthodox Quakers</a>, the Asylum started accepting patients in 1817. The touchstones of life at the Asylum were community and religious life, and these were to become part of its unique take on moral treatment.</p>
+    <p>The Friends Asylum for the Relief of Persons Deprived of the Use of their Reason was founded in 1813 by a group of Philadelphia Quakers who were concerned about the state of mentally ill Quakers. The Asylum was established upon the Quaker idea that there is <a class="glossary" title="That of God in Everyone: A phrase used to describe the Inner Light, the idea that each person has something of God in them, which they can listen to for guidance.">that of God</a> in every person, and that mental illness does not change that fact. Under the leadership of Isaac Bonsall as the first superintendent, and a group of other influential, soon-to-be <a class="glossary" title="Orthodox Quakers: Formed during the Hicksite-Orthodox schism in 1827; Orthodox Quakers moved more towards standard Protestantism; they were on top of the Quaker power structure, and they were uneasy with what they saw as the Hicksite Friends' dismissal of the Bible as a source of authority.">Orthodox Quakers</a>, the Asylum started accepting patients in 1817. The touchstones of life at the Asylum were community and religious life, and these were to become part of its unique take on moral treatment.</p>
     <p>The Quakers & Mental Health portal launched in the summer of 2015 as an iterative website to hold scholarship about the history of mental health in Philadelphia, in the 19th and 20 centuries, and in particular of Friends Hospital, the first private mental health institution in the United States. This multi-year project combines archival research and writing with digital scholarship to create and support scholarship on the history of mental health, to analyze data and create visualizations from that research.</p>
 </article>
 
@@ -44,7 +44,7 @@
         <img src="{% static 'images/ScatterplotAdmitAgeYear.jpg' %}" alt="dotplot showing relation between the age at which a patient was admitted to Friends Asylum and the year admitted" title="view visualization enlarged">
       </a>
 
-      <a target="_blank" href="{% url 'visual_sankeyPhilanthropistsOrganizationsAssociation' %}">
+      <a target="_blank" href="{% url 'learn_philanthropicNetworks' %}#sankeyPhilanthropistsOrganizationsAssociation">
         <img src="{% static 'images/SankeyPhilanthropistsOrganizationsAssociation.jpg' %}" alt="chart of lines connecting Quaker philanthropist donors to their recipient organizations" title="view visualization enlarged">
       </a>
 
@@ -52,12 +52,12 @@
         <img src="{% static 'images/HeatmapPatientMonthlyAdmissionFrequency.jpg' %}" alt="map of squares whose coloration is based on frequency of monthly patient admission" title="view visualization enlarged">
       </a>
 
-      <a target="_blank" href="">
-        <img src="{% static 'images/AlluvialCausesTypes.jpg' %}" alt="alluvial chart linking causes of mental illness to types of mental illness">
+      <a target="_blank" href="{% url 'learn_typesOfMentalIllness' %}#alluvialCausesTypes">
+        <img src="{% static 'images/AlluvialCausesTypes.jpg' %}" alt="alluvial graph linking mental illness types and documented causes" title="view visualization in context">
       </a>
 
-      <a target="_blank" href="">
-        <img src="{% static 'images/BubbleCausesTypes.jpg' %}" alt="bubble chart showing causes of mental illness and types of mental illness">
+      <a target="_blank" href="{% url 'learn_typesOfMentalIllness' %}#bubbleCausesTypes">
+        <img src="{% static 'images/BubbleCausesTypes.jpg' %}" title="view visualization in context" alt="graph of bubbles representing illness types, with sizes varying according to the number of documented causes">
       </a>
 
     </div><!-- class="thumbnail" -->
