@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/elements.css' %}">
+
+<title>Related Projects and Resources | Quakers &amp; Mental Health</title>
+
+<h2>Related Projects and Resources</h2>
+
+<div class="indexbox">
+  <ul>
+    <li><a href="#the-scattergood-journals">The Scattergood Journals</a></li>
+    <li><a href="#digitized-daybooks">Digitized Day Books and Annual Reports</a></li>
+    <li><a href="#finding-aid">Finding Aid to Other Resources at Haverford</a></li>
+    <li><a href="#other-asylums">Resources About Other Asylums</a></li>
+  </ul>
+</div>
+
+<article>
+
+	<a name="the-scattergood-journals"></a>
+<article>
+	<h3>The Scattergood Journals</h3>
+
+  <figure class="in-text" style="width:20%; float: right;">
+    <img src="{% static "images/Scattergood.jpg" %}" title="portrait of Thomas Scattergood" alt="portrait of Thomas Scattergood">
+    <figcaption>Portrait of Thomas Scattergood - author unclear</figcaption>
+  </figure>
+
+  <p>This online exhibit, curated by Jordan Nieusma '14 in the Summer of 2014, is made up of important and representative passages from the journals, letters, and memoirs of Thomas Scattergood (1748-1814). The website contains entries from Scattergood's journals which are unique in their content and the sentiments they convey, but overall convey the identity of a man lost in his spiritual uncertainty and accepting the guidance of his Inner Light.</p>
+
+  <p>Thomas Scattergood was a traveling minister, and he spent six years (1794-1800) visiting Quakers in England as a part of his ministry. He suffered from depression, and he was impressed by the Retreat’s humane treatment of the mentally ill. When he returned to the United States, he argued that American Quakers should start an institution similar to the York Retreat. As such, after visiting the York Retreat, Thomas Scattergood was inspired and prompted other Quakers to think of creating what would eventually become Friends' Asylum.</p>
+
+  <p style="text-align:center;"><span class="button"><a href="https://ds-omeka.haverford.edu/scattergoodjournals/" target="_blank">View the Exhibit</a></span></p>
+
+</article>
+
+<a name="digitized-daybooks"></a>
+<article>
+	<h3>Digitized Day Books and Annual Reports</h3>
+<figure class="in-text" style="width:45%; float: right;">
+<img src="{% static "images/triptychscreengrab.jpg" %}">
+</figure>
+
+<p>View digitized documents from Haverford College Quaker and Special Collection's archive on the Asylum.</p>
+
+<p style="text-align:center;"><span class="button"><a href="http://triptych.brynmawr.edu/cdm/search/collection/HC_DigReq/searchterm/Friends!%22friends%20hospital%20annual%20report%22/field/all!all/mode/all!all/conn/and!and/order/nosort/ad/asc" target="_blank">View the Collection</a></span></p>
+
+</article>
+
+<a name="finding-aid">
+
+<article>
+
+  <h3>Finding Aid to Other Resources at Haverford</h3>
+  <p>Guide to the records of Friends Asylum, from 1813 to 1975, which are held in Quaker & Special Collections. This Guide provides information on the types of materials in the collection, only some of which are currently represented in this online project. All materials listed on the guide can be consulted in person in Quaker & Special Collections.</p>
+
+  <p style="text-align:center;"><span class="button"><a href="http://archives.tricolib.brynmawr.edu/repositories/5/resources/408" target="_blank">View the Finding Aid</a></span></p>
+  
+</article>
+
+<a name="other-asylums">
+
+<article>
+
+	<h3>Resources About Other Asylums</h3>
+  <p>Information about other mental hospitals from the same period:</p>
+    <ul>
+      <li>For more information on nineteenth-century asylum architecture, explore the National Building Museum's exhibit, <i><a href="https://www.nbm.org/exhibition/architecture-asylum-st-elizabeths-1852-2017" target="_blank">Architecture of an Asylum: St. Elizabeth's 1852-2017</a></i>. Both the Friends' Asylum and St. Elizabeth's Asylum operate to this day as hospitals, in Philadelphia and Washington, D.C., respectively. Unlike Friends' Hospital, St. Elizabeth's is federally-operated.</li>
+      <li>Though they were not officially affiliated with Quakerism, other asylums from the same time period as Friends' Asylum employed or were funded by famous Quakers. Prominent Quakers at other asylums include <a href="http://www.uphs.upenn.edu/paharc/timeline/1801/tline14.html" target="_blank"> Dr. Thomas Kirkbride</a>, a physician who worked at Friends' Asylum before heading Pennsylvania Hospital and <a href="https://mhdh.library.columbia.edu/exhibits/show/bloomingdaleasylum/a-model-institution" target="_blank">Thomas Eddy</a>, a philanthropist on the board of New York Hospital.</li>
+      <li><a href="http://www.coloredinsaneasylums.org" target="_blank">The Central State Hospital Digital Library and Archives Project</a> includes the records of the Central State Hospital, the first mental health institution in the United States for African-Americans. It opened in 1870 and is still operational. The hospital has operated in several locations in Virginia. Items found in the collection include board minutes, annual reports, procedural manuals, financial reports, patient registers, photos, and newsletters.</li>
+      <li>The Library at Wellcome Collection houses <a href="https://wellcomelibrary.org/collections/digital-collections/mental-healthcare/the-retreat" target="_blank">papers on the York Retreat</a> founded by Quakers in York, England, in 1796. The York Retreat served as a model for Friends' Hospital.</li>
+    </ul>
+
+</article>
+
+<h5 class="prev-next" style="text-align:center;"><a href="{% url 'home' %}">Back to Homepage</a></h5>
+
+{% endblock %}
