@@ -11,6 +11,9 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def related_projects(request):
+    return render(request, 'related-projects.html')
+
 #def contact(request):# summer 2019 team decided that a contact form no longer needed; contact button is a link to "mailto:<hc-libraries>"
 #    return render(request, 'contact.html')
 
@@ -21,10 +24,10 @@ def visualizations(request):
     return render(request, 'visualizations.html')
 
 def visual_scatterplotPatientAdmitAgeVsAdmitYear(request):
-    admitYear = []
-    admitAge = []
-    firstName = []
-    lastName = []
+    admitYear = [1850]
+    admitAge = [24]
+    firstName = ["John"]
+    lastName = ["Doe"]
     rawAdmitYear = [str(p.admitYear) for p in Patient.objects.all()]# module_object has to pass thru str() before passing thru int(), or django will raise error
     rawAdmitAge = [str(p.admitAge) for p in Patient.objects.all()]
     rawFirstName = [str(p.firstName) for p in Patient.objects.all()]

@@ -44,34 +44,43 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 
 
 #main {
-    float: right;
+    float: left;
     width: 80.99%;
     background-color: white;
     padding: 0;
-    margin: 2em 0 0 0;
+    margin: 2em 0 0 10;
+}
+
+@media screen and (max-width: 600px) {
+#side {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  #side a {float: left;}
 }
 
 #side {
     z-index: 2;
-    float: left;
-    width: 19%;
+    float: right;
+    width: 300px;
     height: 100%;
     position: fixed;
-    left: 0;
-    background-color: #999;
+    right: 0;
+    background-color: #e3e3e3;
     padding: 0 2em 0 2em;
     top: 2em;
     overflow: scroll;
 }
 
-@media (max-width: 800px) {
+/*#@media (max-width: 800px) {
     #side {
-        width: 0;/* due to padding, even with width=0 the sidebar will still be visible for hovering action */
-    }
+#        width: 0;/* due to padding, even with width=0 the sidebar will still be visible for hovering action */
+/*    }
     #side:hover {
         width: 40%;
     }
-}
+}*/
 
 #side li {
     font-size: 1.2em;
@@ -123,7 +132,7 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 }
 
 #side .content li:hover {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
 }
 
 
@@ -134,7 +143,7 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 }
 
 #banner h1:hover {
-    text-shadow: 0 0 0.1em grey;
+    color: grey;
 }
 
 

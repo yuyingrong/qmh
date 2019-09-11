@@ -42,6 +42,17 @@ p, li, nav {font-size: 1.1em;}
     display: table;
 }
 
+
+@media screen and (max-width: 700px) {
+#middle  .side {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .side a {float: left;}
+  div.content {margin-left: 0;}
+}
+
 #middle .side {
     float: right;
     width: 25%;
