@@ -19,7 +19,6 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
     top: 0;
     left: 0;
     background-color: #333;
-    height: 2em;/* this serves positioning #main and #side, both having "top: 2em;" */
     padding: 0.5em 1em;
 }
 
@@ -32,6 +31,7 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
     text-align: center;
     text-decoration: none;
     font-size: 1em;
+    padding: 1vh;
 }
 
 #topnav nav a:hover {
@@ -44,8 +44,6 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 
 
 #main {
-    float: left;
-    width: 80.99%;
     background-color: white;
     padding: 0;
     margin: 2em 0 0 10;
@@ -61,16 +59,8 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 }
 
 #side {
-    z-index: 2;
-    float: right;
-    width: 300px;
-    height: 100%;
-    position: fixed;
-    right: 0;
     background-color: #e3e3e3;
-    padding: 0 2em 0 2em;
-    top: 2em;
-    overflow: scroll;
+    padding: 6vh 2em 0 2em;
 }
 
 /*#@media (max-width: 800px) {
@@ -135,6 +125,10 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
     background-color: #ffffff;
 }
 
+
+#banner {
+    padding: 5vh 0 2vh 0;
+}
 
 #banner a {
     background-color: white;
