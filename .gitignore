@@ -4,7 +4,7 @@
 __pycache__
 myqmhvenv
 db.sqlite3
-myAsylum/static
+myAsylum/static/images
 .DS_Store
 
 
