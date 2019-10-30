@@ -1,0 +1,105 @@
+
+/* styling for album, figure, header image, etc., keeping the uniformity of styles */
+/* most classes are in alphabetical order */
+
+a.glossary {
+    color: #008cba;
+    font-weight: bold;
+}
+
+a.glossary:hover {
+    background: #333;
+    color: white;
+    cursor: help;/* see all cursor properties here: https://www.w3schools.com/cssref/pr_class_cursor.asp */
+}
+
+/* blockquote and cite style quotation and citations */
+#block blockquote {
+    padding: 0.5em;
+    width: 100%;
+    margin: 1em;
+    /* border-left: 0.5em solid #ccc; */
+    font-family: serif;
+    font-size: 1.2em;
+}
+
+#block cite {
+    font-style: oblique;
+    font-family: serif;
+    float: right;
+}
+
+#block .indexbox {
+    border-style: dotted;
+    padding: 0.5em;
+    border-width: 0.25em;
+}
+
+/* button styles anchored text */
+#block .button {
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    border: 0.1em solid #ddd;
+    border-radius: 0.25em;
+    padding: 1em;
+    background-color: white;
+}
+
+#block .button:hover {
+    box-shadow: 0 0 0.2em 0.1em #008cba;
+    cursor: pointer;
+}
+
+#block .button a {
+    text-decoration: none;
+    color: black;
+}
+
+/* figure styles static, unanchored images */
+#block figure {
+    border-style: solid;
+    border-width: 0.5em;
+    border-color: white;
+    box-shadow: 0.2em 0.2em 0.5em grey;
+}
+
+#block figure.header {
+    width: 100%;
+    margin: 0;
+}
+
+#block figure.header img {
+    width: 100%;
+}
+
+#block figure.in-text {
+    float: left;
+    width: 40%;
+    margin: 0 1.5em 1em 0;
+}
+
+#block figure.in-text img {
+    width: 100%;
+}
+
+/* thumbnail styles anchored images */
+#block .thumbnail {
+    overflow: hidden;
+}
+
+#block .thumbnail a {
+    display: inline-block;
+}
+
+#block .thumbnail img {
+    border: 0.1em solid #ddd;
+    border-radius: 0.25em;
+    padding: 0.4em;
+    width: 8em;
+    margin: 0.2em;
+}
+
+#block .thumbnail img:hover {
+    box-shadow: 0 0 0.2em 0.1em #008cba;
+}

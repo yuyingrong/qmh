@@ -1,0 +1,27 @@
+
+/*.middle .bg-img {    background-image: url("../images/FriendsAsylum.jpg");    background-position: center;    background-repeat: no-repeat;    background-attachment: fixed;    background-size: contain;    width: 100%;    height: 50em;}*/
+
+/* #block figure and img, .header and .in-text, as well as blockquote and cite, are styled in "element.css" */
+
+/* all #block article::after sections are clearfixed in "base.css" */
+
+#footer {
+    color: black;
+}
+
+#footer a {
+    color: navy;
+}
+
+#footer a:hover {
+    color: crimson;
+}
+
+#footer .footer-bgcolor {
+    clear: both;
+    background-color: #dddddd;
+}
+
+#footer .icons {
+    background-color: #dddddd;
+}

@@ -1,0 +1,11 @@
+
+/* #block refers to the entire content block that extends "base.html"; please see "base.html" the id's of div's */
+
+#block .essays {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* footer bgcolor and textcolor are sometimes set individually for each page according to its overall palette */
+/* here, the footer is the default, set in "base.css" */
+
