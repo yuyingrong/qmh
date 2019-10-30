@@ -6,5 +6,5 @@ myqmhvenv
 db.sqlite3
 myAsylum/static/images
 .DS_Store
-
+myAsylum/myAsylum/settings.py
 
