@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from qmh.models import Glossary, Patient
 # yrong2019: for in-text glossary fetching with custom tag to work, coding for glossary_list has to be added under every views function - is there a way for all function to inherit these lines, so that the custom tag is enabled on every page?
@@ -207,3 +208,9 @@ def essay_18cmichel(request):
 def essay_17acorcoran(request):
     return render(request, 'essay_17acorcoran.html')
 
+#datatables
+def index_redirect(request):
+    return redirect('/table/')
+
+def patientTable(request):
+    return render(request, 'patientTable.html')

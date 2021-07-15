@@ -1,10 +1,24 @@
 
 from django.urls import path
+from django.urls.conf import re_path
 from . import views
+from django.contrib.flatpages import views as flat_views
+from django.conf.urls import url
+from django.conf.urls import include
+
 
 
 urlpatterns = [
-        path('', views.home, name='home'),
+
+    #flatpages
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
+    
+    path('bibliography/', flat_views.flatpage, {'url': '/bibliography/'}, name='bibliography'),
+    path('health/', flat_views.flatpage, {'url': '/health/'}, name='health'),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    path('pages/', include('django.contrib.flatpages.urls')),
+
+    path('', views.home, name='home'),
     # topnav
     path('about/', views.about, name='about'),
     #path('contact/', views.contact, name='contact'),# summer 2019 team decided that a contact form no longer needed; contact button is a link to "mailto:<hc-libraries>"
@@ -69,4 +83,6 @@ urlpatterns = [
     path('essays/18cmichel/', views.essay_18cmichel, name='essay_18cmichel'),
     path('essays/17acorcoran/', views.essay_17acorcoran, name='essay_17acorcoran'),
 
+    path('patientTable/', views.patientTable, name='patientTable'),
+    #url(r'^(?P<url>.*/)$', views.flatpage),
 ]
