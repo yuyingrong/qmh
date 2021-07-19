@@ -84,5 +84,5 @@ urlpatterns = [
     path('essays/17acorcoran/', views.essay_17acorcoran, name='essay_17acorcoran'),
 
     path('patientTable/', views.patientTable, name='patientTable'),
-    #url(r'^(?P<url>.*/)$', views.flatpage),
-]
+
+    ]
