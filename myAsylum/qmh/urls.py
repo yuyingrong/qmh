@@ -7,7 +7,6 @@ from django.conf.urls import url
 from django.conf.urls import include
 
 
-
 urlpatterns = [
 
     #flatpages
@@ -83,6 +82,6 @@ urlpatterns = [
     path('essays/18cmichel/', views.essay_18cmichel, name='essay_18cmichel'),
     path('essays/17acorcoran/', views.essay_17acorcoran, name='essay_17acorcoran'),
 
-    path('patientTable/', views.patientTable, name='patientTable'),
+    path('admission-data/', views.patientTable, name='patientTable'),
 
     ]

@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'import_export',
-    #'table',
 ]
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
