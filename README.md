@@ -29,8 +29,16 @@ This project consists of basic static pages built on Django, and uses Plotly to 
 
 View local server at: http://127.0.0.1:8000/
 
-
 *Additional notes: see "tutorials" and "instructions" in "Summer 2019/Yuying Rong/" in Friends Asylum Google Drive.*
+
+
+## Deploying
+
+Start by ssh-ing into the server, then:
+
+`cd /srv/qmh-v2`
+
+`git pull origin master`
 
 
 ## Updates in 2019 summer:
