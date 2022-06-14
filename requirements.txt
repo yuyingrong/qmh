@@ -1,3 +1,5 @@
 django~=2.2.2
 pip~=19.1.1
 plotly~=3.10.0
+django-ckeditor==6.3.2
+django-import_export==2.7.1
