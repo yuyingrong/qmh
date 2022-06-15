@@ -34,11 +34,24 @@ View local server at: http://127.0.0.1:8000/
 
 ## Deploying
 
-Start by ssh-ing into the server, then:
+Start by ssh-ing into the server (`ssh root@IP_ADDRESS`), then:
 
 `cd /srv/qmh-v2`
 
 `git pull origin master`
+
+If your changes don't work right away, you may need to reboot the server. Especially true if you added a new URL: `reboot` (in the same directory)
+
+
+## Adding New Essays
+
+1. Upload the PDF to [this static folder](https://github.com/HCDigitalScholarship/qmh-v2/tree/master/myAsylum/static/essays) (note: there are two static folders, we don't know why. `/myAsylum/static/essays` in the correct one). 
+2. Create the html template in `/myAsylum/qmh/templates/` (you can mostly duplicate an existing essay template)
+3. Add the page to the `views.py` [here](https://github.com/HCDigitalScholarship/qmh-v2/blob/master/myAsylum/qmh/views.py)
+4. Add the page in `urls.py` [here](https://github.com/HCDigitalScholarship/qmh-v2/blob/master/myAsylum/qmh/urls.py)
+5. Update the table in `essays.html` [here](https://github.com/HCDigitalScholarship/qmh-v2/blob/master/myAsylum/qmh/templates/essays.html) to include the link to your new essay page
+6. Commit & merge your changes 
+7. Deploy your changes to the server and restart the server (see above)
 
 
 ## Updates in 2019 summer:
