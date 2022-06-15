@@ -81,6 +81,7 @@ urlpatterns = [
     path('essays/18bkaplow/', views.essay_18bkaplow, name='essay_18bkaplow'),
     path('essays/18cmichel/', views.essay_18cmichel, name='essay_18cmichel'),
     path('essays/17acorcoran/', views.essay_17acorcoran, name='essay_17acorcoran'),
+    path('essays/21zhu/', views.essay_21zhu, name='essay_21zhu'),
 
     path('admission-data/', views.patientTable, name='patientTable'),
 
