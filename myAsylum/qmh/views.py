@@ -196,6 +196,9 @@ def bibliography(request):
 def essays(request):
     return render(request, 'essays.html')
 
+def essay_21zhu(request):
+    return render(request, 'essay_21zhu.html')
+
 def essay_20cbattis(request):
     return render(request, 'essay_20cbattis.html')
 
