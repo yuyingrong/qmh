@@ -34,13 +34,15 @@ View local server at: http://127.0.0.1:8000/
 
 ## Deploying
 
-Start by ssh-ing into the server (`ssh root@IP_ADDRESS`), then:
+Start by ssh-ing into the server (`ssh USER@IP_ADDRESS`). (To deploy to production, you must be on the [Haverford VPN](https://iitskb.sites.haverford.edu/knowledge-base/installing-the-vpn-client/) first. Request credentials from IT if you don't have them.)
 
 `cd /srv/qmh-v2`
 
 `git pull origin master`
 
-If your changes don't work right away, you may need to reboot the server. Especially true if you added a new URL: `reboot` (in the same directory)
+Once you are on the server, you can use sudo to get elevated privileges for anything requiring them. The project directory with the live code is located in "/srv/qmh-v2".
+
+The web server itself is a 2-tiered application stack; Nginx runs the HTTP port advertisement and proxies all requests to a local socket owned by uWSGI. The configuration for Nginx lives in "/etc/nginx/sites-enabled/qmh-v2". The configuration for uWSGI lives in "/etc/uwsgi/apps-enabled/qmh-v2.ini". If you make any changes to the configuration, you can use "systemctl restart servicename" (uwsgi or nginx) to restart the appropriate service. You will need to restart uWSGI for any changes to the application's code to be live, as the uWSGI socket points to a version living in RAM and restarting the application container is the only way to update it with new code.
 
 
 ## Adding New Essays
