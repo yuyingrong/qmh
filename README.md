@@ -40,6 +40,8 @@ Start by ssh-ing into the server (`ssh USER@IP_ADDRESS`). (To deploy to producti
 
 `git pull origin master`
 
+On prod you'll need to run git with sudo: `suo git pull origin master` (then enter password)
+
 The web server itself is a 2-tiered application stack; Nginx runs the HTTP port advertisement and proxies all requests to a local socket owned by uWSGI. The configuration for Nginx lives in "/etc/nginx/sites-enabled/qmh-v2". The configuration for uWSGI lives in "/etc/uwsgi/apps-enabled/qmh-v2.ini". If you make any changes to the configuration, you can use "systemctl restart servicename" (uwsgi or nginx) to restart the appropriate service. You will need to restart uWSGI for any changes to the application's code to be live, as the uWSGI socket points to a version living in RAM and restarting the application container is the only way to update it with new code.
 
 `sudo systemctl restart uwsgi`
