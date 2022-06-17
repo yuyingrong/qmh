@@ -1,0 +1,364 @@
+
+ custom css for FriendsOCCU.html*/
+ .overlay-container {
+    position: relative;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+
+ .overlay-container .overlay1 {
+    position: absolute; 
+    bottom: 0px;
+    vartical-align: middle;         
+    left:0; 
+    right: 0;
+    text-align: right;
+    margin-left: auto;
+   margin-right: auto;            
+    color: white; /* pretty color of blue#7082A6 */
+    font-family: "Cinzel Decorative"; 
+    font-size:60px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+ 
+.overlay-container .overlay2 {
+    position: absolute;
+    top: 0;
+    opacity: 0.9;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    left: 0;
+    right: 0;
+    color: white;
+    font-family: "Amiri";
+    font-size: 15px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+
+
+  banner img {
+   position: relative; 
+   max-width: 100em;
+    margin: auto;
+    display: block;
+    background-color: #333333;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+
+  header {
+    padding: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+
+  }
+
+
+  h3#mTitle {
+	font-family: "EB Garamond";
+}
+ #mModal p {
+	font-family: "Amiri";
+}
+
+  h3#aTitle {
+	font-family: "EB Garamond";
+}
+ #aModal p {
+	font-family: "Amiri";
+}
+
+  h3#bTitle {
+	font-family: "EB Garamond";
+}
+ #bModal p {
+	font-family: "Amiri";
+}
+  h3#cTitle {
+	font-family: "EB Garamond";
+}
+ #myModal p {
+	font-family: "Amiri";
+} 
+
+#modalTitle p{
+  font-family: "Amiri";
+}
+
+/* For the Library, occupational therapy, and causes of mental illness pages, 
+some modals have funny IDs like these; in case each is meant to be unique, 
+I've preserved them in the HTML but styled them the samehere:*/
+#DAntonio{
+  font-family: "Amiri";
+}
+#Managers3{
+  font-family: "Amiri";
+}
+#Redmond{
+  font-family: "Amiri";
+}
+#Bonsall{
+  font-family: "Amiri";
+}
+#Casebook{
+  font-family: "Amiri";
+}
+
+#Tyler{
+  font-family: "Amiri";
+}
+#Esquirol{
+  font-family: "Amiri";
+}
+#Admissions{
+  font-family: "Amiri";
+}
+#Pinel{
+  font-family: "Amiri";
+}
+#Potato{
+  font-family: "Amiri";
+}
+#Prichard{
+  font-family: "Amiri";
+}
+#Bucknill{
+  font-family: "Amiri";
+}
+#beach{
+  font-family: "Amiri";
+}
+#Rush{
+  font-family: "Amiri";
+}
+#myModal{
+  font-family: "Amiri";
+}
+#tea{
+  font-family: "Amiri";
+}
+#crumpets{
+  font-family: "Amiri";
+}
+#pinwheel{
+  font-family: "Amiri";
+}
+#puppies{
+  font-family: "Amiri";
+}
+#albatross{
+  font-family: "Amiri";
+}
+#jellyfish{
+  font-family: "Amiri";
+}
+#crumpets{
+  font-family: "Amiri";
+}
+#cormorants{
+  font-family: "Amiri";
+}
+#deer{
+  font-family: "Amiri";
+}
+#Stone{
+  font-family: "Amiri";
+}
+#Scasta{
+  font-family: "Amiri";
+}
+
+h2{
+  font-family: "Amiri";
+}
+
+#slideshowtitle{
+  font-family: "Amiri";
+}
+
+.row.full-width {
+padding-bottom: 0px;
+margin-bottom: 0px;
+padding-left:20px;
+padding-right:20px;
+}
+
+.row.full-width h2 {
+padding-top: 30px;
+padding-bottom: 10px;
+font-size: 45px;
+font-family: "Quintessential";
+}
+
+.row.full-width p {
+font-family: "Amiri";
+font-size: 19px;
+padding-bottom: 10px;
+
+}
+
+figcaption {
+font-family: "Amiri";
+font-size: 15px;
+}
+
+
+
+
+
+
+/* Text Blurb Right Float Image*/
+#row8 {
+
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #CCCCB2;
+    padding-bottom: 20px;
+    
+}
+
+
+
+
+
+/* Text Blurb Left Float Image*/
+#row9 {
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+    
+    
+}
+
+
+
+#row9 h2 {
+	text-align: right;
+}
+
+/* Text Blurb Right Float Image*/
+#row10 {
+    padding-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #909084;
+    padding-bottom: 20px;
+    
+}
+
+
+
+
+  .full-width {
+    max-width: 1400px;
+
+
+  }
+
+  .footer {
+    padding-top: 20px;
+    text-align: center;
+    font-family: Garamond;
+    color: #fff;
+    background-color: #292C2F;
+    
+
+  }
+
+
+.footer {
+  .columns:nth-child(n+2) {
+      border-left: 1px solid scale-color(#f1f1f1, $lightness: -30%);
+     min-height: 280px;
+  }
+ }
+
+ h3 {
+  font-family: "EB Garamond";
+  font-weight: bold;
+ }
+
+.orbit-container {
+  max-width: 500px;
+  position: relative;
+  margin: 0 auto;
+}
+.orbit-slides-container{
+  height: 100% !important;
+  width: 100% !important;
+  position: relative;
+}
+
+/*.large-12.medium-12.small-12.columns.orbit-container {
+  max-width: 500px;
+  position: relative;
+  margin: 0 auto;
+}
+*/
+}
+.orbit-container ul li{ min-height: auto; overflow: hidden;}
+.orbit-container ul li img {height: auto; width: 100%;  display: block;
+image-rendering: crisp-edges; display: table-cell; vertical-align: middle; margin: 0 auto;}
+
+.orbit-container .orbit-slides-container li.active{
+  position: relative;
+}
+
+#row11 {
+  background-color: #9D9988;
+}
+
+.gallery {
+  background-color:#909084;
+  padding: 20px;
+  margin: 20px;
+}
+ 
+.gallery-item {
+  margin:50px;
+  margin-top: 50px;
+  background-color: #A7A591;
+  padding: 20px 30px 20px 30px;
+  border: 2px solid black;
+  border-radius:1px;
+}
+
+.gallery-caption {
+  margin-top: 10px;
+  text-align: left;
+}
+
+@media screen and (max-width: 750px) {
+  .gallery {
+  background-color:#909084;
+  padding: 0px;
+  margin: 0px;
+  width:100%;
+}
+ .columns {
+  padding-right: 0px;
+  padding-left: 0px;
+ }
+ #row11 .row{
+  padding-right: 0px;
+  padding-left: 0px; 
+ }
+}
+
+@media screen and (max-width: 500px) {
+  .gallery-item {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+.gallery-citation {
+  font-size: x-small;
+  margin-top: 5px;
+}
+

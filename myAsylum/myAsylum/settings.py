@@ -25,8 +25,9 @@ SECRET_KEY = '6a7yia%lmnyz_j3&@yyeqp$g=kx)m@kqn#3wv%4b&8s*r$aso7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '165.82.124.34']
+ALLOWED_HOSTS = ['165.22.186.240', '127.0.0.1', 'localhost']
 
+SITE_ID = 1
 
 # Application definition
 
@@ -37,8 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'qmh'
+    'qmh',
+    'django.contrib.sites',  
+    'django.contrib.flatpages',
+    'ckeditor',
+    'ckeditor_uploader',
+    'import_export',
 ]
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_IMAGE_BACKEND = "pillow"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'myAsylum.urls'
@@ -120,4 +133,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+
+MEDIA_URL = '/media/'
+
+CKEDITOR_CONFIGS = {
+  "default": {
+      "removePlugins": "stylesheetparser",
+      'allowedContent' : True,
+   }
+ }
 

@@ -4,7 +4,6 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/learn.css' %}">
 <link rel="stylesheet" href="{% static 'css/elements.css' %}">
 <title>Structure &amp; Governance | Quakers &amp; Mental Health</title>
 
@@ -12,7 +11,7 @@
 .row {
   clear: both;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
 .column {
@@ -38,16 +37,15 @@
 <h2>Friends Structure &amp; Governance</h2>
 
 
-<figure class="header">
+<figure class="header" >
   <img src="{% static "images/DaybookText2.jpg" %}" alt="Daybook Text" title="Daybook Text">
-  <figcaption>Daybook Text - author unclear</figcaption>
 </figure><!-- class="header" -->
 
 <article>
   <h3>Asylum Committees</h3>
   <figure class="in-text">
     <img class="in-text" src="{% static 'images/SamuelBettleSr.jpg' %}" alt="Drawing of Samuel Bettle, Sr." title="Drawing of Samuel Bettle, Sr.">
-    <figcaption>Samuel Bettle, Sr., a member of the Board of Managers - author unclear</figcaption>
+    <figcaption>Samuel Bettle, Sr., a member of the Board of Managers</figcaption>
   </figure>
   <p>The Asylum was run, in true Quaker fashion, using an interlocking system of committees. At the broadest level, the contributors who financed the Asylum (both individual Quakers and <a href = "/glossary#Monthly Meeting">Monthly Meetings</a>) met at the Yearly Meeting of Contributors to make large decisions about the welfare of the Asylum. In a more immediate way, the Board of Managers, which was made up of twenty contributors chosen at the Yearly Meeting of Contributors, was responsible for the business of the Asylum. The Board of Managers approved the admission and boarding rate of new patients, as well as supervised the Asylum’s finances and employees. A subset of the Board, the<a href = "/glossary#Visiting Manager"> Visiting Managers</a>, were responsible for visiting and inspecting the Asylum once a week and for inspecting the superintendent’s account book once a month. This kept the superintendent and his staff accountable for their behavior.</p>
 </article>
@@ -79,6 +77,21 @@
   <p>In one instance, the patients complained to the Bonsalls about their diets, which were controlled by the doctor, not by the Bonsalls. Although Bonsall thought that their agitation about food was increasing their insanity, he could not overrule the doctor in order to change the menu. This frustrated him <a class="footnote">(First Month, 11, 1821)</a>. In another instance, Bonsall determined that a patient needed to be given a <a class="glossary"> blister</a>, but the doctor was out. Annoyed, Bonsall made the blister himself, despite his lack of medical authority <a class="footnote">(Third Month, 17, 1820)</a>.</p>
 </article>
 
+<article>
+  <h3>Commitment Processes at Friends Asylum</h3>
+
+<p>A patient could be admitted to Friends Asylum in several ways: the most common was commitment by a friend or relative. In the late 1800s and on, this required the signatures of two different physicians certifying that the patient was insane, as well as the signature of a judge or magistrate.1 These steps were put into place following the Lunacy Law of 1883, which was intended to provide extra protection against unjust involuntary commitment and limit misuse of power by asylum superintendents.2 These requirements were reaffirmed by the Mental Health Act of 1923, which further specified that patients must be admitted within two weeks of being declared legally insane, or the process had to start again.3 Even when patients were unwilling to enter a mental institution, the Asylum discouraged their families/caretakers from lying to them, advising that “the patient should never be brought to the Hospital through the use of deception, the effect of which is invariably injurious.”4 To leave the Asylum following involuntary commitment, the superintendent and medical staff could approve a trial visit, which was often followed by a discharge. Alternatively, the relatives or caretakers of a patient could request the patient’s discharge at any time, although doing so without approval of the Asylum was not recommended.</p>
+<p>Patients could also request voluntary admission for themselves if they were suffering from a “milder” form of mental illness such as anxiety or substance addiction.5 In these cases, patients agreed to stay for a short period at the Asylum (initially a week, later a month), at the end of which they could choose to either remain or leave.6 However, if they felt it necessary, the Asylum staff could have voluntary patients declared legally insane and then held within the institution for longer periods of time, thus limiting the freedom and choice available to voluntary patients. This happened fairly frequently: Superintendent Theo L. Dehne writes of six voluntary patients in 1938 whom he had declared legally insane following “changes in the character of [their] malady which rendered them no longer capable of cooperation, nor able to decide for themselves whether hospital care and supervision was desirable or necessary.”7 The frequency of involuntary commitment at Friends Asylum raises complicated ethical questions about the Asylum’s treatment of those with mental illness.</p>
+
+<br>
+<p>1. Minutes of the Board of Managers, 1883, Item 5, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+<p>2. Nancy J Tomes,  "A Generous Confidence: Thomas Story Kirkbride’s Philosophy of Asylum Construction and Management." In Madhouses, Mad-Doctors, and Madmen: The Social History of Psychiatry in the Victorian Era, edited by SCULL ANDREW, 143. University of Pennsylvania Press, 1981.</p>
+<p>3. Annual Report, 1937, 33, Box 4, Friends Hospital Records, Quaker and Special Collections, Haverford College, Haverford, Pennsylvania.</p>
+<p>4. Annual Report, 1948, 33, Box 4.</p>
+<p>5. Annual Report, 1893, 12, Box 2.</p>
+<p>6. Annual Report, 1893, 12, Box 2.</p>
+<p>7. Annual Report, 1938, 22, Box 4.</p>
+</article>
 
 <h5 class="prev-next"><span style="float: left;"><<< Previous Article: <a href="{% url 'learn_foundation' %}">Foundation</a></span><span style="float: right;">Next Article: <a href="{% url 'learn_changesInAdminOverTime' %}">Changes in the Administration >>></a></span></h5>
 

@@ -1,0 +1,14 @@
+
+#footer a {
+    color: blue;
+}
+
+#footer .footer-bgcolor {
+    clear: both;
+    background-color: #dddddd;
+}
+
+#footer .icons {
+    background-color: #dddddd;
+}
+
