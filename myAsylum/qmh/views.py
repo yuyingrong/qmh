@@ -145,6 +145,9 @@ def learn_genderAndTreatment(request):
 def learn_moralTreatmentAndFamily(request):
     return render(request, 'learn_moralTreatmentAndFamily.html')
 
+def learn_GenderAndDeath(request):
+    return render(request, 'learn_GenderAndDeath.html')
+
 #    "patients"
 
 def learn_caseStudies(request):
