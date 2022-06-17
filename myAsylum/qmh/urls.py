@@ -59,6 +59,7 @@ urlpatterns = [
         path('gender-and-length-of-stay', views.learn_genderAndLengthOfStay, name='learn_genderAndLengthOfStay'),
         path('gender-and-treatment', views.learn_genderAndTreatment, name='learn_genderAndTreatment'),
         path('moral-treatment-and-family', views.learn_moralTreatmentAndFamily, name='learn_moralTreatmentAndFamily'),
+        path('gender-and-death', views.learn_GenderAndDeath, name='learn_GenderAndDeath'),    
 
         # "patients"
         path('case-studies', views.learn_caseStudies, name='learn_caseStudies'),
