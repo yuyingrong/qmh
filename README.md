@@ -46,6 +46,14 @@ The web server itself is a 2-tiered application stack; Nginx runs the HTTP port 
 
 `sudo systemctl restart uwsgi`
 
+## Adding new images
+In the repo, add images to this directory [/myAsylum/qmh/static/images](https://github.com/HCDigitalScholarship/qmh-v2/tree/master/myAsylum/qmh/static/images). The static image mounting does not appear to be correctly set up. This needs to be fixed in the future. In the meantime, you can manually copy the image from the upload directly to the static folder it wants to be in:
+
+Example:
+`cd /srv/qmh-v2/myAsylum/static/images`
+
+`cp /srv/qmh-v2/myAsylum/qmh/static/images/GenderDeath.png GenderDeath.png`
+
 
 ## Adding New Essays
 
