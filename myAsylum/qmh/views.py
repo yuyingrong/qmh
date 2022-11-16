@@ -121,6 +121,9 @@ def learn_philanthropicNetworks(request):
 def learn_typesOfMentalIllness(request):
     return render(request, 'learn_typesOfMentalIllness.html')
 
+def learn_religiousexcitement(request):
+    return render(request, 'learn_religiousexcitement.html')
+
 def learn_moralTreatment(request):
     return render(request, 'learn_moralTreatment.html')
 
