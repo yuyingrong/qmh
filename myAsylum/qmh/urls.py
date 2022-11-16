@@ -51,6 +51,7 @@ urlpatterns = [
 
         # "medical treatment"
         path('types-of-mental-illness', views.learn_typesOfMentalIllness, name='learn_typesOfMentalIllness'),
+        path('religiousexcitement', views.learn_religiousexcitement, name='learn_religiousexcitement'),
         path('moral-treatment', views.learn_moralTreatment, name='learn_moralTreatment'),
         path('occupational-therapy', views.learn_occupationalTherapy, name='learn_occupationalTherapy'),
         path('asylum-library', views.learn_asylumLibrary, name='learn_asylumLibrary'),
