@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from qmh.models import Glossary, Patient
 # yrong2019: for in-text glossary fetching with custom tag to work, coding for glossary_list has to be added under every views function - is there a way for all function to inherit these lines, so that the custom tag is enabled on every page?
@@ -11,6 +12,9 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def related_projects(request):
+    return render(request, 'related-projects.html')
+
 #def contact(request):# summer 2019 team decided that a contact form no longer needed; contact button is a link to "mailto:<hc-libraries>"
 #    return render(request, 'contact.html')
 
@@ -21,10 +25,10 @@ def visualizations(request):
     return render(request, 'visualizations.html')
 
 def visual_scatterplotPatientAdmitAgeVsAdmitYear(request):
-    admitYear = []
-    admitAge = []
-    firstName = []
-    lastName = []
+    admitYear = [1850]
+    admitAge = [24]
+    firstName = ["John"]
+    lastName = ["Doe"]
     rawAdmitYear = [str(p.admitYear) for p in Patient.objects.all()]# module_object has to pass thru str() before passing thru int(), or django will raise error
     rawAdmitAge = [str(p.admitAge) for p in Patient.objects.all()]
     rawFirstName = [str(p.firstName) for p in Patient.objects.all()]
@@ -117,6 +121,9 @@ def learn_philanthropicNetworks(request):
 def learn_typesOfMentalIllness(request):
     return render(request, 'learn_typesOfMentalIllness.html')
 
+def learn_religiousexcitement(request):
+    return render(request, 'learn_religiousexcitement.html')
+
 def learn_moralTreatment(request):
     return render(request, 'learn_moralTreatment.html')
 
@@ -140,6 +147,9 @@ def learn_genderAndTreatment(request):
 
 def learn_moralTreatmentAndFamily(request):
     return render(request, 'learn_moralTreatmentAndFamily.html')
+
+def learn_GenderAndDeath(request):
+    return render(request, 'learn_GenderAndDeath.html')
 
 #    "patients"
 
@@ -192,6 +202,15 @@ def bibliography(request):
 def essays(request):
     return render(request, 'essays.html')
 
+def essay_22Bratt(request):
+    return render(request, 'essay_22Bratt.html')
+
+def essay_21scully(request):
+    return render(request, 'essay_21scully.html')
+
+def essay_21zhu(request):
+    return render(request, 'essay_21zhu.html')
+
 def essay_20cbattis(request):
     return render(request, 'essay_20cbattis.html')
 
@@ -204,3 +223,9 @@ def essay_18cmichel(request):
 def essay_17acorcoran(request):
     return render(request, 'essay_17acorcoran.html')
 
+#datatables
+def index_redirect(request):
+    return redirect('/table/')
+
+def patientTable(request):
+    return render(request, 'patientTable.html')

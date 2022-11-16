@@ -1,4 +1,3 @@
-
 {% load staticfiles %}
 
 <!DOCTYPE html>
@@ -6,6 +5,11 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 
@@ -19,9 +23,10 @@
 
   <nav>
     <!-- used to be "Search", but search function is not written yet -->
-    <a href="{% url 'home' %}">Home</a> | 
-    <a href="{% url 'about' %}">About</a> | 
-    <a href="mailto:library@haverford.edu">Contact</a>
+    <a href="{% url 'home' %}">Home</a> |
+    <a href="{% url 'about' %}">About</a> |
+    <a href="{% url 'related-projects' %}">Related Projects</a> |
+    <a href="mailto:hc-special@haverford.edu">Contact</a>
   </nav>
 
 </div><!-- id="topnav" -->
@@ -31,190 +36,207 @@
 
         <!-- SIDE BAR -->
 
+<div class="container-fluid"><div class="row">
 
-<div id="side">
+  <div id="side" class="col-xs-12 col-md-3 order-md-12">
 
-  <!-- img src="{% static 'images/HCLogoRound.jpg' %}" alt="logo of Haverford College" -->
+    <!-- img src="{% static 'images/HCLogoRound.jpg' %}" alt="logo of Haverford College" -->
 
-  <h2>Navigation</h2>
-<ul>
-  <li>
-    <span class="collapsible">The Asylum</span>
-    <span class="content">
-      <ul>
-        <li><a href="{% url 'learn_theYorkRetreat' %}" title="The York Retreat">The York Retreat</a></li>
-        <li><a href="{% url 'learn_foundation' %}" title="Foundation">Foundation</a></li>
-        <li><a href="{% url 'learn_structureAndGovernance' %}" title="Structure &amp; Governance">Structure &amp; Governance</a></li>
-        <li><a href="{% url 'learn_changesInAdminOverTime' %}" title="Changes in the Administration Over Time">Changes in the Administration</a></li>
-        <li><a href="{% url 'learn_asylumArchitecture' %}" title="Asylum Architecture">Asylum Architecture</li>
-        <li><a href="{% url 'learn_gurneyCottage' %}" title="Gurney Cottage">Gurney Cottage</a></li>
-        <li><a href="{% url 'learn_trainingOfDoctors' %}" title="Training Of Doctors">Training Of Doctors</a></li>
-        <li><a href="{% url 'learn_trainingOfNurses' %}" title="Training Of Nurses">Training Of Nurses</a></li>
-        <li><a href="{% url 'learn_genderAndStaff' %}" title="Gender and Staff">Gender and Staff</a></li>
-        <li><a href="{% url 'learn_raceAndStaff' %}" title="Race and Staff">Race and Staff</a></li>
-        <li><a href="{% url 'learn_philanthropicNetworks' %}" title="Philanthropic Networks">Philanthropic Networks</a></li>
-      </ul>
-    </span>
-  </li>
-  <li>
-    <span class="collapsible">Treatment</span>
-    <span class="content">
-      <ul>
-        <li><a href="{% url 'learn_typesOfMentalIllness' %}" title="Types Of Mental Illness">Types of Mental Illness</a></li>
-        <li><a href="{% url 'learn_moralTreatment' %}" title="Moral Treatment">Moral Treatment</a></li>
-        <li><a href="{% url 'learn_occupationalTherapy' %}" title="Occupational Therapy">Occupational Therapy</a></li>
-        <li><a href="{% url 'learn_asylumLibrary' %}" title="Asylum Library">Asylum Library</a></li>
-        <li><a href="{% url 'learn_medicalTreatment' %}" title="Medical Treatment">Medical Treatment</a></li>
-        <li><a href="{% url 'learn_medicalAdvancements' %}" title="Medical Advancements">Medical Advancements</a></li>
-        <li><a href="{% url 'learn_genderAndLengthOfStay' %}" title="Gender and Length of Stay">Gender and Length of Stay</a></li>
-        <li><a href="{% url 'learn_genderAndTreatment' %}" title="Gender and Treatment">Gender and Treatment</a></li>
-        <li><a href="{% url 'learn_moralTreatmentAndFamily' %}" title="Moral Treatment and Family">Moral Treatment and the Family</a></li>
-      </ul>
-    </span>
-  </li>
-  <li>
-    <span class="collapsible">Patients</span>
-    <span class="content">
-      <ul>
-        <li><a href="{% url 'learn_caseStudies' %}" title="Case Studies">Case Studies</a></li>
-        <li><a href="{% url 'learn_patientHometowns' %}" title="Patient Hometowns">Patient Hometowns</a></li>
-        <li><a href="{% url 'learn_patientDemographics' %}" title="Patient Demographics">Patient Demographics</a></li>
-      </ul>
-    </span>
-  </li>
-  <li>
-    <span class="collapsible">Religion</span>
-    <span class="content">
-      <ul>
-        <li><a href="{% url 'learn_mentalHealthAndQuakerTheology' %}" title="Mental Health and Quaker Theology">Mental Health and Quaker Theology</a></li>
-        <li><a href="{% url 'learn_religiousLife' %}" title="Religious Life">Religious Life</a></li>
-        <li><a href="{% url 'learn_religiousDiversity' %}" title="Religious Diversity">Religious Diversity</a></li>
-        <li><a href="{% url 'learn_decisionToAdmitNonQuakers' %}" title="Decision To Admit Non-Quakers">Decision To Admit Non-Quakers</a></li>
-        <li><a href="{% url 'learn_theologyAndFamily' %}" title="Theology and Family">Theology and Family</a></li>
-      </ul>
-    </span>
-  </li>
-  <li><a class="collapsible" title="open glossary page on a new tab" target="_blank" href="{% url 'glossary' %}">Glossary</a></li>
-  <li><a class="collapsible" href="{% url 'bibliography' %}" title="Bibliography">Bibliography</a></li>
-</ul>
+    <span class="collapsible mobile-collapsible" style="font-size: 2.5em;">Scholarship</span>
+    <span class="content mobile-content"><ul>
+      <li>
+        <span class="collapsible">Asylum</span>
+        <span class="content">
+          <ul>
+            <li><a href="{% url 'learn_theYorkRetreat' %}" style="text-decoration: none; color:black" title="The York Retreat">The York Retreat</a></li>
+            <li><a href="{% url 'learn_foundation' %}" style="text-decoration: none; color:black" title="Foundation">Foundation</a></li>
+            <li><a href="{% url 'learn_structureAndGovernance' %}" style="text-decoration: none; color:black" title="Structure &amp; Governance">Structure &amp; Governance</a></li>
+            <li><a href="{% url 'learn_changesInAdminOverTime' %}" style="text-decoration: none; color:black" title="Changes in the Administration Over Time">Changes in the Administration</a></li>
+            <li><a href="{% url 'learn_asylumArchitecture' %}" style="text-decoration: none; color:black" title="Asylum Architecture">Asylum Architecture</a></li>
+            <li><a href="{% url 'learn_gurneyCottage' %}" style="text-decoration: none; color:black" title="Gurney Cottage">Gurney Cottage</a></li>
+            <li><a href="{% url 'learn_trainingOfDoctors' %}" style="text-decoration: none; color:black" title="Training Of Doctors">Training Of Doctors</a></li>
+            <li><a href="{% url 'learn_trainingOfNurses' %}" style="text-decoration: none; color:black" title="Training Of Nurses">Training Of Nurses</a></li>
+            <li><a href="{% url 'learn_genderAndStaff' %}" style="text-decoration: none; color:black" title="Gender and Staff">Gender and Staff</a></li>
+            <li><a href="{% url 'learn_raceAndStaff' %}" style="text-decoration: none; color:black" title="Race and Staff">Race and Staff</a></li>
+            <li><a href="{% url 'learn_philanthropicNetworks' %}" style="text-decoration: none; color:black" title="Philanthropic Networks">Philanthropic Networks</a></li>
+          </ul>
+        </span>
+      </li>
+      <li>
+        <span class="collapsible">Treatment</span>
+        <span class="content">
+          <ul>
+            <li><a href="{% url 'learn_typesOfMentalIllness' %}" style="text-decoration: none; color:black" title="Types Of Mental Illness">Types of Mental Illness</a></li>
+            <li><a href="{% url 'learn_religiousexcitement' %}" style="text-decoration: none; color:black" title="Religious Excitement">Religious Excitement</a></li>
+	    <li><a href="{% url 'learn_moralTreatment' %}" style="text-decoration: none; color:black" title="Moral Treatment">Moral Treatment</a></li>
+            <li><a href="{% url 'learn_occupationalTherapy' %}" style="text-decoration: none; color:black" title="Occupational Therapy">Occupational Therapy</a></li>
+            <li><a href="{% url 'learn_asylumLibrary' %}" style="text-decoration: none; color:black" title="Asylum Library">Asylum Library</a></li>
+            <li><a href="{% url 'learn_medicalTreatment' %}" style="text-decoration: none; color:black" title="Medical Treatment">Medical Treatment</a></li>
+            <li><a href="{% url 'learn_medicalAdvancements' %}" style="text-decoration: none; color:black" title="Medical Advancements">Medical Advancements</a></li>
+            <li><a href="{% url 'learn_genderAndLengthOfStay' %}" style="text-decoration: none; color:black" title="Gender and Length of Stay">Gender and Length of Stay</a></li>
+            <li><a href="{% url 'learn_genderAndTreatment' %}" style="text-decoration: none; color:black" title="Gender and Treatment">Gender and Treatment</a></li>
+            <li><a href="{% url 'learn_GenderAndDeath' %}" style="text-decoration: none; color:black" title="Gender and Death">Gender and Death</a></li>
+	    <li><a href="{% url 'learn_moralTreatmentAndFamily' %}" style="text-decoration: none; color:black" title="Moral Treatment and Family">Moral Treatment and the Family</a></li>
+          </ul>
+        </span>
+      </li>
+      <li>
+        <span class="collapsible">Patients</span>
+        <span class="content">
+          <ul>
+            <li><a href="{% url 'learn_caseStudies' %}" style="text-decoration: none; color:black" title="Case Studies">Case Studies</a></li>
+            <li><a href="{% url 'learn_patientHometowns' %}"style="text-decoration: none; color:black" title="Patient Hometowns">Patient Hometowns</a></li>
+            <li><a href="{% url 'learn_patientDemographics' %}" style="text-decoration: none; color:black" title="Patient Demographics">Patient Demographics</a></li>
+          </ul>
+        </span>
+      </li>
+      <li>
+        <span class="collapsible">Religion</span>
+        <span class="content">
+          <ul>
+            <li><a href="{% url 'learn_mentalHealthAndQuakerTheology' %}" style="text-decoration: none; color:black" title="Mental Health and Quaker Theology">Mental Health and Quaker Theology</a></li>
+            <li><a href="{% url 'learn_religiousLife' %}" style="text-decoration: none; color:black" title="Religious Life">Religious Life</a></li>
+            <li><a href="{% url 'learn_religiousDiversity' %}" style="text-decoration: none; color:black" title="Religious Diversity">Religious Diversity</a></li>
+            <li><a href="{% url 'learn_decisionToAdmitNonQuakers' %}" style="text-decoration: none; color:black" title="Decision To Admit Non-Quakers">Decision To Admit Non-Quakers</a></li>
+            <li><a href="{% url 'learn_theologyAndFamily' %}" style="text-decoration: none; color:black" title="Theology and Family">Theology and Family</a></li>
+          </ul>
+        </span>
+      </li>
+      <li><a class="collapsible" href="{% url 'essays' %}" title="Essays">Essays</a></li>
+      <li><a class="collapsible" href="{% url 'visualizations' %}" title="Data Visualizations">Data Visualizations</a></li>
+      <li ><a class="collapsible" title="open glossary page on a new tab" target="_blank" href="{% url 'glossary' %}">Glossary</a></li>
+      <li><a class="collapsible" href="{% url 'bibliography' %}" title="Bibliography">Bibliography</a></li>
+      <li><a class="collapsible" href="{% url 'patientTable' %}" title="Admission Data">Admission Data</a></li>
+    </ul></span>
 
-<script src="{% static 'js/collapsible-menu.js' %}"></script>
-<!-- script from: https://www.w3schools.com/howto/howto_js_collapsible.asp -->
+    <script src="{% static 'js/collapsible-menu.js' %}"></script>
+    <!-- script from: https://www.w3schools.com/howto/howto_js_collapsible.asp -->
 
-  <!-- p style="color: grey;">&copy; Haverford College | 2019</p -->
-
-
-</div><!-- id="side" -->
-
-
-
-
-
-        <!-- MAIN SECTION -->
-
-<div id="main">
+      <!-- p style="color: grey;">&copy; Haverford College | 2019</p -->
 
 
-        <!-- BANNER -->
+  </div><!-- id="side" -->
+
+          <!-- MAIN SECTION -->
+
+  <div id="main" class="col-xs-12 col-md-9">
 
 
-  <div id="banner">
-    <a href="{% url 'home' %}" title="go back to homepage" style="text-decoration: none; color: black;">
-      <h1 style="padding: 0;">Quakers &amp; Mental Health</h1>
+          <!-- BANNER -->
+
+
+    <div id="banner">
+      <a href="{% url 'home' %}" title="go back to homepage" style="text-decoration: none; color: black;">
+        <h1 style="padding: 0; padding-top: 4vh;">Quakers &amp; Mental Health</h1>
+      </a>
+    </div><!-- id="banner" -->
+
+
+
+
+
+          <!-- BLOCK -->
+
+
+    <div id="block">
+  {% block content %}{% endblock %}
+    </div><!-- id="block" -->
+
+
+
+          <!-- FOOTER -->
+
+
+  <div id="footer">
+
+    <div class="footer-bgcolor"><!-- the background color for footer is set in the corresponding CSS for each page, not in "base.css" -->
+
+
+          <!-- FOOTER ADDRESSES -->
+
+    <div class="row">
+      <div class="column">
+        <ul>
+          <li><a href="http://library.haverford.edu/places/special-collections">Quaker &amp; Special Collections</a></li>
+          <li><a href="http://library.haverford.edu">Haverford College Libaries</a></li>
+          <li>370 Lancaster Avenue</li>
+          <li>Haverford, PA 19041</li>
+        </ul>
+      </div>
+      <div class="column">
+        <ul>
+          <li><a href="http://library.haverford.edu/services/digital-scholarship/">Digital Scholarship</a></li>
+          <li><a href="http://library.haverford.edu">Haverford College Libaries</a></li>
+          <li>370 Lancaster Avenue</li>
+          <li>Haverford, PA 19041</li>
+        </ul>
+      </div>
+      <div class="column">
+        <ul>
+          <li><a href="http://www.scattergoodfoundation.org/">The Thomas Scattergood<br>Behavioral Health Foundation</a></li>
+          <li>1501 Cherry Street</li>
+          <li>Philadelphia, PA 19102 </li>
+        </ul>
+      </div>
+    </div><!-- class="row" -->
+
+
+          <!-- FOOTER SOCIAL LINKS -->
+
+    <div class="icons">
+
+              <a href ="https://www.facebook.com/hclibraries"><img src="{% static 'icons/facebook.png' %}" alt="facebook icon" title="go to QMH Facebook page"></img></a>
+              <a href ="https://twitter.com/HCLibraries"><img src="{% static 'icons/twitter.png' %}" alt="twitter icon" title="go to QMH Twitter page"></img></a>
+              <a href ="https://instagram.com/HCLibraries/"><img src="{% static 'icons/insta.png' %}" alt="instagram icon" title="go to QMH Instagram page"></img></a>
+              <a href ="https://vimeo.com/hclibraries"><img src="{% static 'icons/vimeo.png' %}" alt="vimeo icon" title="go to QMH Vimeo page"></img></a>
+              <a href ="mailto:library@haverford.edu"><img src="{% static 'icons/email.png' %}" alt="emailbox icon" title="mailto: library@haverford.edu"></img></a>
+
+
+    </div><!-- class="icons" -->
+
+
+          <!-- FOOTER COPYRIGHT -->
+
+    <div id="copyright">
+
+    <p>
+      Quakers &amp; Mental Health is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </p>
+
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+      <img alt="Creative Commons License" style="border-width:0; display: inline-block;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png">
     </a>
-  </div><!-- id="banner" -->
+
+    </div><!-- id="copyright" -->
 
 
 
+    </div><!-- class="footer-bgcolor" -->
 
+  </div><!-- id="footer" -->
 
-        <!-- BLOCK -->
+  </div><!-- id="main" -->
 
+</div></div><!-- id="row", id="container-fluid" -->
 
-  <div id="block">
-{% block content %}{% endblock %}
-  </div><!-- id="block" -->
+<script>
+	function setMobileCollapse() {
+		console.log($(window).width());
+		if ($(window).width() < 768) {
+			$(".mobile-collapsible").addClass("collapsible");
+			$(".mobile-content").addClass("content");
+		} else {
+			$(".mobile-collapsible").removeClass("collapsible");
+                        $(".mobile-content").removeClass("content");
+		}
+	}
 
-
-
-        <!-- FOOTER -->
-
-
-<div id="footer">
-
-  <div class="footer-bgcolor"><!-- the background color for footer is set in the corresponding CSS for each page, not in "base.css" -->
-
-
-        <!-- FOOTER ADDRESSES -->
-
-  <div class="row">
-    <div class="column">
-      <ul>
-        <li><a href="http://library.haverford.edu/places/special-collections">Quaker &amp; Special Collections</a></li>
-        <li><a href="library.haverford.edu">Haverford College Libaries</a></li>
-        <li>370 Lancaster Avenue</li>
-        <li>Haverford, PA 19041</li>
-      </ul>
-    </div>
-    <div class="column">
-      <ul>
-        <li><a href="http://library.haverford.edu/services/digital-scholarship/">Digital Scholarship</a></li>
-        <li><a href="library.haverford.edu">Haverford College Libaries</a></li>
-        <li>370 Lancaster Avenue</li>
-        <li>Haverford, PA 19041</li>
-      </ul>
-    </div>
-    <div class="column">
-      <ul>
-        <li><a href="http://www.scattergoodfoundation.org/">The Thomas Scattergood<br>Behavioral Health Foundation</a></li>
-        <li>1501 Cherry Street</li>
-        <li>Philadelphia, PA 19102 </li>
-      </ul>
-    </div>
-  </div><!-- class="row" -->
-
-
-        <!-- FOOTER SOCIAL LINKS -->
-
-  <div class="icons">
-
-            <a href ="https://www.facebook.com/hclibraries"><img src="{% static 'icons/facebook.png' %}" alt="facebook icon" title="go to QMH Facebook page"></img></a>
-            <a href ="https://twitter.com/HCLibraries"><img src="{% static 'icons/twitter.png' %}" alt="twitter icon" title="go to QMH Twitter page"></img></a>
-            <a href ="https://instagram.com/HCLibraries/"><img src="{% static 'icons/insta.png' %}" alt="instagram icon" title="go to QMH Instagram page"></img></a>
-            <a href ="https://vimeo.com/hclibraries"><img src="{% static 'icons/vimeo.png' %}" alt="vimeo icon" title="go to QMH Vimeo page"></img></a>
-            <a href ="mailto:library@haverford.edu"><img src="{% static 'icons/email.png' %}" alt="emailbox icon" title="mailto: library@haverford.edu"></img></a>
-
-
-  </div><!-- class="icons" -->
-
-
-        <!-- FOOTER COPYRIGHT -->
-
-  <div id="copyright">
-
-  <p>
-    Quakers &amp; Mental Health is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-  </p>
-
-  <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
-    <img alt="Creative Commons License" style="border-width:0; display: inline-block;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png">
-  </a>
-
-  </div><!-- id="copyright" -->
-
-
-
-  </div><!-- class="footer-bgcolor" -->
-
-</div><!-- id="footer" -->
-
-
-
-
-
-</div><!-- id="main" -->
-
+	$(window).resize(setMobileCollapse);
+	$(document).ready(setMobileCollapse);
+</script>
 
 </body>
 
 </html>
+
+

@@ -17,10 +17,17 @@ from django.contrib import admin
 #from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from django.urls import include
+from django.contrib.flatpages import views as flat_views
+from django.conf.urls import url
+from django.urls import path, include
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('qmh.urls')),
+    url(r'^myAsylum/$', flat_views.flatpage, {'url': '/myAsylum/'}, name = 'myAsylum'),
 ]
 
 #urlpatterns += staticfiles_urlpatterns()
+
+

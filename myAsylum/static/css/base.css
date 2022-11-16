@@ -8,22 +8,30 @@ h1 {font-size: 3em;}
 h2 {font-size: 2em;}
 h3 {font-size: 1.5em;}
 h4 {font-size: 1.25em;}
-h5 {font-size: 1.13em;}
+h5 {font-size: 1.12em;}
 h6 {font-size: 1em;}
-p, li, nav {font-size: 1.1em;}
+p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 
+#topnav {
+    width: 100%;
+    position: fixed;
+    z-index: 3;/* about "z-index": see: https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-different-height-and-width-the-same-via-css; and see: https://www.w3schools.com/cssref/pr_pos_z-index.asp */
+    top: 0;
+    left: 0;
+    background-color: #333;
+    padding: 0.5em 1em;
+}
 
 #topnav nav {
-    padding: 0.2em 0.5em;
     color: #f2f2f2;
-    background-color: black;
+    font-size: calc(1vw + 1vh);
 }
 
 #topnav nav a {
     color: #f2f2f2;
     text-align: center;
     text-decoration: none;
-    font-size: 1em;
+    padding: calc(.5vw + .5vh);
 }
 
 #topnav nav a:hover {
@@ -32,45 +40,171 @@ p, li, nav {font-size: 1.1em;}
 }
 
 
-#middle .column {
-    float: left;
+/* ---------------------- */
+
+
+#main {
+    background-color: white;
+    padding: 0;
+    margin: 2em 0 0 10;
 }
 
-#middle .column:after {
+@media screen and (max-width: 600px) {
+#side {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  #side a {float: left;}
+}
+
+#side {
+    background-color: #e3e3e3;
+    padding: 8vh 2em 0 2em;
+}
+
+/*#@media (max-width: 800px) {
+    #side {
+#        width: 0;/* due to padding, even with width=0 the sidebar will still be visible for hovering action */
+/*    }
+    #side:hover {
+        width: 40%;
+    }
+}*/
+
+#side li {
+    font-size: 1.2em;
+}
+
+/* there's no img in sidebar right now */
+#side img {
+    width: 50%;
+    height: auto;
+    margin: 1em auto;
+    display: block;
+}
+
+#side .collapsible {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    text-align: left;
+    font-size: 1em;
+    text-decoration: none;
+    color: black;
+}
+
+#side span.collapsible::after {
+    content: " \25b8";
+    font-size: 50%;
+    padding: 3px;
+}
+
+#side span.collapsible.active:after {
+    content: " \25bc";
+}
+
+#side li .active, #side li span.collapsible:hover {
+    background-color: #333;
+    color: white;
+}
+
+/* Currently, the collapsible sidebar menu re-collapses once a new page is open, and there is no indication from which menu tab the new page is opened from. This JS might enable a menu tab to stay open after opening a new page: https://www.sitepoint.com/community/t/how-to-keep-accordion-drop-down-menu-open-when-opening-a-new-page/9033/12 */
+
+#side .content {
+    display: none;
+    overflow: hidden;
+}
+
+#side ul {padding-left: 1em;}
+
+#side ul {list-style-type: none;}
+
+#side .content li {
+    font-size: 0.9em;
+    text-align: left;
+    padding: 0.2em;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#side li .content li:hover, #side li a.collapsible:hover {
+    background-color: #ffffff;
+}
+
+
+#banner {
+    padding: 5vh 0 2vh 0;
+}
+
+#banner a {
+    background-color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+#banner h1:hover {
+    color: grey;
+}
+
+
+#block {
+    padding: 0 2em;
+}
+
+#block article {
+    content: "";
+    clear: both;
+    display: table;
+    padding-top: 2vh;
+}
+
+#block article::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#block h5.prev-next {
+    padding: 2em 0;
+    font-weight: normal;
+    font-style: oblique;
+}
+
+#block::after {
     clear: both;
     content: "";
     display: table;
 }
 
-#middle .side {
-    float: right;
-    width: 25%;
-    height: 50%;
-    position: fixed;
-    right: 0;
-    top: 2.3em;
-    background-color: transparent;
-    padding: 0 1em 0 1em;
+/* ---------------------- */
+
+
+#footer {
+    bottom: 0;
 }
 
-#middle .main {
-    float: left;
-    width: 75%;
-    background-color: transparent;
-    padding: 0 1em 0 0;
-}
-
-
+/* footer color is styled on stylesheets of individual pages */
 
 #footer .row {
     clear: both;
     padding: 2em 0 0 0;
     text-align: center;
+    margin-top: 2em;
 }
 
 #footer .column {
     width: 33%;
     display: inline-block;
+}
+
+@media (max-width: 800px) {
+    #footer .column {
+        width: 100%;
+    }
 }
 
 #footer .row:after {
@@ -103,5 +237,27 @@ p, li, nav {font-size: 1.1em;}
     clear: left;
     text-align: center;
     padding: 1em 0 2em 0;
-    text-font: 0.8em;
+    font-size: 0.8em;
+}
+
+/* the default footer */
+#footer {
+    color: white;
+}
+
+#footer a {
+    color: #deeaff;
+}
+
+#footer a:hover {
+    color: pink;
+}
+
+#footer .footer-bgcolor {
+    clear: both;
+    background-color: #444444;
+}
+
+#footer .icons {
+    background-color: #444444;
 }

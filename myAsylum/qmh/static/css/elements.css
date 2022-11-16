@@ -73,6 +73,13 @@ a.glossary:hover {
     width: 100%;
 }
 
+#block figure.in-text.fullwidth {
+    float: none;
+    width: 100%;
+    padding: 20px;
+    margin: 40px 0;
+}
+
 #block figure.in-text {
     float: left;
     width: 40%;

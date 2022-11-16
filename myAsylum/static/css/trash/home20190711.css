@@ -1,0 +1,85 @@
+
+/* #middle refers to the entire content block that extends "base.html"; please see "base.html" the id's of div's */
+
+#middle .side img {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+#middle .main .banner {
+    position: relative;
+}
+
+#middle .main .banner img {
+    width: 100%;
+}
+
+#middle .main .overlay {
+    position: absolute;
+    color: black;
+    padding: 1em 0 1em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);/* see: https://www.w3schools.com/howto/howto_css_image_text.asp */
+}
+
+#middle .main .overlay a {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+}
+
+#middle .main .overlay a:hover {
+    color: #f2f2f2;
+    text-align: center;
+}
+
+#middle .main #secnav {
+    margin: 0.5em 0 0.5em 0;
+    text-align: center;
+}
+
+#middle .main .main-text {
+    padding: 0 2em;
+}
+
+#middle .main .essays {
+    list-style: none;
+    padding-left: 0;
+}
+
+#middle .main .thumbnail a {
+    display: inline-block;
+}
+
+#middle .main .thumbnail img {
+    border: 0.1em solid #ddd;
+    border-radius: 0.25em;
+    padding: 0.4em;
+    width: 8em;
+}
+
+#middle .main .thumbnail img:hover {
+    box-shadow: 0 0 0.2em 0.1em rgba(0, 140, 186, 0.5);
+}
+
+
+/* footer bgcolor and textcolor are set individually for each page according to its palette */
+#footer {
+    color: white;
+}
+
+#footer a {
+    color: #deeaff;
+}
+
+#footer .footer-bgcolor {
+    clear: both;
+    background-color: #444444;
+}
+
+#footer .icons {
+    background-color: #444444;
+}
+
