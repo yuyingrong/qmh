@@ -19,19 +19,19 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
     top: 0;
     left: 0;
     background-color: #333;
-    height: 2em;/* this serves positioning #main and #side, both having "top: 2em;" */
     padding: 0.5em 1em;
 }
 
 #topnav nav {
     color: #f2f2f2;
+    font-size: calc(1vw + 1vh);
 }
 
 #topnav nav a {
     color: #f2f2f2;
     text-align: center;
     text-decoration: none;
-    font-size: 1em;
+    padding: calc(.5vw + .5vh);
 }
 
 #topnav nav a:hover {
@@ -44,34 +44,33 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 
 
 #main {
-    float: right;
-    width: 80.99%;
     background-color: white;
     padding: 0;
-    margin: 2em 0 0 0;
+    margin: 2em 0 0 10;
+}
+
+@media screen and (max-width: 600px) {
+#side {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  #side a {float: left;}
 }
 
 #side {
-    z-index: 2;
-    float: left;
-    width: 19%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    background-color: #999;
-    padding: 0 2em 0 2em;
-    top: 2em;
-    overflow: scroll;
+    background-color: #e3e3e3;
+    padding: 8vh 2em 0 2em;
 }
 
-@media (max-width: 800px) {
+/*#@media (max-width: 800px) {
     #side {
-        width: 0;/* due to padding, even with width=0 the sidebar will still be visible for hovering action */
-    }
+#        width: 0;/* due to padding, even with width=0 the sidebar will still be visible for hovering action */
+/*    }
     #side:hover {
         width: 40%;
     }
-}
+}*/
 
 #side li {
     font-size: 1.2em;
@@ -96,7 +95,17 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
     color: black;
 }
 
-#side .active, #side .collapsible:hover {
+#side span.collapsible::after {
+    content: " \25b8";
+    font-size: 50%;
+    padding: 3px;
+}
+
+#side span.collapsible.active:after {
+    content: " \25bc";
+}
+
+#side li .active, #side li span.collapsible:hover {
     background-color: #333;
     color: white;
 }
@@ -122,10 +131,14 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
     text-overflow: ellipsis;
 }
 
-#side .content li:hover {
-    background-color: #f2f2f2;
+#side li .content li:hover, #side li a.collapsible:hover {
+    background-color: #ffffff;
 }
 
+
+#banner {
+    padding: 5vh 0 2vh 0;
+}
 
 #banner a {
     background-color: white;
@@ -134,7 +147,7 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
 }
 
 #banner h1:hover {
-    text-shadow: 0 0 0.1em grey;
+    color: grey;
 }
 
 
@@ -146,6 +159,7 @@ p, li, nav, blockquote {font-size: 1em; line-height: 1.6em;}
     content: "";
     clear: both;
     display: table;
+    padding-top: 2vh;
 }
 
 #block article::after {

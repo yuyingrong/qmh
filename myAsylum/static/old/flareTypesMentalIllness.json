@@ -1,0 +1,252 @@
+{ "name": "flare",
+	"children": [
+	{ "name": "Dementia",
+		"children": [
+ {
+   "name": "Dementia.Brain",
+   "size": 11
+ },
+ {
+   "name": "Dementia.Business or Money",
+   "size": 9
+ },
+ {
+   "name": "Dementia.Disappointment",
+   "size": 8
+ },
+ {
+   "name": "Dementia.Disease or Ill Health",
+   "size": 20
+ },
+ {
+   "name": "Dementia.Domestic Trouble",
+   "size": 10
+ },
+ {
+   "name": "Dementia.Epilepsy",
+   "size": 14
+ },
+ {
+   "name": "Dementia.Studying",
+   "size": 1
+ },
+ {
+   "name": "Dementia.Grief",
+   "size": 2
+ },
+ {
+   "name": "Dementia.Gynecological",
+   "size": 12
+ },
+ {
+   "name": "Dementia.Intemperance",
+   "size": 8
+ },
+ {
+   "name": "Dementia.Masturbation",
+   "size": 14
+ },
+ {
+   "name": "Dementia.Old Age",
+   "size": 9
+ },
+ {
+   "name": "Dementia.Other",
+   "size": 7
+ },
+ {
+   "name": "Dementia.Paralysis",
+   "size": 8
+ },
+ {
+   "name": "Dementia.Religion",
+   "size": 1
+ },
+ {
+   "name": "Dementia.Sexual",
+   "size": 8
+ }
+ ]
+ },
+ { "name": "Mania", 
+ 	"children": [
+ {
+   "name": "Mania.Anxiety",
+   "size": 22
+ },
+ {
+   "name": "Mania.Brain",
+   "size": 13
+ },
+ {
+   "name": "Mania.Business or Money",
+   "size": 30
+ },
+ {
+   "name": "Mania.Disappointment",
+   "size": 19
+ },
+ {
+   "name": "Mania.Disease or Ill Health",
+   "size": 90
+ },
+ {
+   "name": "Mania.Domestic Trouble",
+   "size": 73
+ },
+ {
+   "name": "Mania.Epilepsy",
+   "size": 20
+ },
+ {
+   "name": "Mania.Studying",
+   "size": 4
+ },
+ {
+   "name": "Mania.Excitement",
+   "size": 8
+ },
+ {
+   "name": "Mania.Grief",
+   "size": 16
+ },
+ {
+   "name": "Mania.Gynecological",
+   "size": 58
+ },
+ {
+   "name": "Mania.Intemperance",
+   "size": 74
+ },
+ {
+   "name": "Mania.Masturbation",
+   "size": 9
+ },
+ {
+   "name": "Mania.Old Age",
+   "size": 4
+ },
+ {
+   "name": "Mania.Other",
+   "size": 10
+ },
+ {
+   "name": "Mania.Paralysis",
+   "size": 9
+ },
+ {
+   "name": "Mania.Religion",
+   "size": 20
+ },
+ {
+   "name": "Mania.Sexual",
+   "size": 5
+ }
+ ]
+ },
+ { "name": "Melancholia", 
+ 	"children": [
+ {
+   "name": "Melancholia.Anxiety",
+   "size": 19
+ },
+ {
+   "name": "Melancholia.Business or Money",
+   "size": 15
+ },
+ {
+   "name": "Melancholia.Disappointment",
+   "size": 2
+ },
+ {
+   "name": "Melancholia.Disease or Ill Health",
+   "size": 31
+ },
+ {
+   "name": "Melancholia.Domestic Trouble",
+   "size": 18
+ },
+ {
+   "name": "Melancholia.Epilepsy",
+   "size": 1
+ },
+ {
+   "name": "Melancholia.Grief",
+   "size": 9
+ },
+ {
+   "name": "Melancholia.Gynecological",
+   "size": 14
+ },
+ {
+   "name": "Melancholia.Intemperance",
+   "size": 8
+ },
+ {
+   "name": "Melancholia.Masturbation",
+   "size": 4
+ },
+ {
+   "name": "Melancholia.Other",
+   "size": 3
+ },
+ {
+   "name": "Melancholia.Religion",
+   "size": 3
+ },
+ {
+   "name": "Melancholia.Sexual",
+   "size": 3
+ }
+ ]
+ },
+ { "name": "Monomania", 
+ 	"children": [
+ {
+   "name": "Monomania.Anxiety",
+   "size": 4
+ },
+ {
+   "name": "Monomania.Business or Money",
+   "size": 5
+ },
+ {
+   "name": "Monomania.Disease or Ill Health",
+   "size": 27
+ },
+ {
+   "name": "Monomania.Domestic Trouble",
+   "size": 13
+ },
+ {
+   "name": "Monomania.Epilepsy",
+   "size": 2
+ },
+ {
+   "name": "Monomania.Grief",
+   "size": 6
+ },
+ {
+   "name": "Monomania.Gynecological",
+   "size": 8
+ },
+ {
+   "name": "Monomania.Intemperance",
+   "size": 8
+ },
+ {
+   "name": "Monomania.Other",
+   "size": 2
+ },
+ {
+   "name": "Monomania.Religion",
+   "size": 4
+ },
+ {
+   "name": "Monomania.Sexual",
+   "size": 1
+ }
+ ]
+ }
+ ]
+}

@@ -1,0 +1,115 @@
+
+#block .gallery::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#block .frame {
+    position: relative;
+    padding: 0;
+    display: inline-block;
+    width: 24%;
+    height: auto;
+}
+
+@media (max-width: 800px) {
+    #block .frame {
+        width: 48.5%;
+    }
+}
+
+@media (max-width: 500px) {
+    #block .frame {
+        width: 100%;
+    }
+}
+
+#block .frame img {
+    width: 100%;
+    object-fit: cover;
+    border: 0.1em solid #ddd;
+    border-radius: 0.25em;
+    padding: 1em;
+    background-color: white;
+}
+
+#block .frame img:hover {
+    box-shadow: 0 0 0.2em 0.1em #008cba;
+    cursor: pointer;
+}
+
+#block .frame .overlay {
+    position: absolute;
+    width: 50%;
+    right: 1em;
+    bottom: 1em;
+    background-color: black;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier; see: https://www.w3schools.com/css/tryit.asp?filename=trycss_transparency */
+}
+
+#block .frame .overlay p {
+    color: white;
+    margin: 0.5em;
+}
+
+
+
+
+/* yrong2019: code below is crap, only for reference use; code only looks nice when the number of images is the least common multiple of the column-count's */
+/* adapted from: https://css-tricks.com/seamless-frame-photo-grid */
+#block .imgwall {
+  column-count: 4;
+  column-gap: 0;  
+}
+
+@media (max-width: 800px) {
+    #block .imgwall {
+      column-count: 3;
+    }
+}
+
+@media (max-width: 500px) {
+    #block .imgwall {
+      column-count: 2;
+    }
+}
+
+@media (max-width: 350px) {
+    #block .imgwall {
+      column-count: 1;
+    }
+}
+
+#block .imgframe {
+    border: 0.1em solid #ddd;
+    border-radius: 0.25em;
+    padding: 1em;
+    background-color: white;
+}
+
+#block .imgframe:hover {
+    box-shadow: 0 0 0.2em 0.1em #008cba;
+    cursor: pointer;
+}
+
+#block .imgframe img {
+  width: 100%;
+  height: auto;
+}
+
+#block .imgwall .overlay {
+    position: absolute;
+    width: 50%;
+    right: 1em;
+    bottom: 1em;
+    background-color: black;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier; see: https://www.w3schools.com/css/tryit.asp?filename=trycss_transparency */
+}
+
+#block .imgwall .overlay p {
+    color: white;
+    margin: 0.5em;
+}

@@ -4,7 +4,6 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/learn.css' %}">
 <link rel="stylesheet" href="{% static 'css/elements.css' %}">
 <script type="text/javascript" src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
 <title>Types of Mental Illness | Quakers &amp; Mental Health</title>
@@ -42,13 +41,13 @@ text {
 
 .link:hover {
   stroke-opacity: .5;
-} 
+}
 </style>
 
 
 <figure class="header">
   <img src="{% static 'images/carousel4.jpg' %}" alt="drawing of Friends Asylum front view" title="Drawing of Friends Asylum">
-  <figcaption> JJ. M. Butler, Friends' Asylum for the Insane. Philadelphia. N.d., Print. Collection 850,  Quaker and Special Collections, Haverford College, Haverford, PA.</figcaption>
+  <figcaption> JJ. M. Butler, Friends' Asylum for the Insane. Philadelphia. Undated, Print. Collection 850,  Quaker and Special Collections, Haverford College, Haverford, PA.</figcaption>
 </figure><!-- class="header" -->
 
 
@@ -56,7 +55,7 @@ text {
   <h3>Causes of Mental Illness</h3>
   <p>As the nineteenth century progressed, physicians responded to mental illness in increasingly systematic ways. At first, physicians at Friends’ Asylum classified patients by the duration of their insanity, as experts held that the longer a person was deprived of the use of their reason, the less likely they were to recover.</p>
   <p>In 1836, Friends’ Asylum began to also classify patients based on the type of insanity they were thought to have, as deduced from their symptoms. Mania was thought to be the most curable and dementia the least <a href = "#" data-reveal-id = "Esquirol">(Esquirol 128)</a>. Physicians also began recording the causes of mental illness for each patient if they were known. The classification schemes employed by Friends' Asylum doctors illustrate the variety of factors thought to cause mental illness, as well as the ways that physicians attempted to make sense of the wide range of symptoms that patients exhibited. Although Friends' Asylum did not base patients’ ward assignments on these diagnoses like at other institutions, instead choosing to separate patients by the disruptiveness of their behavior, these classifications still informed patients' treatments. Starting in the 1830s, medical and <a href="/medical">moral treatment</a> were actively employed in tandem. Physicians used medical treatment to address physical ailments, while moral treatment was used to restore patients to reason.</p>
-  <p>The following are different ways of visualizing data pertaining to the types and causes of mental illness. The data were originally listed in the <a href = "#" data-reveal-id = "Admissions">Admissions Day Book</a> for the years 1836 to 1877 and contain entries for over 1,000 patients. The data have been compiled in the patient data page, and can be downloaded in multiple formats.</p> 
+  <p>The following are different ways of visualizing data pertaining to the types and causes of mental illness. The data were originally listed in the <a href = "#" data-reveal-id = "Admissions">Admissions Day Book</a> for the years 1836 to 1877 and contain entries for over 1,000 patients. The data have been compiled in the patient data page, and can be downloaded in multiple formats.</p>
 </article>
 
 <hr>
@@ -119,8 +118,8 @@ d3.json("{% static 'old/flareTypesMentalIllness.json' %}", function(error, data)
 
   node1.append("circle")
       .attr("r", function(d) { return d.r; })
-      .style("fill", function(d) { 
-        return color1(d.data.packageName); 
+      .style("fill", function(d) {
+        return color1(d.data.packageName);
       });
 
   node1.append("text")
@@ -160,7 +159,7 @@ d3.select(self.frameElement).style("height", diameter + "px");
   <div id="sankey" style="text-align:center;"></div>
   <script src="{% static 'old/sankeyTypesMentalIllness.js' %}"></script>
   <script>
-	
+
 var singleUnit = "patient";
 var units = "patients";
 
@@ -171,9 +170,9 @@ var margin = {top: 10, right: 10, bottom: 10, left: 10},
 
 // format variables
 var formatNumber = d3.format(",.0f"),    // zero decimal places
-    format = function(d) { 
-    	if (formatNumber(d) == 1) 
-    		{ return formatNumber(d) + " " + singleUnit;} 
+    format = function(d) {
+    	if (formatNumber(d) == 1)
+    		{ return formatNumber(d) + " " + singleUnit;}
     	else {return formatNumber(d) + " " + units;} },
     color = d3.scaleOrdinal(d3.schemeCategory20);
 
@@ -182,7 +181,7 @@ var svg2 = d3.select("#sankey").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", 
+    .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Set the sankey diagram properties
@@ -214,7 +213,7 @@ d3.json("{% static 'old/sankeyTypesMentalIllness.json' %}", function(error, grap
 // add the link titles
   link.append("title")
         .text(function(d) {
-    		return d.source.name + " → " + 
+    		return d.source.name + " → " +
                 d.target.name + "\n" + format(d.value); });
 
 // add in the nodes
@@ -222,7 +221,7 @@ d3.json("{% static 'old/sankeyTypesMentalIllness.json' %}", function(error, grap
       .data(graph.nodes)
     .enter().append("g")
       .attr("class", "node")
-      .attr("transform", function(d) { 
+      .attr("transform", function(d) {
 		  return "translate(" + d.x + "," + d.y + ")"; })
       .call(d3.drag()
         .subject(function(d) {
@@ -238,10 +237,10 @@ d3.json("{% static 'old/sankeyTypesMentalIllness.json' %}", function(error, grap
       .attr("height", function(d) { return d.dy; })
       .attr("width", sankey.nodeWidth())
       .style("fill", function(d) { return d.color;}) // modified node color
-      .style("stroke", function(d) { 
+      .style("stroke", function(d) {
 		  return d3.rgb(d.color).darker(2); })
     .append("title")
-      .text(function(d) { 
+      .text(function(d) {
 		  return d.name + "\n" + format(d.value); });
 
 // add in the title for the nodes
@@ -259,9 +258,9 @@ d3.json("{% static 'old/sankeyTypesMentalIllness.json' %}", function(error, grap
 // the function for moving the nodes
   function dragmove(d) {
     d3.select(this)
-      .attr("transform", 
-            "translate(" 
-               + d.x + "," 
+      .attr("transform",
+            "translate("
+               + d.x + ","
                + (d.y = Math.max(
                   0, Math.min(height - d.dy, d3.event.y))
                  ) + ")");
@@ -274,7 +273,7 @@ d3.json("{% static 'old/sankeyTypesMentalIllness.json' %}", function(error, grap
 
 
 <hr>
-        
+
 <article>
   <div id="bargraph" style="float:right;"></div>
   <script>
@@ -301,15 +300,15 @@ var yScale = d3.scaleLinear()
 // define x axis and y axis
 d3.select(".axis")
 	.call(d3.axisBottom(xScale));
-	
+
 d3.select(".axis")
 	.call(d3.axisLeft(yScale));
-    
+
 
 d3.csv("{% static 'old/bargraph.csv' %}", function(error,data) {
   if(error) console.log("Error: data not loaded!");
 
-  
+
   data.forEach(function(d) {
     d.country = d.country;
     d.gdp = +d.gdp;       });
@@ -318,7 +317,7 @@ d3.csv("{% static 'old/bargraph.csv' %}", function(error,data) {
   xScale.domain(data.map(function(d) { return d.country; }) );
   yScale.domain([0, d3.max(data, function(d) { return d.gdp+10; } ) ]);
 
- 
+
   svg.selectAll("rect")
     .data(data)
     .enter()
@@ -327,14 +326,14 @@ d3.csv("{% static 'old/bargraph.csv' %}", function(error,data) {
     .attr("y", height)
     .transition().duration(1000)
     .delay( function(d,i) { return i * 20; })
-    
+
     .attr("x", function(d) { return xScale(d.country); })
     .attr("y", function(d) { return yScale(d.gdp); })
     .attr("width", xScale.bandwidth())
     .attr("height", function(d) { return  height - yScale(d.gdp); })
-    .style("fill", function(d,i) { 
+    .style("fill", function(d,i) {
       if(i % 3 == 0){
-      return '#2877B5'  
+      return '#2877B5'
       }
       else return  '#D7392E'
       });
@@ -448,12 +447,12 @@ d3.csv("{% static 'old/bargraph.csv' %}", function(error,data) {
 <a class = "close-reveal-modal" aria-label= "Close">&#215;</a>
 </div>
 
- 
+
        <!--  foundation/jquery files -->
 
     <script src="{% static 'old/jquery.js' %}"></script>
     <script src="{% static 'old/foundation.min.js' %}"></script>
-    
+
     <!-- Google analytics script below -->
 
     <script>

@@ -1,78 +1,27 @@
 
 /*.middle .bg-img {    background-image: url("../images/FriendsAsylum.jpg");    background-position: center;    background-repeat: no-repeat;    background-attachment: fixed;    background-size: contain;    width: 100%;    height: 50em;}*/
 
-#middle .side .collapsible {
-    cursor: pointer;
-    width: 100%;
-    padding: 0.1em;
-    text-align: left;
-    font-size: 1em;
-}
+/* #block figure and img, .header and .in-text, as well as blockquote and cite, are styled in "element.css" */
 
-#middle .side .active, .collapsible:hover {
-    background-color: #333;
-}
+/* all #block article::after sections are clearfixed in "base.css" */
 
-#middle .side .content {
-    padding: 0 1em;
-    display: none;
-    overflow: hidden;
-}
-
-
-/* the styling for the banner text (".banner-bgcolor a") is the same as in that for .main .overlay in "home.css" */
-#middle .banner-bgcolor a {
+#footer {
     color: black;
-    text-align: center;
-    text-decoration: none;
 }
 
-#middle .banner-bgcolor a:hover {
-    color: #f2f2f2;
-    text-align: center;
+#footer a {
+    color: navy;
 }
 
-
-#middle  figure {
-    float: left;
-    border-style: solid;
-    border-width: 0.5em;
-    border-color: white;
-    box-shadow: 0.2em 0.2em 1em grey;
+#footer a:hover {
+    color: crimson;
 }
 
-#middle article::after {
-    content: "";
+#footer .footer-bgcolor {
     clear: both;
-    display: table;
+    background-color: #dddddd;
 }
 
-
-
-
-#middle .album {
-    position: relative;
-    padding: 0.5em;
+#footer .icons {
+    background-color: #dddddd;
 }
-
-#middle .album img {
-    width: 100%;
-    border-style: solid;
-    border-width: 0.5em;
-    border-color: white;
-    box-shadow: 0.5em 0.5em 1em grey;
-}
-
-#middle .album .overlay {
-    position: absolute;
-    width: 50%;
-    right: 4em;
-    bottom: 2em;
-    color: white;
-}
-
-
-
-
-
-

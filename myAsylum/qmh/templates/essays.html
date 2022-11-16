@@ -1,5 +1,4 @@
-﻿
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% load staticfiles %}
 
 {% block content %}
@@ -10,14 +9,74 @@
 
 <h2>Essays</h2>
 
-<article>
-    <ul class="essays">
-      <li><a href="{% url 'essay_20cbattis' %}">The Probable Good: Changes in Mental Health Care at Friends Asylum, 1870-1900</a> - Colin Battis '20</li>
-      <li><a href="{% url 'essay_18cmichel' %}">The Principle of Family: Race, Religion, and Gender Inside the Friends' Asylum in the Nineteenth Century</a> - Claire Michel '18</li>
-      <li><a href="{% url 'essay_18bkaplow' %}">Universalism & Particularism in Quaker Philanthropy: 1770-1830</a> - Ben Kaplow '18</li>
-      <li><a href="{% url 'essay_17acorcoran' %}">A Mild and Appropriate System of Treatment: Moral Treatment and the Curability of Mental Illness at Friends Asylum</a> - Abby Corcoran '17</li>
-    </ul>
-</article>
+<style>
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1 px solid #e3e3e3;
+	text-align: left;
+	padding: 8px;	
+}
+
+tr:nth-child(even) {
+	background-color: #e3e3e3;
+}
+</style>
+
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Author</th>
+		<th>Year</th>
+	</tr>
+	
+	<tr>
+		<td><a href="{% url 'essay_22Bratt' %}">The Friends Asylum and Civil War Era Notions of Post Traumatic Stress</a></td>
+		<td>Aaron Bratt '23</td>
+		<td>Summer 2022</td>
+	</tr>
+	
+	<tr>
+		<td><a href="{% url 'essay_21scully' %}">“There are Extraordinary Circumstances in a Mental Hospital:” Medical Racism and the Exclusion of Black Patients and Staff at Friends Hospital from 1870 to 1948</a></td>
+		<td>Kate Scully '22</td>
+		<td>Summer 2021</td>
+	</tr>
+	
+	<tr>
+		<td><a href="{% url 'essay_21zhu' %}">Forgotten Practices in Early Psychiatry: Racism at Friends Asylum in the Pre-Civil War Era, 1817-1861</a></td>
+		<td>Anita Zhu '22</td>
+		<td>Summer 2021</td>
+	</tr>
+	
+	<tr>
+		<td><a href="{% url 'essay_20cbattis' %}">The Probable Good: Changes in Mental Health Care at Friends Asylum, 1870-1900</a></td>
+		<td>Colin Battis '20</td>
+		<td>Summer 2019</td>
+	</tr>
+
+	<tr>
+		<td><a href="{% url 'essay_18bkaplow' %}">Universalism & Particularism in Quaker Philanthropy: 1770-1830</a></td>
+		<td>Ben Kaplow '18</td>
+		<td>Summer 2018</td>
+	</tr>
+
+	<tr>
+		<td><a href="{% url 'essay_18cmichel' %}">The Principle of Family: Race, Religion, and Gender Inside the Friends' Asylum in the Nineteenth Century</a></td>
+		<td>Claire Michel '18</td>
+		<td>Summer 2017</td>
+	</tr>
+
+	<tr>
+		<td><a href="{% url 'essay_17acorcoran' %}">A Mild and Appropriate System of Treatment: Moral Treatment and the Curability of Mental Illness at Friends Asylum</a> </td>
+		<td>Abby Cororan '17</td>
+		<td>Summer 2015</td>
+	</tr>
+
+
+</table>
 
 <h5 class="prev-next" style="text-align:center;"><a href="{% url 'home' %}">Back to Homepage</a></h5>
 

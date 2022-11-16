@@ -1,0 +1,21 @@
+
+#block .button {
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    border: 0.1em solid #ddd;
+    border-radius: 0.25em;
+    padding: 1em;
+    background-color: white;
+}
+
+#block .button:hover {
+    box-shadow: 0 0 0.2em 0.1em #008cba;
+    cursor: pointer;
+}
+
+#block .button a {
+    text-decoration: none;
+    color: black;
+}
+
