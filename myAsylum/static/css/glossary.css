@@ -1,0 +1,16 @@
+
+#glossary table {
+    width: 100%;
+}
+
+#glossary th {
+    font-size: 1.2em;
+}
+
+#glossary th, td {
+    padding: 0.5em;
+    text-align: center;
+}
+
+#glossary tr:nth-child(even) {background-color: #f2f2f2;}/* See "Striped Tables" on: https://www.w3schools.com/css/css_table.asp */
+

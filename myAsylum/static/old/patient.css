@@ -1,0 +1,267 @@
+/* custom css for patient.html*/
+
+
+#row10 {
+    padding-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #909084;
+    padding-bottom: 20px;
+    
+}
+
+#row11 {
+    padding-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #D9D5C8;
+    padding-bottom: 20px;
+
+}
+ .full-width {
+    max-width: 1400px;
+
+
+  }
+
+  #rowheader {
+	  background-color: #333333;
+	  padding-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+/*    border-top: solid #333333 15px;
+    border-bottom: solid #333333 15px; /*if you dont want that black line at the bottom of a title heading, get rid of this*/
+
+
+}
+ button, .button {
+	font-family: "EB Garamond";
+	font-size: 1rem;
+
+}
+
+.button-group.round {
+	border-color: #94948C solid 2px;
+
+}
+
+ .overlay-container {
+    position: relative;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+
+.overlay-container .overlay2 {
+    position: absolute;
+    bottom: 0;
+    opacity: 0.7;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    left: 0;
+    right: 0;
+    color: white;
+    font-family: "Amiri";
+    font-size: 15px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+  banner img {
+    max-width: 100em;
+    margin: auto;
+    display: block;
+    background-color: #909084;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+
+#key{
+	font-family: "Amiri";
+}
+
+.panel
+{
+	/*background color of inset?*/
+}
+   
+#rowheader h1 {
+    color: #f1f1f1;
+    font-family: "Cinzel Decorative";
+    font-size: 55px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+#rowheader p {
+	text-align: left;
+	margin-left: 80px;
+	margin-right: 80px;
+	padding-bottom: 30px;
+	font-family: "Amiri";
+	font-size: 19px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+
+}
+
+
+#row4 {
+    background-color: #909084;
+    padding-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+	padding-bottom: 30px;
+	padding-right: 10px;
+	padding-left: 10px;
+  /*  border-top: solid #333333 15px; /*if you dont want that black line at the bottom of a title heading, get rid of this*/
+
+
+}
+
+#row4 h1 {
+  color: #333333;
+  font-family: "Quintessential";
+  font-size: 40px;
+  padding-top: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom:0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  text-align: center;
+   
+
+}
+
+#row4 p {
+  text-align: left;
+  padding-bottom: 0px;
+  font-family: "Amiri";
+  font-size: 19px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+ul.tabs {
+	margin-top: 0px;
+	padding-top: 30px;
+    text-align: center;
+    background-color: #d9d5c8;
+
+
+}
+
+ul.tabs li {
+
+    float: none !important;
+    display: inline-block;
+}
+
+
+ul.tabs li a {
+	margin-left: 10px;
+	border-radius: 4px 4px 0 0;
+
+	
+
+
+}
+
+.tabs dd > a, .tabs .tab-title > a {
+	background-color: #AEA881;;
+	
+	font-family: "Cinzel";
+	font-size: 20px;
+}
+
+.content p, h5, blockquote {
+	font-family: "Amiri";
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-size: 19px;
+
+
+}
+ h4 {
+      font-family: "EB Garamond";
+      font-weight: bold;
+    }
+#panel4 h2 {
+	font-family: "Quintessential";
+	font-size: 35px;
+
+}
+h2 {
+	font-family: "Quintessential";
+	font-size: 35px;
+
+}
+
+#panel4 li, p {
+	font-family: "Amiri";
+	font-size: 19px;
+}
+#row5 {
+	padding: 0px;
+	margin: 0px;
+	background-color: #d9d5c8;
+}
+.accordion {
+	margin: 10px;
+	margin-bottom: 50px;
+	
+}
+
+.accordion .accordion-navigation > a, .accordion dd > a {
+	background-color: #f0f0f0;
+	
+	font-family: "Cinzel";
+	font-size: 20px;
+
+
+
+}
+
+.accordion .accordion-navigation {
+
+	padding-bottom: 5px;
+}
+
+
+
+
+.row .row{
+
+	padding: 10px;
+}
+
+
+
+
+  .full-width {
+    max-width: 1200px;
+
+
+  }
+
+  .footer {
+    padding-top: 20px;
+    text-align: center;
+    font-family: Garamond;
+    color: #fff;
+    background-color: #292C2F;
+    
+
+  }
+
+
+.footer {
+  .columns:nth-child(n+2) {
+      border-left: 1px solid scale-color(#f1f1f1, $lightness: -30%);
+     min-height: 280px;
+  }
+ }
